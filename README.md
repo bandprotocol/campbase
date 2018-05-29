@@ -23,6 +23,12 @@ Make sure you have `Node.js v9.0+` and `yarn` installed, then run:
 yarn install
 ```
 
+We recommend [VSCode](https://code.visualstudio.com/) for smooth development experience. Devtools and guide will be added assuming you're using VSCode.
+
+### VSCode Plugins
+
+* (Prettier - Code formatter) [https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode]
+
 ## Development
 
 Create React Native App uses [Expo](https://expo.io/) as a base, so get that on your phone. Start a dev server by running:
