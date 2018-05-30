@@ -27,7 +27,7 @@ We recommend [VSCode](https://code.visualstudio.com/) for smooth development exp
 
 ### VSCode Plugins
 
-* (Prettier - Code formatter) [https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode]
+* [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Development
 
