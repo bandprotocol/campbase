@@ -9,7 +9,7 @@ See me at https://campbase.app
 This React Native app is built on the following tech
 
 * [Create React Native App](https://github.com/react-community/create-react-native-app)
-* [React Router 4.0 (Native)](https://reacttraining.com/react-router/native)
+* [React Native Router v4.x](https://github.com/aksonov/react-native-router-flux)
 * [React-Redux](https://github.com/reduxjs/react-redux)
 * [Styled Components](https://www.styled-components.com/docs/basics#react-native)
 
