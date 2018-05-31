@@ -9,7 +9,9 @@ const MainView = Style.View`
   justify-content: center;
 `
 
-export default class SignUpRoute extends React.Component {
+export default class SignUpScreen extends React.Component {
+  static navigationOptions = { tabBarLabel: 'Sign Up' }
+
   render() {
     return (
       <MainView>
