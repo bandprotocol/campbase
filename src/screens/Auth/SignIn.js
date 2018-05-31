@@ -1,6 +1,7 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Text } from 'react-native'
+import { Button } from '~/antd'
 
 const MainView = Style.View`
   flex: 1;
@@ -9,16 +10,18 @@ const MainView = Style.View`
   justify-content: center;
 `
 
-export default class SignInRoute extends React.Component {
-  get title() {
-    return 'Sign In'
-  }
+export default class SignInScreen extends React.Component {
+  static navigationOptions = { tabBarLabel: 'Sign In' }
+
   render() {
     return (
       <MainView>
-        <Text onPress={() => this.props.navigation.navigate('CommunitySelect')}>
+        <Button
+          type="primary"
+          onClick={() => this.props.navigation.replace('CommunitySelectTab')}
+        >
           Sign In
-        </Text>
+        </Button>
       </MainView>
     )
   }

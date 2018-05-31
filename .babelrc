@@ -1,6 +1,7 @@
 {
   "presets": ["babel-preset-expo"],
   "plugins": [
+    ["import", { "libraryName": "antd-mobile" }],
     [
       "module-resolver",
       {
@@ -16,7 +17,13 @@
   ],
   "env": {
     "development": {
-      "plugins": ["transform-react-jsx-source"]
+      "plugins": [
+        "transform-react-jsx-source",
+        ["import", { "libraryName": "antd-mobile" }]
+      ]
+    },
+    "production": {
+      "plugins": [["import", { "libraryName": "antd-mobile" }]]
     }
   }
 }
