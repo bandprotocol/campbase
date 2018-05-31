@@ -1,7 +1,6 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Text } from 'react-native'
-import { Actions } from 'react-native-router-flux'
 
 const MainView = Style.View`
   flex: 1;
@@ -11,10 +10,15 @@ const MainView = Style.View`
 `
 
 export default class SignInRoute extends React.Component {
+  get title() {
+    return 'Sign In'
+  }
   render() {
     return (
       <MainView>
-        <Text onPress={() => Actions.push('community-suggested')}>Sign In</Text>
+        <Text onPress={() => this.props.navigation.navigate('CommunitySelect')}>
+          Sign In
+        </Text>
       </MainView>
     )
   }
