@@ -2,7 +2,10 @@ import React from 'react'
 import {
   createStackNavigator,
   createBottomTabNavigator,
+  createDrawerNavigator,
 } from 'react-navigation'
+
+import DrawerButton from '~/components/DrawerButton'
 
 import SignIn from '~/screens/Auth/SignIn'
 import SignUp from '~/screens/Auth/SignUp'
@@ -38,7 +41,10 @@ const CommunitySelectTab = createBottomTabNavigator(
     },
   }
 )
-CommunitySelectTab.navigationOptions = { title: 'Communities' }
+CommunitySelectTab.navigationOptions = ({ navigation }) => ({
+  title: 'Communities',
+  headerLeft: <DrawerButton navigation={navigation} />,
+})
 
 const CommunityTab = createBottomTabNavigator({
   Story,
@@ -47,14 +53,26 @@ const CommunityTab = createBottomTabNavigator({
   Events,
   Store,
 })
-CommunityTab.navigationOptions = { title: 'Bodyslam' }
+CommunityTab.navigationOptions = ({ navigation }) => ({
+  title: 'Bodyslam',
+  headerLeft: <DrawerButton navigation={navigation} />,
+})
 
 const RootStack = createStackNavigator(
   {
-    AuthTab,
     CommunitySelectTab,
     CommunityTab,
     // Community: createBottomTabNavigator({}),
+  },
+  {
+    initialRouteName: 'CommunitySelectTab',
+  }
+)
+
+const DrawerNavigator = createDrawerNavigator(
+  {
+    AuthTab,
+    RootStack,
   },
   {
     initialRouteName: 'AuthTab',
@@ -63,6 +81,6 @@ const RootStack = createStackNavigator(
 
 export default class AppRoutes extends React.Component {
   render() {
-    return <RootStack />
+    return <DrawerNavigator />
   }
 }

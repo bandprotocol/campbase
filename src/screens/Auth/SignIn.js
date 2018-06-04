@@ -18,7 +18,7 @@ export default class SignInScreen extends React.Component {
       <MainView>
         <Button
           type="primary"
-          onClick={() => this.props.navigation.replace('CommunitySelectTab')}
+          onClick={() => this.props.navigation.navigate('RootStack')}
         >
           Sign In
         </Button>
