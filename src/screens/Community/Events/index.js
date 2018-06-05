@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
 import EventList from '~/components/EventList'
+import { Ionicons } from '@expo/vector-icons'
 
 const MonthList = [
   {
@@ -55,6 +55,8 @@ export default class CommunityEventsScreen extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props
+
     return (
       <View>
         {MonthList.map(month => (
@@ -62,7 +64,7 @@ export default class CommunityEventsScreen extends React.Component {
             key={month.monthName}
             title={month.monthName}
             list={month.events}
-            onItemClick={() => false} //id => navigation.replace('CommunityTab')
+            onItemClick={() => navigation.navigate('EventDetail')} //id => navigation.replace('CommunityTab')
           />
         ))}
       </View>

@@ -9,7 +9,7 @@ import FeedImage4Src from '~/assets/feed-image-4.jpg'
 import Profile1Src from '~/assets/profile-1.jpg'
 import Profile2Src from '~/assets/profile-2.jpg'
 
-const posts = [
+const mockPosts = [
   {
     id: 2,
     mediaSrc: FeedImage3Src,
@@ -101,7 +101,7 @@ export default class CommunityFanFeedScreen extends React.Component {
   render() {
     return (
       <ScrollView contentContainerStyle={{ backgroundColor: '#ffffff' }}>
-        {posts.map(post => <FeedPost key={post.id} {...post} />)}
+        {mockPosts.map(post => <FeedPost key={post.id} {...post} />)}
       </ScrollView>
     )
   }

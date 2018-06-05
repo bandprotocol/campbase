@@ -16,6 +16,7 @@ import Story from '~/screens/Community/Story'
 import FanFeed from '~/screens/Community/FanFeed'
 import Services from '~/screens/Community/Services'
 import Events from '~/screens/Community/Events'
+import EventDetail from '~/screens/Community/Events/EventDetail'
 import Store from '~/screens/Community/Store'
 
 const AuthTab = createBottomTabNavigator({
@@ -62,6 +63,9 @@ const RootStack = createStackNavigator(
   {
     CommunitySelectTab,
     CommunityTab,
+
+    /** Events */
+    EventDetail,
     // Community: createBottomTabNavigator({}),
   },
   {
