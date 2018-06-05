@@ -1,6 +1,10 @@
 import React from 'react'
-import { Text } from 'react-native'
+import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
+
+import StakingTier from '~/components/StakingTier'
+
+const Container = Style.View``
 
 export default class CommunityServicesScreen extends React.Component {
   static navigationOptions = {
@@ -11,6 +15,10 @@ export default class CommunityServicesScreen extends React.Component {
   }
 
   render() {
-    return <Text>Community Services</Text>
+    return (
+      <Container>
+        <StakingTier />
+      </Container>
+    )
   }
 }
