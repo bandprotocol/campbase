@@ -4,18 +4,19 @@ import Style from 'styled-components'
 import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
 
-import FeedImage1Src from '~/assets/feed-image-1.jpg'
-import FeedImage2Src from '~/assets/feed-image-2.jpg'
-import ProfileBodyslamSrc from '~/assets/band-bodyslam.jpg'
+import FeedImage3Src from '~/assets/feed-image-3.jpg'
+import FeedImage4Src from '~/assets/feed-image-4.jpg'
+import Profile1Src from '~/assets/profile-1.jpg'
+import Profile2Src from '~/assets/profile-2.jpg'
 
-const posts = [
+const mockPosts = [
   {
-    id: 0,
-    mediaSrc: FeedImage1Src,
+    id: 2,
+    mediaSrc: FeedImage3Src,
     message: 'Thank you everyone for joining me in our concert tonight',
     user: {
-      name: 'Bodyslam',
-      profileImageSrc: ProfileBodyslamSrc,
+      name: 'John Olive',
+      profileImageSrc: Profile1Src,
     },
     stars: 863,
     comments: [
@@ -46,13 +47,13 @@ const posts = [
     ],
   },
   {
-    id: 1,
-    mediaSrc: FeedImage2Src,
+    id: 3,
+    mediaSrc: FeedImage4Src,
     message:
       'Super fun concert today. Awesome guys! Full video available now in store.',
     user: {
-      name: 'Bodyslam',
-      profileImageSrc: ProfileBodyslamSrc,
+      name: 'Josh Grey',
+      profileImageSrc: Profile2Src,
     },
     stars: 145,
     comments: [
@@ -89,18 +90,26 @@ const Container = Style.View`
   background: #ffffff;
 `
 
-export default class CommunityStoryScreen extends React.Component {
+export default class CommunityFanFeedScreen extends React.Component {
   static navigationOptions = {
-    tabBarLabel: 'Story',
+    tabBarLabel: 'Fan Feed',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons name="ios-crop-outline" color={tintColor} size={28} />
+      <Ionicons name="ios-chatboxes-outline" color={tintColor} size={28} />
     ),
   }
 
   render() {
+    const { navigation } = this.props
+
     return (
       <ScrollView contentContainerStyle={{ backgroundColor: '#ffffff' }}>
-        {posts.map(post => <FeedPost key={post.id} {...post} />)}
+        {mockPosts.map(post => (
+          <FeedPost
+            key={post.id}
+            {...post}
+            onClick={() => navigation.navigate('PostComments')}
+          />
+        ))}
       </ScrollView>
     )
   }

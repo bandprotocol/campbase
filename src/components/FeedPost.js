@@ -29,6 +29,9 @@ const LeftInfoContainer = Style.View`
   width: 100;
   align-items: center;
 `
+const RightInfoLinkContainer = Style.TouchableWithoutFeedback`
+  flex: 1;
+`
 const RightInfoContainer = Style.View`
   flex: 1;
 `
@@ -62,10 +65,11 @@ export default class FeedPost extends React.Component {
     message: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
     comments: PropTypes.array.isRequired,
+    onClick: PropTypes.func,
   }
 
   render() {
-    const { mediaSrc, message, user, stars, comments } = this.props
+    const { mediaSrc, message, user, stars, comments, onClick } = this.props
 
     return (
       <Container>
@@ -86,21 +90,23 @@ export default class FeedPost extends React.Component {
               Boost
             </Button>
           </LeftInfoContainer>
-          <RightInfoContainer>
-            <Line>
-              <BoldText>{user.name}</BoldText> <Text>{message}</Text>
-            </Line>
-            {comments.map(comment => (
-              <Line key={comment.id}>
-                <BoldText>{comment.user.name}</BoldText>{' '}
-                <Text>{comment.message}</Text>{' '}
-                <StarText>
-                  <Ionicons name="md-star" size={18} color="#66b6f9" />{' '}
-                  {comment.stars}
-                </StarText>
+          <RightInfoLinkContainer onPress={onClick}>
+            <RightInfoContainer>
+              <Line>
+                <BoldText>{user.name}</BoldText> <Text>{message}</Text>
               </Line>
-            ))}
-          </RightInfoContainer>
+              {comments.map(comment => (
+                <Line key={comment.id}>
+                  <BoldText>{comment.user.name}</BoldText>{' '}
+                  <Text>{comment.message}</Text>{' '}
+                  <StarText>
+                    <Ionicons name="md-star" size={18} color="#66b6f9" />{' '}
+                    {comment.stars}
+                  </StarText>
+                </Line>
+              ))}
+            </RightInfoContainer>
+          </RightInfoLinkContainer>
         </InfoContainer>
       </Container>
     )

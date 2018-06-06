@@ -15,8 +15,9 @@ import SignUp from '~/screens/Auth/SignUp'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
 import CommunityBrowse from '~/screens/CommunitySelect/CommunityBrowse'
 
-import Story from '~/screens/Community/Story'
-import FanFeed from '~/screens/Community/FanFeed'
+import StoryFeed from '~/screens/Community/Feeds/StoryFeed'
+import FanFeed from '~/screens/Community/Feeds/FanFeed'
+import PostComments from '~/screens/Community/Feeds/PostComments'
 import Services from '~/screens/Community/Services'
 import Events from '~/screens/Community/Events'
 import EventDetail from '~/screens/Community/Events/EventDetail'
@@ -55,7 +56,7 @@ CommunitySelectTab.navigationOptions = ({ navigation }) => ({
 
 const CommunityTab = createMaterialBottomTabNavigator(
   {
-    Story,
+    StoryFeed,
     FanFeed,
     Services,
     Events,
@@ -87,6 +88,9 @@ const RootStack = createStackNavigator(
   {
     CommunitySelectTab,
     CommunityTab,
+
+    /** Comments on Post */
+    PostComments,
 
     /** Event */
     EventDetail,
