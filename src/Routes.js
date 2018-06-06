@@ -9,6 +9,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 
 import Color from '~/color'
 import DrawerButton from '~/components/DrawerButton'
+import HeaderButton from '~/components/HeaderButton'
 
 import SignIn from '~/screens/Auth/SignIn'
 import SignUp from '~/screens/Auth/SignUp'
@@ -25,6 +26,7 @@ import Store from '~/screens/Community/Store'
 import ProductInfo from '~/screens/Community/Store/Product/Info'
 import ProductOfficialStore from '~/screens/Community/Store/Product/OfficialStore'
 import ProductMarketplace from '~/screens/Community/Store/Product/Marketplace'
+import Inventory from '~/screens/Community/Inventory'
 
 const AuthTab = createMaterialBottomTabNavigator({
   SignIn,
@@ -73,6 +75,12 @@ const CommunityTab = createMaterialBottomTabNavigator(
 CommunityTab.navigationOptions = ({ navigation }) => ({
   title: 'Bodyslam',
   headerLeft: <DrawerButton navigation={navigation} />,
+  headerRight: (
+    <HeaderButton
+      name="ios-archive"
+      onClick={() => navigation.navigate('Inventory')}
+    />
+  ),
 })
 
 const ProductDetailTab = createMaterialTopTabNavigator({
@@ -97,11 +105,15 @@ const RootStack = createStackNavigator(
 
     /** Product */
     ProductDetailTab,
+
+    /** Inventory */
+    Inventory,
     // Community: createMaterialBottomTabNavigator({}),
   },
   {
     initialRouteName: 'CommunitySelectTab',
     navigationOptions: {
+      headerTintColor: '#ffffff',
       headerStyle: { backgroundColor: Color.primary },
       headerTitleStyle: { color: '#ffffff' },
       headerBackTitleStyle: { color: '#ffffff' },

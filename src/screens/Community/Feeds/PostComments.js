@@ -1,7 +1,7 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
 import Style from 'styled-components'
-import { Button, TextareaItem } from '~/antd'
+import { Button, TextareaItem, Switch } from '~/antd'
 import Color from '~/color'
 
 import FeedPostComment from '~/components/FeedPostComment'
@@ -13,7 +13,7 @@ import Profile4Src from '~/assets/profile-4.jpg'
 import Profile5Src from '~/assets/profile-5.jpg'
 
 const Container = Style.KeyboardAvoidingView.attrs({
-  keyboardVerticalOffset: 65,
+  keyboardVerticalOffset: 75,
   behavior: 'padding',
 })`
   flex: 1;
@@ -46,6 +46,16 @@ const NewCommentContainer = Style.View`
   flex-shrink: 0;
   padding: 10px;
 `
+const BoostContainer = Style.View`
+  flex-direction: row;
+  padding-bottom: 8px;
+  align-items: center;
+`
+const BoostText = Style.Text`
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 16;
+`
 const InputContainer = Style.View`
   flex-direction: row;
   
@@ -57,7 +67,8 @@ const PostButton = Style.View`
   padding-horizontal: 10;
 `
 const PostButtonText = Style.Text`
-  font-size: 20;
+  font-size: 18;
+  font-weight: bold;
   color: ${Color.primary};
 `
 
@@ -139,6 +150,16 @@ export default class PostCommentsScreen extends React.Component {
           </RankedComments>
         </CommentContainer>
         <NewCommentContainer>
+          <BoostContainer>
+            <Switch
+              value={true}
+              initialValue={true}
+              valuePropName="checked"
+              platform="ios"
+              color={Color.primary}
+            />
+            <BoostText>Boost to #1</BoostText>
+          </BoostContainer>
           <InputContainer>
             <TextareaContainer>
               <TextareaItem
