@@ -1,10 +1,13 @@
 import React from 'react'
+import { View } from 'react-native'
 import {
   createStackNavigator,
-  createBottomTabNavigator,
+  createMaterialTopTabNavigator,
   createDrawerNavigator,
 } from 'react-navigation'
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
+import Color from '~/color'
 import DrawerButton from '~/components/DrawerButton'
 
 import SignIn from '~/screens/Auth/SignIn'
@@ -18,8 +21,11 @@ import Services from '~/screens/Community/Services'
 import Events from '~/screens/Community/Events'
 import EventDetail from '~/screens/Community/Events/EventDetail'
 import Store from '~/screens/Community/Store'
+import ProductInfo from '~/screens/Community/Store/Product/Info'
+import ProductOfficialStore from '~/screens/Community/Store/Product/OfficialStore'
+import ProductMarketplace from '~/screens/Community/Store/Product/Marketplace'
 
-const AuthTab = createBottomTabNavigator({
+const AuthTab = createMaterialBottomTabNavigator({
   SignIn,
   SignUp,
 })
@@ -29,7 +35,7 @@ AuthTab.navigationOptions = { title: 'Auth' }
 // children, and not the options for the navigator
 // itself
 
-const CommunitySelectTab = createBottomTabNavigator(
+const CommunitySelectTab = createMaterialBottomTabNavigator(
   {
     CommunitySuggested,
     CommunityBrowse,
@@ -47,16 +53,34 @@ CommunitySelectTab.navigationOptions = ({ navigation }) => ({
   headerLeft: <DrawerButton navigation={navigation} />,
 })
 
-const CommunityTab = createBottomTabNavigator({
-  Story,
-  FanFeed,
-  Services,
-  Events,
-  Store,
-})
+const CommunityTab = createMaterialBottomTabNavigator(
+  {
+    Story,
+    FanFeed,
+    Services,
+    Events,
+    Store,
+  },
+  {
+    activeTintColor: Color.primary,
+    inactiveTintColor: Color.grey,
+    navigationOptions: {
+      tabBarColor: '#ffffff',
+    },
+  }
+)
 CommunityTab.navigationOptions = ({ navigation }) => ({
   title: 'Bodyslam',
   headerLeft: <DrawerButton navigation={navigation} />,
+})
+
+const ProductDetailTab = createMaterialTopTabNavigator({
+  ProductInfo,
+  ProductOfficialStore,
+  ProductMarketplace,
+})
+ProductDetailTab.navigationOptions = ({ navigation }) => ({
+  title: 'Concert 15 Year Bodyslam | Basic Seat',
 })
 
 const RootStack = createStackNavigator(
@@ -64,12 +88,20 @@ const RootStack = createStackNavigator(
     CommunitySelectTab,
     CommunityTab,
 
-    /** Events */
+    /** Event */
     EventDetail,
-    // Community: createBottomTabNavigator({}),
+
+    /** Product */
+    ProductDetailTab,
+    // Community: createMaterialBottomTabNavigator({}),
   },
   {
     initialRouteName: 'CommunitySelectTab',
+    navigationOptions: {
+      headerStyle: { backgroundColor: Color.primary },
+      headerTitleStyle: { color: '#ffffff' },
+      headerBackTitleStyle: { color: '#ffffff' },
+    },
   }
 )
 

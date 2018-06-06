@@ -1,9 +1,10 @@
 import React from 'react'
+import { StatusBar } from 'react-native'
 import Style from 'styled-components'
-import { Text } from 'react-native'
 import { Button } from '~/antd'
+import Color from '~/color'
 
-const MainView = Style.View`
+const Container = Style.View`
   flex: 1;
   background-color: #ffffff;
   align-items: center;
@@ -15,14 +16,15 @@ export default class SignInScreen extends React.Component {
 
   render() {
     return (
-      <MainView>
+      <Container>
+        <StatusBar barStyle="light-content" backgroundColor={Color.primary} />
         <Button
           type="primary"
           onClick={() => this.props.navigation.navigate('RootStack')}
         >
           Sign In
         </Button>
-      </MainView>
+      </Container>
     )
   }
 }

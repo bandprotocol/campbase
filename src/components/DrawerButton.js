@@ -8,7 +8,7 @@ const DrawerButton = ({ navigation }) => (
     onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
     style={{ marginLeft: 20 }}
   >
-    <Ionicons name="ios-menu" size={28} />
+    <Ionicons name="ios-menu" size={28} color="#ffffff" />
   </TouchableOpacity>
 )
 
