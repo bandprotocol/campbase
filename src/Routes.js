@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import {
   createStackNavigator,
   createMaterialTopTabNavigator,
@@ -11,6 +11,7 @@ import Color from '~/color'
 import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 
+import Drawer from '~/screens/Drawer'
 import SignIn from '~/screens/Auth/SignIn'
 import SignUp from '~/screens/Auth/SignUp'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
@@ -34,7 +35,10 @@ const AuthTab = createMaterialBottomTabNavigator({
   SignIn,
   SignUp,
 })
-AuthTab.navigationOptions = { title: 'Auth' }
+AuthTab.navigationOptions = {
+  title: 'Auth',
+  drawerLabel: 'Sign Out',
+}
 // NOTE: This is how we configure the Header's Title
 // Default options are default fot the navigator's
 // children, and not the options for the navigator
@@ -122,6 +126,9 @@ const RootStack = createStackNavigator(
     },
   }
 )
+RootStack.navigationOptions = {
+  drawerLabel: 'Communities',
+}
 
 const WalletStack = createStackNavigator(
   {
@@ -137,6 +144,9 @@ const WalletStack = createStackNavigator(
     },
   }
 )
+WalletStack.navigationOptions = {
+  drawerLabel: 'Wallet',
+}
 
 const DrawerNavigator = createDrawerNavigator(
   {
@@ -146,6 +156,7 @@ const DrawerNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'AuthTab',
+    contentComponent: Drawer,
   }
 )
 
