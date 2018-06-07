@@ -1,8 +1,9 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
 import Style from 'styled-components'
-import { Button, TextareaItem, Switch } from '~/antd'
+import { Button, TextareaItem, Switch, Stepper } from '~/antd'
 import Color from '~/color'
+import { Ionicons } from '@expo/vector-icons'
 
 import FeedPostComment from '~/components/FeedPostComment'
 
@@ -70,6 +71,13 @@ const PostButtonText = Style.Text`
   font-size: 18;
   font-weight: bold;
   color: ${Color.primary};
+`
+const BoostAmount = Style.View`
+  flex-direction: row;
+  flex: 1;
+  margin-right: 60;
+  align-items: center;
+  justify-content: flex-end;
 `
 
 const mockPostComments = [
@@ -159,6 +167,28 @@ export default class PostCommentsScreen extends React.Component {
               color={Color.primary}
             />
             <BoostText>Boost to #1</BoostText>
+            <BoostAmount>
+              <Ionicons
+                name="md-star"
+                size={18}
+                color={Color.primary}
+                style={{ marginRight: 10 }}
+              />
+              <Stepper
+                style={{
+                  flex: 0,
+                  width: 100,
+                  minWidth: 80,
+                  justifyContent: 'center',
+                  justifyContent: 'center',
+                }}
+                min={0}
+                step={1}
+                value={38}
+                onChange={() => {}}
+                showNumber
+              />
+            </BoostAmount>
           </BoostContainer>
           <InputContainer>
             <TextareaContainer>

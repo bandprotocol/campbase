@@ -28,6 +28,8 @@ import ProductOfficialStore from '~/screens/Community/Store/Product/OfficialStor
 import ProductMarketplace from '~/screens/Community/Store/Product/Marketplace'
 import Inventory from '~/screens/Community/Inventory'
 
+import Wallet from '~/screens/Wallet'
+
 const AuthTab = createMaterialBottomTabNavigator({
   SignIn,
   SignUp,
@@ -121,10 +123,26 @@ const RootStack = createStackNavigator(
   }
 )
 
+const WalletStack = createStackNavigator(
+  {
+    Wallet,
+  },
+  {
+    initialRouteName: 'Wallet',
+    navigationOptions: {
+      headerTintColor: '#ffffff',
+      headerStyle: { backgroundColor: Color.primary },
+      headerTitleStyle: { color: '#ffffff' },
+      headerBackTitleStyle: { color: '#ffffff' },
+    },
+  }
+)
+
 const DrawerNavigator = createDrawerNavigator(
   {
     AuthTab,
     RootStack,
+    WalletStack,
   },
   {
     initialRouteName: 'AuthTab',

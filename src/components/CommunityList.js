@@ -12,8 +12,14 @@ const ProfileImage = Style.Image`
 
 export default class CommunityList extends React.Component {
   static propTypes = {
-    list: PropTypes.arrayOf(PropTypes.object).isRequired,
     title: PropTypes.string,
+    list: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        detail: PropTypes.string.isRequired,
+        profileImageSrc: PropTypes.any,
+      })
+    ).isRequired,
   }
 
   render() {
@@ -30,7 +36,7 @@ export default class CommunityList extends React.Component {
             multipleLine
           >
             {community.name}
-            <List.Item.Brief>{community.tags}</List.Item.Brief>
+            <List.Item.Brief>{community.detail}</List.Item.Brief>
           </List.Item>
         ))}
       </List>

@@ -14,7 +14,7 @@ const Header = Style.View`
   padding-horizontal: 10;
 `
 const HeaderTitleText = Style.Text`
-  font-size: 24;
+  font-size: 22;
   flex: 1;
 `
 const HeaderLink = Style.Text`
@@ -24,7 +24,7 @@ const HeaderLink = Style.Text`
 
 const Product = Style.TouchableOpacity`
   position: relative;
-  height: 110;
+  height: 100;
   border-radius: 8;
   margin-bottom: 10;
   justify-content: flex-end;
@@ -38,7 +38,7 @@ const ProductImage = Style.Image`
   border-radius: 8;
 `
 const ProductName = Style.Text`
-  font-size: 22;
+  font-size: 20;
   color: #ffffff;
   margin-left: 15;
 `

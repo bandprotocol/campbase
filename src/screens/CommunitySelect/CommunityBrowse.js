@@ -11,17 +11,17 @@ const RecommendationList = [
       {
         id: 0,
         name: 'Bodyslam',
-        tags: 'Rock Music, Thailand',
+        detail: 'Rock Music, Thailand',
       },
       {
         id: 1,
         name: 'Potato',
-        tags: 'Rock Music, Thailand',
+        detail: 'Rock Music, Thailand',
       },
       {
         id: 2,
         name: 'Zeal',
-        tags: 'Rock Music, Thailand',
+        detail: 'Rock Music, Thailand',
       },
     ],
   },
@@ -31,12 +31,12 @@ const RecommendationList = [
       {
         id: 3,
         name: 'Tattwo Colour',
-        tags: 'Pop Music',
+        detail: 'Pop Music',
       },
       {
         id: 4,
         name: 'Playground',
-        tags: 'Pop Music',
+        detail: 'Pop Music',
       },
     ],
   },
