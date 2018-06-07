@@ -14,7 +14,6 @@ import Profile4Src from '~/assets/profile-4.jpg'
 import Profile5Src from '~/assets/profile-5.jpg'
 
 const Container = Style.KeyboardAvoidingView.attrs({
-  keyboardVerticalOffset: 75,
   behavior: 'padding',
 })`
   flex: 1;
@@ -179,7 +178,6 @@ export default class PostCommentsScreen extends React.Component {
                   flex: 0,
                   width: 100,
                   minWidth: 80,
-                  justifyContent: 'center',
                   justifyContent: 'center',
                 }}
                 min={0}

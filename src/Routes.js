@@ -5,6 +5,8 @@ import {
   createMaterialTopTabNavigator,
   createDrawerNavigator,
 } from 'react-navigation'
+import { LinearGradient } from 'expo'
+import { SimpleLineIcons } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
 import Color from '~/color'
@@ -71,10 +73,10 @@ const CommunityTab = createMaterialBottomTabNavigator(
     Store,
   },
   {
-    activeTintColor: Color.primary,
-    inactiveTintColor: Color.grey,
+    activeTintColor: '#ffffff',
+    inactiveTintColor: 'rgba(255,255,255,0.8)',
     navigationOptions: {
-      tabBarColor: '#ffffff',
+      tabBarColor: Color.primary,
     },
   }
 )
@@ -83,7 +85,9 @@ CommunityTab.navigationOptions = ({ navigation }) => ({
   headerLeft: <DrawerButton navigation={navigation} />,
   headerRight: (
     <HeaderButton
-      name="ios-archive"
+      content={
+        <SimpleLineIcons name="wallet" size={28} color={Color.primary} />
+      }
       onClick={() => navigation.navigate('Inventory')}
     />
   ),
@@ -119,10 +123,22 @@ const RootStack = createStackNavigator(
   {
     initialRouteName: 'CommunitySelectTab',
     navigationOptions: {
-      headerTintColor: '#ffffff',
-      headerStyle: { backgroundColor: Color.primary },
-      headerTitleStyle: { color: '#ffffff' },
-      headerBackTitleStyle: { color: '#ffffff' },
+      headerTintColor: Color.primary,
+      headerTransparent: true,
+      headerBackground: (
+        <LinearGradient
+          colors={[
+            'rgba(255,255,255,1)',
+            'rgba(255,255,255,0.9)',
+            'rgba(255,255,255,0.95)',
+          ]}
+          style={{
+            flex: 1,
+          }}
+        />
+      ),
+      headerTitleStyle: { color: Color.primary },
+      headerBackTitleStyle: { color: Color.primary },
     },
   }
 )
@@ -137,10 +153,22 @@ const WalletStack = createStackNavigator(
   {
     initialRouteName: 'Wallet',
     navigationOptions: {
-      headerTintColor: '#ffffff',
-      headerStyle: { backgroundColor: Color.primary },
-      headerTitleStyle: { color: '#ffffff' },
-      headerBackTitleStyle: { color: '#ffffff' },
+      headerTintColor: Color.primary,
+      headerTransparent: true,
+      headerBackground: (
+        <LinearGradient
+          colors={[
+            'rgba(255,255,255,1)',
+            'rgba(255,255,255,0.9)',
+            'rgba(255,255,255,0.95)',
+          ]}
+          style={{
+            flex: 1,
+          }}
+        />
+      ),
+      headerTitleStyle: { color: Color.primary },
+      headerBackTitleStyle: { color: Color.primary },
     },
   }
 )

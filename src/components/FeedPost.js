@@ -2,20 +2,24 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Style from 'styled-components'
 import { Button } from '~/antd'
+import ElevatedView from 'react-native-elevated-view'
+import Color from '~/color'
 
 import { Ionicons } from '@expo/vector-icons'
 import ProfileImage from '~/components/ProfileImage'
 
 const Container = Style.View`
-  margin-bottom: 20;
+  padding: 10px 20px;
 `
 
 const MediaContainer = Style.View`
 
 `
 const MediaImage = Style.Image`
-  height: 240;
+  height: 220;
   width: 100%;
+  border-top-right-radius: 8;
+  border-top-left-radius: 8;
 `
 const MediaDetails = Style.View`
 
@@ -23,10 +27,12 @@ const MediaDetails = Style.View`
 
 const InfoContainer = Style.View`
   flex-direction: row;
-  padding-top: 20;
+  padding-top: 15;
+  padding-right: 15;
 `
 const LeftInfoContainer = Style.View`
-  width: 100;
+  padding-top: 5;
+  width: 90;
   align-items: center;
 `
 const RightInfoLinkContainer = Style.TouchableWithoutFeedback`
@@ -39,7 +45,7 @@ const RightInfoContainer = Style.View`
 const PostStarText = Style.Text`
   margin-top: 10;
   margin-bottom: 5;
-  color: #108ee9;
+  color: ${Color.secondary};
   flex-direction: row;
 `
 
@@ -52,10 +58,14 @@ const Line = Style.Text`
 const BoldText = Style.Text`
   font-weight: bold;
 `
+const BolderText = Style.Text`
+  font-weight: 900;
+  color: ${Color.primary};
+`
 const Text = Style.Text`
 `
 const StarText = Style.Text`
-  color: #66b6f9;
+  color: ${Color.grey};
   flex-direction: row;
 `
 
@@ -73,41 +83,56 @@ export default class FeedPost extends React.Component {
 
     return (
       <Container>
-        <MediaContainer>
-          <MediaImage source={mediaSrc} />
-        </MediaContainer>
-        <InfoContainer>
-          <LeftInfoContainer>
-            <ProfileImage src={user.profileImageSrc} />
-            <PostStarText>
-              <Ionicons name="md-star" size={18} color="#108ee9" /> {stars}
-            </PostStarText>
-            <Button
-              type="primary"
-              size="small"
-              style={{ paddingLeft: 10, paddingRight: 10 }}
-            >
-              Boost
-            </Button>
-          </LeftInfoContainer>
-          <RightInfoLinkContainer onPress={onClick}>
-            <RightInfoContainer>
-              <Line>
-                <BoldText>{user.name}</BoldText> <Text>{message}</Text>
-              </Line>
-              {comments.map(comment => (
-                <Line key={comment.id}>
-                  <BoldText>{comment.user.name}</BoldText>{' '}
-                  <Text>{comment.message}</Text>{' '}
-                  <StarText>
-                    <Ionicons name="md-star" size={18} color="#66b6f9" />{' '}
-                    {comment.stars}
-                  </StarText>
+        <ElevatedView
+          elevation={2}
+          style={{ borderRadius: 8, paddingBottom: 10 }}
+        >
+          <MediaContainer>
+            <MediaImage source={mediaSrc} />
+          </MediaContainer>
+          <InfoContainer>
+            <LeftInfoContainer>
+              <ProfileImage src={user.profileImageSrc} />
+              <PostStarText>
+                <Ionicons name="md-star" size={18} color={Color.secondary} />{' '}
+                {stars}
+              </PostStarText>
+              <Button
+                type="primary"
+                size="small"
+                style={{
+                  paddingLeft: 10,
+                  paddingRight: 10,
+                  backgroundColor: Color.secondary,
+                  borderWidth: 0,
+                }}
+              >
+                Boost
+              </Button>
+            </LeftInfoContainer>
+            <RightInfoLinkContainer onPress={onClick}>
+              <RightInfoContainer>
+                <Line>
+                  <BolderText>{user.name}</BolderText> <Text>{message}</Text>
                 </Line>
-              ))}
-            </RightInfoContainer>
-          </RightInfoLinkContainer>
-        </InfoContainer>
+                {comments.map(comment => (
+                  <Line key={comment.id}>
+                    <BoldText>{comment.user.name}</BoldText>{' '}
+                    <Text>{comment.message}</Text>{' '}
+                    <StarText>
+                      <Ionicons
+                        name="md-star"
+                        size={18}
+                        color={Color.darkGrey}
+                      />{' '}
+                      {comment.stars}
+                    </StarText>
+                  </Line>
+                ))}
+              </RightInfoContainer>
+            </RightInfoLinkContainer>
+          </InfoContainer>
+        </ElevatedView>
       </Container>
     )
   }

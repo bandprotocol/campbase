@@ -50,7 +50,11 @@ export default class CommunityEventsScreen extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Events',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons name="ios-calendar-outline" color={tintColor} size={28} />
+      <Ionicons
+        name={focused ? 'ios-calendar' : 'ios-calendar-outline'}
+        color={tintColor}
+        size={28}
+      />
     ),
   }
 

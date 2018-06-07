@@ -40,7 +40,11 @@ export default class CommunityStoreScreen extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Store',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons name="ios-cart-outline" color={tintColor} size={28} />
+      <Ionicons
+        name={focused ? 'ios-cart' : 'ios-cart-outline'}
+        color={tintColor}
+        size={28}
+      />
     ),
   }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView } from 'react-native'
 import Style from 'styled-components'
 import FeedPost from '~/components/FeedPost'
+import ScreenContainer from '~/components/ScreenContainer'
 import { Ionicons } from '@expo/vector-icons'
 
 import FeedImage3Src from '~/assets/feed-image-3.jpg'
@@ -94,7 +95,11 @@ export default class CommunityFanFeedScreen extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Fan Feed',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons name="ios-chatboxes-outline" color={tintColor} size={28} />
+      <Ionicons
+        name={focused ? 'ios-chatboxes' : 'ios-chatboxes-outline'}
+        color={tintColor}
+        size={28}
+      />
     ),
   }
 
@@ -102,7 +107,7 @@ export default class CommunityFanFeedScreen extends React.Component {
     const { navigation } = this.props
 
     return (
-      <ScrollView contentContainerStyle={{ backgroundColor: '#ffffff' }}>
+      <ScreenContainer darkBackground>
         {mockPosts.map(post => (
           <FeedPost
             key={post.id}
@@ -110,7 +115,7 @@ export default class CommunityFanFeedScreen extends React.Component {
             onClick={() => navigation.navigate('PostComments')}
           />
         ))}
-      </ScrollView>
+      </ScreenContainer>
     )
   }
 }

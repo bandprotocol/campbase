@@ -34,7 +34,11 @@ export default class CommunityServicesScreen extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Services',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons name="ios-play-outline" color={tintColor} size={28} />
+      <Ionicons
+        name={focused ? 'ios-play' : 'ios-play-outline'}
+        color={tintColor}
+        size={28}
+      />
     ),
   }
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
 import Style from 'styled-components'
 import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import FeedImage1Src from '~/assets/feed-image-1.jpg'
 import FeedImage2Src from '~/assets/feed-image-2.jpg'
@@ -93,14 +93,18 @@ export default class CommunityStoryScreen extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Story',
     tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons name="ios-crop-outline" color={tintColor} size={28} />
+      <Ionicons
+        name={focused ? 'ios-crop' : 'ios-crop-outline'}
+        color={tintColor}
+        size={28}
+      />
     ),
   }
 
   render() {
     const { navigation } = this.props
     return (
-      <ScrollView contentContainerStyle={{ backgroundColor: '#ffffff' }}>
+      <ScreenContainer darkBackground>
         {posts.map(post => (
           <FeedPost
             key={post.id}
@@ -108,7 +112,7 @@ export default class CommunityStoryScreen extends React.Component {
             onClick={() => navigation.navigate('PostComments')}
           />
         ))}
-      </ScrollView>
+      </ScreenContainer>
     )
   }
 }
