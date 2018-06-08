@@ -7,6 +7,9 @@ const darkBackground = '#28213a'
 const green = '#27c5a3'
 const red = '#db7bad'
 
+const paleGreen = '#cdfdf3'
+const paleRed = '#ffdff0'
+
 const grey = '#aaaaaa'
 const darkGrey = '#999999'
 
@@ -17,6 +20,8 @@ export default {
   darkBackground,
   green,
   red,
+  paleGreen,
+  paleRed,
   grey,
   darkGrey,
 }

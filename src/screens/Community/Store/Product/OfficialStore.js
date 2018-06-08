@@ -1,4 +1,5 @@
 import React from 'react'
+import { Alert } from 'react-native'
 import Style from 'styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import ColorButton from '~/components/ColorButton'
@@ -12,6 +13,7 @@ const PriceGraph = Style.View`
   flex-direction: row;
   padding : 20px;
   background-color: #ffffff;
+  margin-top: 5;
 `
 const PriceGraphImage = Style.Image`
   flex: 1;
@@ -20,7 +22,7 @@ const PriceGraphImage = Style.Image`
 `
 const ButtonContainer = Style.View`
   flex-direction: row;
-  padding: 20px;
+  padding: 10px;
 `
 
 const mockListData = [
@@ -43,6 +45,33 @@ export default class OfficialStoreScreen extends React.Component {
     tabBarLabel: 'Official Store',
   }
 
+  onBuy() {
+    const { navigation } = this.props
+
+    Alert.alert(
+      'Buy Product Token',
+      'Are you sure you want to buy this product?',
+      [
+        {
+          text: 'Yes',
+          onPress: () =>
+            Alert.alert(
+              'Congratulations!',
+              'Your have bought the product token at 0.314 BST.',
+              [
+                { text: 'Cancel' },
+                {
+                  text: 'View in Inventory',
+                  onPress: () => navigation.navigate('ItemList'),
+                },
+              ]
+            ),
+        },
+        { text: 'Cancel', style: 'cancel' },
+      ]
+    )
+  }
+
   render() {
     return (
       <ScreenContainer darkBackground noPadding>
@@ -51,7 +80,11 @@ export default class OfficialStoreScreen extends React.Component {
           <PriceGraphImage source={PriceGraphSrc} />
         </PriceGraph>
         <ButtonContainer>
-          <ColorButton color={Color.green} style={{ flex: 1, margin: 5 }}>
+          <ColorButton
+            onClick={this.onBuy.bind(this)}
+            color={Color.green}
+            style={{ flex: 1, margin: 5 }}
+          >
             Buy @0.314 BST
           </ColorButton>
           <ColorButton color={Color.red} style={{ flex: 1, margin: 5 }}>

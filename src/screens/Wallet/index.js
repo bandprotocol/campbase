@@ -168,7 +168,7 @@ export default class WalletScreen extends React.Component {
           <BalanceButtonContainer>
             <BalanceContainer>
               <BalanceText>
-                3,982,23 <UnitText>BAND</UnitText>
+                3,982.23 <UnitText>BAND</UnitText>
               </BalanceText>
             </BalanceContainer>
 

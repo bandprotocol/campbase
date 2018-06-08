@@ -55,7 +55,7 @@ const Line = Style.Text`
   margin-bottom: 5;
   flex-direction: row;
   flex-wrap: wrap;
-  line-height: 22;
+  line-height: 20;
 `
 const BoldText = Style.Text`
   font-weight: bold;

@@ -30,7 +30,7 @@ const Line = Style.Text`
   margin-bottom: 3;
   flex-direction: row;
   flex-wrap: wrap;
-  line-height: 18;
+  line-height: 20;
 `
 const BoldText = Style.Text`
   font-weight: bold;

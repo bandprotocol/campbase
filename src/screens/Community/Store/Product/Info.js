@@ -14,6 +14,7 @@ const Image = Style.Image`
 const Description = Style.View`
   padding: 20px;
   background-color: #ffffff;
+  margin-top: 5;
 `
 const DescriptionText = Style.Text``
 
