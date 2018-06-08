@@ -8,17 +8,17 @@ import ProfileSrc from '~/assets/profile-5.jpg'
 const Container = Style.View`
   flex: 1;
   paddingTop: ${Size.statusBarHeight};
-  backgroundColor: ${Color.paleBackground};
+  backgroundColor: ${Color.primary};
 `
 
 const Top = Style.View`
   height: 105;
-  backgroundColor: ${Color.primary};
 `
 const Bottom = Style.View`
   flex: 1;
   padding-top: 75;
   align-items: center;
+  backgroundColor: ${Color.paleBackground};
 `
 const Name = Style.Text`
   font-weight: bold;

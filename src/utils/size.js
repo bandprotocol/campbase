@@ -1,6 +1,14 @@
+import { Platform } from 'react-native'
 import { getStatusBarHeight } from 'react-native-status-bar-height'
 
 export default class Size {
-  static statusBarHeight = 24
-  static statusAndHeaderHeight = 80
+  static statusBarHeight = Platform.select({
+    ios: 0,
+    android: 24,
+  })
+
+  static statusAndHeaderHeight = Platform.select({
+    ios: 56,
+    android: 80,
+  })
 }
