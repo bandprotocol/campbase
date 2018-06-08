@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Alert } from 'react-native'
 import Style from 'styled-components'
 import { Button } from '~/antd'
 import ElevatedView from 'react-native-elevated-view'
 import { Color } from '~/utils'
-
 import { Ionicons } from '@expo/vector-icons'
+
 import ProfileImage from '~/components/ProfileImage'
 
 const Container = Style.View`
@@ -29,6 +30,7 @@ const InfoContainer = Style.View`
   flex-direction: row;
   padding-top: 15;
   padding-right: 15;
+  padding-bottom: 10;
 `
 const LeftInfoContainer = Style.View`
   padding-top: 5;
@@ -75,17 +77,21 @@ export default class FeedPost extends React.Component {
     message: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired,
     comments: PropTypes.array.isRequired,
-    onClick: PropTypes.func,
+    navigation: PropTypes.any.isRequired,
   }
 
   render() {
-    const { mediaSrc, message, user, stars, comments, onClick } = this.props
+    const { mediaSrc, message, user, stars, comments, navigation } = this.props
 
     return (
       <Container>
         <ElevatedView
           elevation={2}
-          style={{ borderRadius: 8, paddingBottom: 10 }}
+          style={{
+            borderRadius: 8,
+            paddingBottom: 10,
+            backgroundColor: '#ffffff',
+          }}
         >
           <MediaContainer>
             <MediaImage source={mediaSrc} />
@@ -106,11 +112,26 @@ export default class FeedPost extends React.Component {
                   backgroundColor: Color.secondary,
                   borderWidth: 0,
                 }}
+                onClick={() =>
+                  Alert.alert(
+                    'Insufficient Attention Token',
+                    'You need at least 20 tokens to boost this post.',
+                    [
+                      {
+                        text: 'Get Attention Tokens',
+                        onPress: () => navigation.navigate('AttentionTokens'),
+                      },
+                      { text: 'Cancel', style: 'cancel' },
+                    ]
+                  )
+                }
               >
                 Boost
               </Button>
             </LeftInfoContainer>
-            <RightInfoLinkContainer onPress={onClick}>
+            <RightInfoLinkContainer
+              onPress={() => navigation.navigate('PostComments')}
+            >
               <RightInfoContainer>
                 <Line>
                   <BolderText>{user.name}</BolderText> <Text>{message}</Text>

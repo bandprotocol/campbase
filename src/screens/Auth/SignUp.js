@@ -3,7 +3,7 @@ import Style from 'styled-components'
 import { Text } from 'react-native'
 import { Color } from '~/utils'
 
-const MainView = Style.View`
+const MainView = Style.SafeAreaView`
   flex: 1;
   background-color: ${Color.primary};
   align-items: center;

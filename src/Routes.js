@@ -30,6 +30,7 @@ import ProductInfo from '~/screens/Community/Store/Product/Info'
 import ProductOfficialStore from '~/screens/Community/Store/Product/OfficialStore'
 import ProductMarketplace from '~/screens/Community/Store/Product/Marketplace'
 import Inventory from '~/screens/Community/Inventory'
+import AttentionTokens from '~/screens/Community/Inventory/AttentionTokens'
 import Subscription from '~/screens/Community/Subscription'
 
 import Wallet from '~/screens/Wallet'
@@ -143,6 +144,7 @@ const RootStack = createStackNavigator(
 
     /** Inventory */
     Inventory,
+    AttentionTokens,
 
     /** Subscription */
     Subscription,

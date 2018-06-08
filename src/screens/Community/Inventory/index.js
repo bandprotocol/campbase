@@ -37,8 +37,9 @@ export default class CommunityInventoryScreen extends React.Component {
     const services = [
       {
         name: 'Attention Tokens',
-        details: '1,340 Tokens',
+        details: '14 Tokens',
         iconName: 'ios-star',
+        navigationPath: 'AttentionTokens',
       },
       {
         name: 'Community Marketplace',
@@ -79,7 +80,9 @@ export default class CommunityInventoryScreen extends React.Component {
         </PricePanel>
         <IconList
           list={services}
-          onItemClick={item => navigation.navigate(item.navigationPath)}
+          onItemClick={item =>
+            item.navigationPath && navigation.navigate(item.navigationPath)
+          }
         />
       </ScreenContainer>
     )

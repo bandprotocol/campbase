@@ -110,11 +110,7 @@ export default class CommunityFanFeedScreen extends React.Component {
     return (
       <ScreenContainer darkBackground scrollable>
         {mockPosts.map(post => (
-          <FeedPost
-            key={post.id}
-            {...post}
-            onClick={() => navigation.navigate('PostComments')}
-          />
+          <FeedPost key={post.id} navigation={navigation} {...post} />
         ))}
       </ScreenContainer>
     )

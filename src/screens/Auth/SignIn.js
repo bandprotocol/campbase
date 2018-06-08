@@ -4,7 +4,7 @@ import Style from 'styled-components'
 import { Button } from '~/antd'
 import { Color } from '~/utils'
 
-const Container = Style.View`
+const Container = Style.SafeAreaView`
   flex: 1;
   background-color: ${Color.primary};
   align-items: center;

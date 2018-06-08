@@ -19,11 +19,17 @@ export default class ScreenContainer extends React.Component {
       ? {
           contentContainerStyle: {
             backgroundColor,
-            paddingTop: noPadding ? 0 : 80,
+            paddingTop: noPadding ? 0 : Size.statusAndHeaderHeight,
           },
           style: { flex: 1, backgroundColor },
         }
-      : { style: { flex: 1, paddingTop: noPadding ? 0 : 80, backgroundColor } }
+      : {
+          style: {
+            flex: 1,
+            paddingTop: noPadding ? 0 : Size.statusAndHeaderHeight,
+            backgroundColor,
+          },
+        }
 
     return <Component {...props}>{children}</Component>
   }
