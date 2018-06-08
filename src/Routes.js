@@ -6,7 +6,7 @@ import {
   createDrawerNavigator,
 } from 'react-navigation'
 import { LinearGradient } from 'expo'
-import { SimpleLineIcons } from '@expo/vector-icons'
+import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
 import { Color, Size } from '~/utils'
@@ -82,6 +82,12 @@ const CommunitySelectTab = createMaterialTopTabNavigator(
 CommunitySelectTab.navigationOptions = ({ navigation }) => ({
   title: 'Communities',
   headerLeft: <DrawerButton navigation={navigation} />,
+  headerRight: (
+    <HeaderButton
+      content={<Entypo name="wallet" size={26} color={Color.primary} />}
+      onClick={() => navigation.navigate('Wallet')}
+    />
+  ),
 })
 
 const CommunityTab = createMaterialBottomTabNavigator(
@@ -106,7 +112,7 @@ CommunityTab.navigationOptions = ({ navigation }) => ({
   headerRight: (
     <HeaderButton
       content={
-        <SimpleLineIcons name="wallet" size={24} color={Color.primary} />
+        <MaterialCommunityIcons name="ticket" size={28} color={Color.primary} />
       }
       onClick={() => navigation.navigate('Inventory')}
     />

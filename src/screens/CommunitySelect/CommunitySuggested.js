@@ -9,6 +9,13 @@ import ProfileZealSrc from '~/assets/band-zeal.jpg'
 import ProfileTattooSrc from '~/assets/band-tattoo.jpg'
 import ProfilPlaygroundSrc from '~/assets/band-playground.jpg'
 
+const Category = Style.View`
+  margin: 10px 20px;
+  background: #ffffff;
+  border-radius: 8;
+  overflow: hidden;
+`
+
 const RecommendationList = [
   {
     categoryName: 'Following',
@@ -58,14 +65,15 @@ export default class CommunitySuggestedScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
-      <ScreenContainer scrollable noPadding>
+      <ScreenContainer scrollable noPadding darkBackground>
         {RecommendationList.map(category => (
-          <CommunityList
-            key={category.categoryName}
-            title={category.categoryName}
-            list={category.communities}
-            onItemClick={id => navigation.replace('CommunityTab')}
-          />
+          <Category key={category.categoryName}>
+            <CommunityList
+              title={category.categoryName}
+              list={category.communities}
+              onItemClick={id => navigation.replace('CommunityTab')}
+            />
+          </Category>
         ))}
       </ScreenContainer>
     )

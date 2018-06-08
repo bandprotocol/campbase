@@ -1,7 +1,15 @@
 import React from 'react'
+import Style from 'styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import EventList from '~/components/EventList'
 import { Ionicons } from '@expo/vector-icons'
+
+const Month = Style.View`
+  margin: 10px 20px;
+  background: #ffffff;
+  border-radius: 8;
+  overflow: hidden;
+`
 
 const MonthList = [
   {
@@ -62,14 +70,15 @@ export default class CommunityEventsScreen extends React.Component {
     const { navigation } = this.props
 
     return (
-      <ScreenContainer>
+      <ScreenContainer scrollable darkBackground>
         {MonthList.map(month => (
-          <EventList
-            key={month.monthName}
-            title={month.monthName}
-            list={month.events}
-            onItemClick={() => navigation.navigate('EventDetail')} //id => navigation.replace('CommunityTab')
-          />
+          <Month key={month.monthName}>
+            <EventList
+              title={month.monthName}
+              list={month.events}
+              onItemClick={() => navigation.navigate('EventDetail')} //id => navigation.replace('CommunityTab')
+            />
+          </Month>
         ))}
       </ScreenContainer>
     )

@@ -197,7 +197,7 @@ export default class WalletScreen extends React.Component {
           visible={this.state.showAddressModal}
           maskClosable={true}
           onClose={() => this.setState({ showAddressModal: false })}
-          title="0x13a8bf9450"
+          title="Address: 0x13a8bf9450"
           transparent
         >
           <QRImage source={QRSrc} />

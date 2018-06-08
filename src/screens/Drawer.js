@@ -55,21 +55,24 @@ const SignOutText = Style.Text`
 `
 const Links = Style.View`
   margin-top: 20;
-  padding-top: 10;
+  padding: 0px 10px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 8;
+  overflow: hidden;
   width: 80%;
-  border-top-color: #eee;
-  border-top-width: 1;
 `
 const Link = Style.TouchableOpacity`
-  height: 40;
+  height: 50;
   align-items: center;
   justify-content: center;
+  border-bottom-color: #eee;
+  border-bottom-width: 1;
 `
 const LinkText = Style.Text`
-  font-size: 20;
+  font-size: 18;
   font-weight: ${p => (p.active ? 'bold' : 'normal')};
   color: ${Color.secondary};
-  opacity: ${p => (p.active ? '1' : '0.5')};
+  opacity: ${p => (p.active ? '1' : '0.6')};
 `
 
 export default class Drawer extends React.Component {
