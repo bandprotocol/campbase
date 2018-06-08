@@ -1,6 +1,5 @@
 import React from 'react'
 import Style from 'styled-components'
-import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
 import { List, Modal, SearchBar } from '~/antd'
@@ -130,7 +129,7 @@ const ProductModal = ({ product, visible, onClose }) => (
 
 export default class ProductListScreen extends React.Component {
   static navigationOptions = {
-    title: 'Bodyslam Receipts',
+    title: 'Your Bodyslam Receipts',
   }
 
   constructor(props) {

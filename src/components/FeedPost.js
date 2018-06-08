@@ -89,6 +89,7 @@ export default class FeedPost extends React.Component {
           elevation={2}
           style={{
             borderRadius: 8,
+            overflow: 'hidden',
             paddingBottom: 10,
             backgroundColor: '#ffffff',
           }}

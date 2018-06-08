@@ -1,6 +1,5 @@
 import React from 'react'
 import Style from 'styled-components'
-import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
 import { Accordion, SearchBar } from '~/antd'
@@ -55,7 +54,7 @@ const mockProductList = [
 
 export default class ProductListScreen extends React.Component {
   static navigationOptions = {
-    title: 'Bodyslam Marketplace',
+    title: 'Your Bodyslam Marketplace',
   }
 
   render() {

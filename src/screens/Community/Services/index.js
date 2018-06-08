@@ -7,6 +7,13 @@ import ScreenContainer from '~/components/ScreenContainer'
 import StakingTier from '~/components/StakingTier'
 import IconList from '~/components/IconList'
 
+const Services = Style.View`
+  margin: 10px 20px;
+  background: #ffffff;
+  border-radius: 8;
+  overflow: hidden;
+`
+
 const services = [
   {
     name: 'Music Albums',
@@ -46,17 +53,26 @@ export default class CommunityServicesScreen extends React.Component {
     const { navigation } = this.props
 
     return (
-      <ScreenContainer>
+      <ScreenContainer darkBackground>
         <StakingTier navigation={navigation} />
-        <IconList
-          list={services}
-          onItemClick={() =>
-            Alert.alert(
-              'Insufficient Tier Level',
-              'You need to be at least Platinum Tier to access this feature.'
-            )
-          }
-        />
+        <Services>
+          <IconList
+            list={services}
+            onItemClick={() =>
+              Alert.alert(
+                'Insufficient Tier Level',
+                'You need to be at least Platinum Tier to access this feature.',
+                [
+                  {
+                    text: 'Upgrade My Subscription',
+                    onPress: () => navigation.navigate('AttentionTokens'),
+                  },
+                  { text: 'Cancel', style: 'cancel' },
+                ]
+              )
+            }
+          />
+        </Services>
       </ScreenContainer>
     )
   }

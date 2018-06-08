@@ -144,6 +144,14 @@ const mockRankedPostComments = [
 export default class PostCommentsScreen extends React.Component {
   static navigationOptions = { title: 'Comments' }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      boost: false,
+      attentionTokens: 0,
+    }
+  }
+
   render() {
     return (
       <ScreenContainer>
@@ -164,9 +172,13 @@ export default class PostCommentsScreen extends React.Component {
           <NewCommentContainer>
             <BoostContainer>
               <Switch
-                value={true}
-                initialValue={true}
-                valuePropName="checked"
+                checked={this.state.boost}
+                onChange={val =>
+                  this.setState({
+                    boost: val,
+                    attentionTokens: Math.max(this.state.attentionTokens, 59),
+                  })
+                }
                 platform="ios"
                 color={Color.primary}
               />
@@ -187,8 +199,8 @@ export default class PostCommentsScreen extends React.Component {
                   }}
                   min={0}
                   step={1}
-                  value={38}
-                  onChange={() => {}}
+                  value={this.state.attentionTokens}
+                  onChange={val => this.setState({ attentionTokens: val })}
                   showNumber
                 />
               </BoostAmount>
