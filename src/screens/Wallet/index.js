@@ -1,7 +1,7 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
-import { Button } from '~/antd'
+import { Button, Modal, Toast } from '~/antd'
 import { Color } from '~/utils'
 import ScreenContainer from '~/components/ScreenContainer'
 
@@ -14,6 +14,7 @@ import ProfilePotatoSrc from '~/assets/band-potato.jpg'
 import ProfileZealSrc from '~/assets/band-zeal.jpg'
 import ProfileTattooSrc from '~/assets/band-tattoo.jpg'
 import ProfilPlaygroundSrc from '~/assets/band-playground.jpg'
+import QRSrc from '~/assets/product-qrcode.jpg'
 
 const WalletPanel = Style.View`
   padding: 20px 30px;
@@ -47,6 +48,13 @@ const BuySellButton = Style.TouchableOpacity`
   align-items: center;
   justify-content: center;
   margin-left: 10;
+`
+const QRImage = Style.Image`
+  aspect-ratio: 1;
+  resize-mode: contain;
+  margin-top: 10;
+  width: 100%;
+  height: null;
 `
 
 const mockCommunityTokens = [
@@ -93,7 +101,7 @@ const mockTxns = [
 
 export default class WalletScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Wallet',
+    title: 'Your Wallet',
     headerLeft: <DrawerButton navigation={navigation} />,
     // headerRight: (
     //   <HeaderButton
@@ -102,6 +110,54 @@ export default class WalletScreen extends React.Component {
     //   />
     // ),
   })
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      showAddressModal: false,
+    }
+  }
+
+  onSend() {
+    const promptAmount = () =>
+      Modal.prompt(
+        'Send BAND Tokens',
+        'Please input the amount',
+        [
+          { text: 'Cancel' },
+          {
+            text: 'Send',
+            onPress: async val =>
+              setTimeout(
+                () => Toast.success(`Successfully sent ${val} BAND`),
+                500
+              ),
+          },
+        ],
+        'Default',
+        null,
+        ['Amount of BAND you want to send']
+      )
+
+    Modal.prompt(
+      'Send BAND Tokens',
+      'Please input transaction information',
+      [
+        { text: 'Cancel' },
+        {
+          text: 'Next',
+          onPress: async () => setTimeout(promptAmount, 1000),
+        },
+      ],
+      'login-password',
+      null,
+      ['Recipient Address', 'Wallet Passcode']
+    )
+  }
+
+  onReceive() {
+    this.setState({ showAddressModal: true })
+  }
 
   render() {
     const { navigation } = this.props
@@ -116,10 +172,10 @@ export default class WalletScreen extends React.Component {
               </BalanceText>
             </BalanceContainer>
 
-            <BuySellButton>
+            <BuySellButton onPress={this.onSend.bind(this)}>
               <Ionicons name="md-arrow-round-up" size={24} color="#ffffff" />
             </BuySellButton>
-            <BuySellButton>
+            <BuySellButton onPress={this.onReceive.bind(this)}>
               <Ionicons name="md-arrow-round-down" size={24} color="#ffffff" />
             </BuySellButton>
           </BalanceButtonContainer>
@@ -134,6 +190,18 @@ export default class WalletScreen extends React.Component {
           list={mockTxns}
           onItemClick={id => navigation.navigate('Inventory')}
         />
+
+        {/* QR Code Modal */}
+
+        <Modal
+          visible={this.state.showAddressModal}
+          maskClosable={true}
+          onClose={() => this.setState({ showAddressModal: false })}
+          title="0x13a8bf9450"
+          transparent
+        >
+          <QRImage source={QRSrc} />
+        </Modal>
       </ScreenContainer>
     )
   }

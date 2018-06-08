@@ -3,7 +3,7 @@ import Style from 'styled-components'
 import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
-import { Accordion, SearchBar } from '~/antd'
+import { Accordion, Modal, SearchBar } from '~/antd'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Color } from '~/utils'
 import ColorButton from '~/components/ColorButton'
@@ -46,6 +46,48 @@ export default class ItemListScreen extends React.Component {
     title: 'Your Bodyslam Items',
   }
 
+  onItemClick(item) {
+    const { navigation } = this.props
+
+    Modal.operation([
+      {
+        text: 'View Product Detail',
+        onPress: () => navigation.navigate('ProductInfo'),
+      },
+      {
+        text: 'Redeem Product',
+        onPress: () => {
+          Alert.alert(
+            'Product redemption',
+            'Would you like to redeem this product?.',
+            [
+              {
+                text: 'Yes',
+                onPress: () =>
+                  Alert.alert(
+                    'Congratulations!',
+                    'Your product has been redeemed.',
+                    [
+                      {
+                        text: 'OK',
+                        onPress: () => navigation.replace('ReceiptList'),
+                      },
+                    ],
+                    { cancelable: false }
+                  ),
+              },
+              { text: 'Cancel', style: 'cancel' },
+            ]
+          )
+        },
+      },
+      {
+        text: 'Sell in Marketplace',
+        onPress: () => navigation.navigate('Marketplace'),
+      },
+    ])
+  }
+
   render() {
     const { navigation } = this.props
 
@@ -54,30 +96,7 @@ export default class ItemListScreen extends React.Component {
         <SearchBar placeholder="Search" cancelText="Cancel" maxLength={8} />
         <ProductList
           list={mockProductList}
-          onItemClick={item =>
-            Alert.alert(
-              'Product redemption',
-              'Would you like to redeem this product?.',
-              [
-                {
-                  text: 'Yes',
-                  onPress: () =>
-                    Alert.alert(
-                      'Congratulations!',
-                      'Your product has been redeemed.',
-                      [
-                        {
-                          text: 'OK',
-                          onPress: () => navigation.replace('ReceiptList'),
-                        },
-                      ],
-                      { cancelable: false }
-                    ),
-                },
-                { text: 'Cancel', style: 'cancel' },
-              ]
-            )
-          }
+          onItemClick={this.onItemClick.bind(this)}
         />
       </ScreenContainer>
     )

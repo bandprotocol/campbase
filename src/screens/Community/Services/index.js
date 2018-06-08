@@ -65,7 +65,7 @@ export default class CommunityServicesScreen extends React.Component {
                 [
                   {
                     text: 'Upgrade My Subscription',
-                    onPress: () => navigation.navigate('AttentionTokens'),
+                    onPress: () => navigation.navigate('Subscription'),
                   },
                   { text: 'Cancel', style: 'cancel' },
                 ]

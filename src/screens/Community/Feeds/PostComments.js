@@ -176,7 +176,9 @@ export default class PostCommentsScreen extends React.Component {
                 onChange={val =>
                   this.setState({
                     boost: val,
-                    attentionTokens: Math.max(this.state.attentionTokens, 59),
+                    attentionTokens: val
+                      ? Math.max(this.state.attentionTokens, 59)
+                      : this.state.attentionTokens,
                   })
                 }
                 platform="ios"

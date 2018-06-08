@@ -29,7 +29,7 @@ const PossesedTokens = Style.View`
   padding: 15px 30px;
   flex-direction: row;
   align-items: center;
-  background: ${Color.secondary};
+  background: ${Color.primary};
 `
 const Info = Style.View`
   flex: 1;
