@@ -26,6 +26,7 @@ import Services from '~/screens/Community/Services'
 import Events from '~/screens/Community/Events'
 import EventDetail from '~/screens/Community/Events/EventDetail'
 import Store from '~/screens/Community/Store'
+import ProductList from '~/screens/Community/Store/ProductList'
 import ProductInfo from '~/screens/Community/Store/Product/Info'
 import ProductOfficialStore from '~/screens/Community/Store/Product/OfficialStore'
 import ProductMarketplace from '~/screens/Community/Store/Product/Marketplace'
@@ -139,8 +140,9 @@ const RootStack = createStackNavigator(
     /** Event */
     EventDetail,
 
-    /** Product */
+    /** Store */
     ProductDetailTab,
+    ProductList,
 
     /** Inventory */
     Inventory,

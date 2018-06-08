@@ -17,9 +17,11 @@ const HeaderTitleText = Style.Text`
   font-size: 22;
   flex: 1;
 `
-const HeaderLink = Style.Text`
-  color: #777777;
+const HeaderLink = Style.TouchableOpacity`
   margin-bottom: 5;
+`
+const HeaderLinkText = Style.Text`
+  color: #777777;
 `
 
 const Product = Style.TouchableHighlight`
@@ -78,9 +80,11 @@ export default class PrettyProductList extends React.Component {
         <Header>
           <HeaderTitleText>{title.text}</HeaderTitleText>
           {title.linkText && (
-            <HeaderLink>
-              {title.linkText}{' '}
-              <Ionicons name="ios-arrow-forward" color="#777777" size={14} />
+            <HeaderLink onPress={title.onLinkClick}>
+              <HeaderLinkText>
+                {title.linkText}{' '}
+                <Ionicons name="ios-arrow-forward" color="#777777" size={14} />
+              </HeaderLinkText>
             </HeaderLink>
           )}
         </Header>

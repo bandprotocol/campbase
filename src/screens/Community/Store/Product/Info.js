@@ -36,7 +36,11 @@ export default class ProductInfoScreen extends React.Component {
           list={[
             {
               title: 'Redeem',
-              detail: 'QR Scan',
+              detail: 'via QR Scan',
+            },
+            {
+              title: 'Expire',
+              detail: '12 September 2018, 10:00 PM',
             },
           ]}
           onItemClick={() => false}

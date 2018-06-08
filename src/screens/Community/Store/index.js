@@ -60,7 +60,7 @@ export default class CommunityStoreScreen extends React.Component {
           title={{
             text: 'Best Sellers',
             linkText: 'All Products',
-            onLinkClick: () => false,
+            onLinkClick: () => navigation.navigate('ProductList'),
           }}
           list={mockBestSellingProducts}
           onItemClick={() => navigation.navigate('ProductDetailTab')}
