@@ -45,16 +45,19 @@ export default class CommunityInventoryScreen extends React.Component {
         name: 'Community Marketplace',
         details: 'Trade items with other follower',
         iconName: 'ios-pricetags',
+        navigationPath: 'MarketplaceList',
       },
       {
         name: 'Items',
         details: '10 Available',
         iconName: 'ios-nutrition',
+        navigationPath: 'ItemList',
       },
       {
         name: 'Receipts',
         details: '34 Available',
         iconName: 'ios-paper',
+        navigationPath: 'ReceiptList',
       },
       {
         name: 'Subscription',

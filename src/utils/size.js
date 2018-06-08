@@ -8,7 +8,7 @@ export default class Size {
   })
 
   static statusAndHeaderHeight = Platform.select({
-    ios: 56,
+    ios: 64,
     android: 80,
   })
 }

@@ -10,7 +10,7 @@ const ProfileImage = Style.Image`
   margin-right: 10;
 `
 
-export default class CommunityList extends React.Component {
+export default class ProductList extends React.Component {
   static propTypes = {
     title: PropTypes.string,
     list: PropTypes.arrayOf(
@@ -18,6 +18,7 @@ export default class CommunityList extends React.Component {
         name: PropTypes.string.isRequired,
         detail: PropTypes.string.isRequired,
         imageSrc: PropTypes.any,
+        extra: PropTypes.object,
       })
     ).isRequired,
   }
@@ -27,16 +28,17 @@ export default class CommunityList extends React.Component {
 
     return (
       <List renderHeader={() => title}>
-        {list.map(community => (
+        {list.map(product => (
           <List.Item
-            key={community.name}
-            arrow="horizontal"
-            onClick={() => onItemClick(community.id)}
-            thumb={<ProfileImage source={community.imageSrc} />}
+            key={product.name}
+            arrow={product.extra ? undefined : 'horizontal'}
+            extra={product.extra}
+            onClick={() => onItemClick(product)}
+            thumb={<ProfileImage source={product.imageSrc} />}
             multipleLine
           >
-            {community.name}
-            <List.Item.Brief>{community.detail}</List.Item.Brief>
+            {product.name}
+            <List.Item.Brief>{product.detail}</List.Item.Brief>
           </List.Item>
         ))}
       </List>
