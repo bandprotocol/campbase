@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import ScreenContainer from '~/components/ScreenContainer'
 import EventList from '~/components/EventList'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -62,7 +62,7 @@ export default class CommunityEventsScreen extends React.Component {
     const { navigation } = this.props
 
     return (
-      <View>
+      <ScreenContainer>
         {MonthList.map(month => (
           <EventList
             key={month.monthName}
@@ -71,7 +71,7 @@ export default class CommunityEventsScreen extends React.Component {
             onItemClick={() => navigation.navigate('EventDetail')} //id => navigation.replace('CommunityTab')
           />
         ))}
-      </View>
+      </ScreenContainer>
     )
   }
 }

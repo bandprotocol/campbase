@@ -93,11 +93,21 @@ CommunityTab.navigationOptions = ({ navigation }) => ({
   ),
 })
 
-const ProductDetailTab = createMaterialTopTabNavigator({
-  ProductInfo,
-  ProductOfficialStore,
-  ProductMarketplace,
-})
+const ProductDetailTab = createMaterialTopTabNavigator(
+  {
+    ProductInfo,
+    ProductOfficialStore,
+    ProductMarketplace,
+  },
+  {
+    tabBarOptions: {
+      style: { paddingTop: 80, backgroundColor: '#ffffff' },
+      indicatorStyle: { backgroundColor: Color.primary },
+      activeTintColor: Color.primary,
+      inactiveTintColor: '#d1c1ff',
+    },
+  }
+)
 ProductDetailTab.navigationOptions = ({ navigation }) => ({
   title: 'Concert 15 Year Bodyslam | Basic Seat',
 })

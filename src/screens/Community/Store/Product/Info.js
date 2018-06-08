@@ -1,11 +1,10 @@
 import React from 'react'
 import Style from 'styled-components'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import TitledList from '~/components/TitledList'
 
 import ImageSrc from '~/assets/feed-image-2.jpg'
-
-const Container = Style.View``
 
 const Image = Style.Image`
   height: 240;
@@ -28,7 +27,7 @@ export default class ProductInfoScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <ScreenContainer darkBackground noPadding>
         <Image source={ImageSrc} />
         <Description>
           <DescriptionText>{mockDescription}</DescriptionText>
@@ -42,7 +41,7 @@ export default class ProductInfoScreen extends React.Component {
           ]}
           onItemClick={() => false}
         />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

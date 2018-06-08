@@ -1,7 +1,6 @@
 import React from 'react'
 import Style from 'styled-components'
-
-const Container = Style.View``
+import ScreenContainer from '~/components/ScreenContainer'
 
 export default class MarketplaceScreen extends React.Component {
   static navigationOptions = {
@@ -9,6 +8,6 @@ export default class MarketplaceScreen extends React.Component {
   }
 
   render() {
-    return <Container />
+    return <ScreenContainer darkBackground noPadding />
   }
 }

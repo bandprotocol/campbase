@@ -1,6 +1,6 @@
 import React from 'react'
 import Style from 'styled-components'
-import { View } from 'react-native'
+import ScreenContainer from '~/components/ScreenContainer'
 import { SearchBar } from '~/antd'
 import CommunityList from '~/components/CommunityList'
 
@@ -48,7 +48,7 @@ export default class CommunityBrowseScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
-      <View>
+      <ScreenContainer scrollable>
         <SearchBar placeholder="Search" cancelText="Cancel" maxLength={8} />
         {RecommendationList.map(category => (
           <CommunityList
@@ -58,7 +58,7 @@ export default class CommunityBrowseScreen extends React.Component {
             onItemClick={id => navigation.replace('CommunityTab')}
           />
         ))}
-      </View>
+      </ScreenContainer>
     )
   }
 }

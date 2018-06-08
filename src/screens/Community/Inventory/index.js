@@ -3,10 +3,9 @@ import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from '~/antd'
 import Color from '~/color'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import IconList from '~/components/IconList'
-
-const Container = Style.View``
 
 const PricePanel = Style.View`
   padding: 20px 30px;
@@ -57,7 +56,7 @@ export default class CommunityInventoryScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <ScreenContainer>
         <PricePanel>
           <PriceText>732.28 BST</PriceText>
           <SubPriceText>34.54 USD Discount Available</SubPriceText>
@@ -77,7 +76,7 @@ export default class CommunityInventoryScreen extends React.Component {
           </ButtonContainer>
         </PricePanel>
         <IconList list={services} onItemClick={() => false} />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

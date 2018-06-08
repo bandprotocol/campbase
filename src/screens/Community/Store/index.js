@@ -1,13 +1,12 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import StakingTier from '~/components/StakingTier'
 import PrettyProductList from '~/components/PrettyProductList'
 
 import ProductImage1Src from '~/assets/product-1.jpg'
-
-const Container = Style.View``
 
 const mockBestSellingProducts = [
   {
@@ -52,7 +51,7 @@ export default class CommunityStoreScreen extends React.Component {
     const { navigation } = this.props
 
     return (
-      <Container>
+      <ScreenContainer>
         <StakingTier />
         <PrettyProductList
           title={{
@@ -63,7 +62,7 @@ export default class CommunityStoreScreen extends React.Component {
           list={mockBestSellingProducts}
           onItemClick={() => navigation.navigate('ProductDetailTab')}
         />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

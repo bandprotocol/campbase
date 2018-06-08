@@ -1,11 +1,10 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import StakingTier from '~/components/StakingTier'
 import IconList from '~/components/IconList'
-
-const Container = Style.View``
 
 const services = [
   {
@@ -44,10 +43,10 @@ export default class CommunityServicesScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <ScreenContainer>
         <StakingTier />
         <IconList list={services} onItemClick={() => false} />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

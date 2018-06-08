@@ -1,5 +1,6 @@
 import React from 'react'
 import Style from 'styled-components'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import TitledList from '~/components/TitledList'
 
@@ -27,9 +28,9 @@ export default class OfficialStoreScreen extends React.Component {
 
   render() {
     return (
-      <Container>
+      <ScreenContainer darkBackground noPadding>
         <TitledList list={mockListData} onItemClick={() => false} />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

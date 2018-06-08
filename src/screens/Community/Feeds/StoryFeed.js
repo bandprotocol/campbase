@@ -104,7 +104,7 @@ export default class CommunityStoryScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
-      <ScreenContainer darkBackground>
+      <ScreenContainer darkBackground scrollable>
         {posts.map(post => (
           <FeedPost
             key={post.id}

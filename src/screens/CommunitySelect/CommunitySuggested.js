@@ -1,6 +1,6 @@
 import React from 'react'
 import Style from 'styled-components'
-import { View } from 'react-native'
+import ScreenContainer from '~/components/ScreenContainer'
 import CommunityList from '~/components/CommunityList'
 
 import ProfileBodyslamSrc from '~/assets/band-bodyslam.jpg'
@@ -58,7 +58,7 @@ export default class CommunitySuggestedScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
-      <View>
+      <ScreenContainer scrollable>
         {RecommendationList.map(category => (
           <CommunityList
             key={category.categoryName}
@@ -67,7 +67,7 @@ export default class CommunitySuggestedScreen extends React.Component {
             onItemClick={id => navigation.replace('CommunityTab')}
           />
         ))}
-      </View>
+      </ScreenContainer>
     )
   }
 }

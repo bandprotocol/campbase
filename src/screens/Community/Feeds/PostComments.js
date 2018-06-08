@@ -4,6 +4,7 @@ import Style from 'styled-components'
 import { Button, TextareaItem, Switch, Stepper } from '~/antd'
 import Color from '~/color'
 import { Ionicons } from '@expo/vector-icons'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import FeedPostComment from '~/components/FeedPostComment'
 
@@ -13,7 +14,7 @@ import Profile3Src from '~/assets/profile-3.jpg'
 import Profile4Src from '~/assets/profile-4.jpg'
 import Profile5Src from '~/assets/profile-5.jpg'
 
-const Container = Style.KeyboardAvoidingView.attrs({
+const KeyboardAvoidingContainer = Style.KeyboardAvoidingView.attrs({
   behavior: 'padding',
 })`
   flex: 1;
@@ -27,13 +28,13 @@ const CommentContainer = Style.ScrollView`
 const Comments = Style.View`
   padding-top: 10;
   padding-bottom: 10;
-  background-color: #fafafa;
+  background-color: ${Color.paleBackground};
 `
 
 const Spacer = Style.View`
   width: 100%;
   height: 3;
-  background-color: #dddddd;
+  background-color: #c4afff;
 `
 
 const RankedComments = Style.View`
@@ -142,67 +143,69 @@ export default class PostCommentsScreen extends React.Component {
 
   render() {
     return (
-      <Container>
-        <CommentContainer>
-          <Comments>
-            {mockPostComments.map(comment => (
-              <FeedPostComment key={comment.id} {...comment} />
-            ))}
-          </Comments>
-          <Spacer />
-          <RankedComments>
-            {mockRankedPostComments.map(comment => (
-              <FeedPostComment key={comment.id} {...comment} />
-            ))}
-          </RankedComments>
-        </CommentContainer>
-        <NewCommentContainer>
-          <BoostContainer>
-            <Switch
-              value={true}
-              initialValue={true}
-              valuePropName="checked"
-              platform="ios"
-              color={Color.primary}
-            />
-            <BoostText>Boost to #1</BoostText>
-            <BoostAmount>
-              <Ionicons
-                name="md-star"
-                size={18}
+      <ScreenContainer>
+        <KeyboardAvoidingContainer>
+          <CommentContainer>
+            <Comments>
+              {mockPostComments.map(comment => (
+                <FeedPostComment key={comment.id} {...comment} />
+              ))}
+            </Comments>
+            <Spacer />
+            <RankedComments>
+              {mockRankedPostComments.map(comment => (
+                <FeedPostComment key={comment.id} {...comment} />
+              ))}
+            </RankedComments>
+          </CommentContainer>
+          <NewCommentContainer>
+            <BoostContainer>
+              <Switch
+                value={true}
+                initialValue={true}
+                valuePropName="checked"
+                platform="ios"
                 color={Color.primary}
-                style={{ marginRight: 10 }}
               />
-              <Stepper
-                style={{
-                  flex: 0,
-                  width: 100,
-                  minWidth: 80,
-                  justifyContent: 'center',
-                }}
-                min={0}
-                step={1}
-                value={38}
-                onChange={() => {}}
-                showNumber
-              />
-            </BoostAmount>
-          </BoostContainer>
-          <InputContainer>
-            <TextareaContainer>
-              <TextareaItem
-                title="Your comments"
-                placeholder="Your comments"
-                style={{ borderRadius: 5, padding: 5 }}
-                autoHeight
-              />
-            </TextareaContainer>
-            <PostButton>
-              <PostButtonText>Post</PostButtonText>
-            </PostButton>
-          </InputContainer>
-        </NewCommentContainer>
-      </Container>
+              <BoostText>Boost to #1</BoostText>
+              <BoostAmount>
+                <Ionicons
+                  name="md-star"
+                  size={18}
+                  color={Color.primary}
+                  style={{ marginRight: 10 }}
+                />
+                <Stepper
+                  style={{
+                    flex: 0,
+                    width: 100,
+                    minWidth: 80,
+                    justifyContent: 'center',
+                  }}
+                  min={0}
+                  step={1}
+                  value={38}
+                  onChange={() => {}}
+                  showNumber
+                />
+              </BoostAmount>
+            </BoostContainer>
+            <InputContainer>
+              <TextareaContainer>
+                <TextareaItem
+                  title="Your comments"
+                  placeholder="Your comments"
+                  style={{ borderRadius: 5, padding: 5 }}
+                  autoHeight
+                />
+              </TextareaContainer>
+              <PostButton>
+                <PostButtonText>Post</PostButtonText>
+              </PostButton>
+            </InputContainer>
+          </NewCommentContainer>
+        </KeyboardAvoidingContainer>
+      </ScreenContainer>
     )
   }
 }
