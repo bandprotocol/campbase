@@ -1,6 +1,7 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
+import { Color } from '~/utils'
 
 import MedalSrc from '~/assets/medal.png'
 
@@ -8,7 +9,7 @@ const Container = Style.View`
   padding: 15px 30px;
   flex-direction: row;
   align-items: center;
-  background: rgba(0,0,0,0.5);
+  background: ${Color.primary};
 `
 
 const MedalImage = Style.Image`
@@ -41,6 +42,8 @@ const UpgradeButton = Style.TouchableOpacity`
 
 export default class StakingTier extends React.Component {
   render() {
+    const { navigation, noUpgrade } = this.props
+
     return (
       <Container>
         <MedalImage source={MedalSrc} />
@@ -48,9 +51,11 @@ export default class StakingTier extends React.Component {
           <TierNameText>Gold Tier</TierNameText>
           <TierStakeText>15,000 BST Staked</TierStakeText>
         </Info>
-        <UpgradeButton>
-          <Ionicons name="md-arrow-round-up" size={24} color="#ffffff" />
-        </UpgradeButton>
+        {!noUpgrade && (
+          <UpgradeButton onPress={() => navigation.navigate('Subscription')}>
+            <Ionicons name="md-arrow-round-up" size={24} color="#ffffff" />
+          </UpgradeButton>
+        )}
       </Container>
     )
   }

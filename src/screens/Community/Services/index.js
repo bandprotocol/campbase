@@ -1,4 +1,5 @@
 import React from 'react'
+import { Alert } from 'react-native'
 import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import ScreenContainer from '~/components/ScreenContainer'
@@ -42,10 +43,20 @@ export default class CommunityServicesScreen extends React.Component {
   }
 
   render() {
+    const { navigation } = this.props
+
     return (
       <ScreenContainer>
-        <StakingTier />
-        <IconList list={services} onItemClick={() => false} />
+        <StakingTier navigation={navigation} />
+        <IconList
+          list={services}
+          onItemClick={() =>
+            Alert.alert(
+              'Insufficient Tier Level',
+              'You need to be at least Platinum Tier to access this feature.'
+            )
+          }
+        />
       </ScreenContainer>
     )
   }

@@ -4,8 +4,8 @@ import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
 import ScreenContainer from '~/components/ScreenContainer'
 
-import FeedImage1Src from '~/assets/feed-image-1.jpg'
-import FeedImage2Src from '~/assets/feed-image-2.jpg'
+import FeedImage1Src from '~/assets/bodyslam-1.jpg'
+import FeedImage2Src from '~/assets/bodyslam-2.jpg'
 import ProfileBodyslamSrc from '~/assets/band-bodyslam.jpg'
 
 const posts = [

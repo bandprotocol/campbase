@@ -1,7 +1,7 @@
 import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import Color from '~/color'
+import { Color } from '~/utils'
 
 const HeaderButton = ({ name, onClick, content }) => (
   <TouchableOpacity onPress={onClick} style={{ marginRight: 20 }}>

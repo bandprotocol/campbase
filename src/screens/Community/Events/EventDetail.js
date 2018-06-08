@@ -1,12 +1,11 @@
 import React from 'react'
 import Style from 'styled-components'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import TicketList from '~/components/TicketList'
 import TitledList from '~/components/TitledList'
 
-import EventImageSrc from '~/assets/feed-image-4.jpg'
-
-const Container = Style.View``
+import EventImageSrc from '~/assets/concert.jpg'
 
 const EventImage = Style.Image`
   height: 240;
@@ -57,7 +56,7 @@ export default class EventDetailScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
-      <Container>
+      <ScreenContainer scrollable>
         <EventImage source={EventImageSrc} />
         <TitledList
           title="Event Info"
@@ -67,9 +66,9 @@ export default class EventDetailScreen extends React.Component {
         <TicketList
           title="Purchase Ticket"
           list={mockTicketList}
-          onItemClick={() => {}}
+          onItemClick={() => navigation.navigate('ProductDetailTab')}
         />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

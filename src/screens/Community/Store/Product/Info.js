@@ -4,7 +4,7 @@ import ScreenContainer from '~/components/ScreenContainer'
 
 import TitledList from '~/components/TitledList'
 
-import ImageSrc from '~/assets/feed-image-2.jpg'
+import ImageSrc from '~/assets/concert.jpg'
 
 const Image = Style.Image`
   height: 240;

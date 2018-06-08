@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import Style from 'styled-components'
 import { Button } from '~/antd'
 import ElevatedView from 'react-native-elevated-view'
-import Color from '~/color'
+import { Color } from '~/utils'
 
 import { Ionicons } from '@expo/vector-icons'
 import ProfileImage from '~/components/ProfileImage'
 
 const Container = Style.View`
-  padding: 10px 20px;
+  padding: 7px 15px;
 `
 
 const MediaContainer = Style.View`

@@ -58,7 +58,7 @@ export default class CommunitySuggestedScreen extends React.Component {
   render() {
     const { navigation } = this.props
     return (
-      <ScreenContainer scrollable>
+      <ScreenContainer scrollable noPadding>
         {RecommendationList.map(category => (
           <CommunityList
             key={category.categoryName}

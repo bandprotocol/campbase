@@ -2,7 +2,7 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import { DrawerActions } from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
-import Color from '~/color'
+import { Color } from '~/utils'
 
 const DrawerButton = ({ navigation }) => (
   <TouchableOpacity

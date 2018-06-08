@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { View, ScrollView } from 'react-native'
-import Color from '~/color'
+import { Color, Size } from '~/utils'
 
 export default class ScreenContainer extends React.Component {
   static propTypes = {

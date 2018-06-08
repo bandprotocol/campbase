@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Style from 'styled-components'
 import { Button } from '~/antd'
-import Color from '~/color'
+import { Color } from '~/utils'
 
 import { Ionicons } from '@expo/vector-icons'
 import ProfileImage from '~/components/ProfileImage'
@@ -10,10 +10,11 @@ import ProfileImage from '~/components/ProfileImage'
 const InfoContainer = Style.View`
   flex-direction: row;
   padding-top: 5;
+  padding-horizontal: 5;
   margin-bottom: 5;
 `
 const LeftInfoContainer = Style.View`
-  width: 100;
+  width: 90;
   align-items: center;
 `
 const RightInfoContainer = Style.View`

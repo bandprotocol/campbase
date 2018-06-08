@@ -29,7 +29,7 @@ export default class TicketList extends React.Component {
           <List.Item
             key={item.iconName}
             arrow="horizontal"
-            onClick={() => onItemClick(item.id)}
+            onClick={() => onItemClick(item)}
             thumb={
               <Icon>
                 <Ionicons name={item.iconName} size={28} />

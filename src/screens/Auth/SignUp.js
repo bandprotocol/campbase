@@ -1,10 +1,11 @@
 import React from 'react'
 import Style from 'styled-components'
 import { Text } from 'react-native'
+import { Color } from '~/utils'
 
 const MainView = Style.View`
   flex: 1;
-  background-color: #ffffff;
+  background-color: ${Color.primary};
   align-items: center;
   justify-content: center;
 `
@@ -15,7 +16,7 @@ export default class SignUpScreen extends React.Component {
   render() {
     return (
       <MainView>
-        <Text>Sign Up</Text>
+        <Text style={{ color: '#ffffff' }}>Sign Up Not Available</Text>
       </MainView>
     )
   }

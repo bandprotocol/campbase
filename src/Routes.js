@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
-import Color from '~/color'
+import { Color, Size } from '~/utils'
 import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 
@@ -30,13 +30,24 @@ import ProductInfo from '~/screens/Community/Store/Product/Info'
 import ProductOfficialStore from '~/screens/Community/Store/Product/OfficialStore'
 import ProductMarketplace from '~/screens/Community/Store/Product/Marketplace'
 import Inventory from '~/screens/Community/Inventory'
+import Subscription from '~/screens/Community/Subscription'
 
 import Wallet from '~/screens/Wallet'
 
-const AuthTab = createMaterialBottomTabNavigator({
-  SignIn,
-  SignUp,
-})
+const AuthTab = createMaterialTopTabNavigator(
+  {
+    SignIn,
+    SignUp,
+  },
+  {
+    tabBarOptions: {
+      style: { paddingTop: Size.statusBarHeight, backgroundColor: '#ffffff' },
+      indicatorStyle: { backgroundColor: Color.primary },
+      activeTintColor: Color.primary,
+      inactiveTintColor: '#d1c1ff',
+    },
+  }
+)
 AuthTab.navigationOptions = {
   title: 'Auth',
   drawerLabel: 'Sign Out',
@@ -46,16 +57,20 @@ AuthTab.navigationOptions = {
 // children, and not the options for the navigator
 // itself
 
-const CommunitySelectTab = createMaterialBottomTabNavigator(
+const CommunitySelectTab = createMaterialTopTabNavigator(
   {
     CommunitySuggested,
     CommunityBrowse,
   },
   {
-    navigationOptions: {
-      tabBarOptions: {
-        showIcon: false,
+    tabBarOptions: {
+      style: {
+        paddingTop: Size.statusAndHeaderHeight,
+        backgroundColor: '#ffffff',
       },
+      indicatorStyle: { backgroundColor: Color.primary },
+      activeTintColor: Color.primary,
+      inactiveTintColor: '#d1c1ff',
     },
   }
 )
@@ -86,7 +101,7 @@ CommunityTab.navigationOptions = ({ navigation }) => ({
   headerRight: (
     <HeaderButton
       content={
-        <SimpleLineIcons name="wallet" size={28} color={Color.primary} />
+        <SimpleLineIcons name="wallet" size={24} color={Color.primary} />
       }
       onClick={() => navigation.navigate('Inventory')}
     />
@@ -128,6 +143,9 @@ const RootStack = createStackNavigator(
 
     /** Inventory */
     Inventory,
+
+    /** Subscription */
+    Subscription,
     // Community: createMaterialBottomTabNavigator({}),
   },
   {

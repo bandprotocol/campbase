@@ -5,8 +5,8 @@ import FeedPost from '~/components/FeedPost'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Ionicons } from '@expo/vector-icons'
 
-import FeedImage3Src from '~/assets/feed-image-3.jpg'
-import FeedImage4Src from '~/assets/feed-image-4.jpg'
+import FeedImage3Src from '~/assets/bodyslam-3.jpg'
+import FeedImage4Src from '~/assets/bodyslam-4.jpg'
 import Profile1Src from '~/assets/profile-1.jpg'
 import Profile2Src from '~/assets/profile-2.jpg'
 
@@ -14,7 +14,8 @@ const mockPosts = [
   {
     id: 2,
     mediaSrc: FeedImage3Src,
-    message: 'Thank you everyone for joining me in our concert tonight',
+    message:
+      'What a pleasant surprise! P’Toon just gave me VIP concert ticket for free. God bless him.',
     user: {
       name: 'John Olive',
       profileImageSrc: Profile1Src,

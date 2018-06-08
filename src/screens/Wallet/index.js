@@ -2,7 +2,8 @@ import React from 'react'
 import Style from 'styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Button } from '~/antd'
-import Color from '~/color'
+import { Color } from '~/utils'
+import ScreenContainer from '~/components/ScreenContainer'
 
 import IconList from '~/components/IconList'
 import DrawerButton from '~/components/DrawerButton'
@@ -13,8 +14,6 @@ import ProfilePotatoSrc from '~/assets/band-potato.jpg'
 import ProfileZealSrc from '~/assets/band-zeal.jpg'
 import ProfileTattooSrc from '~/assets/band-tattoo.jpg'
 import ProfilPlaygroundSrc from '~/assets/band-playground.jpg'
-
-const Container = Style.View``
 
 const WalletPanel = Style.View`
   padding: 20px 30px;
@@ -108,7 +107,7 @@ export default class WalletScreen extends React.Component {
     const { navigation } = this.props
 
     return (
-      <Container>
+      <ScreenContainer scrollable>
         <WalletPanel>
           <BalanceButtonContainer>
             <BalanceContainer>
@@ -135,7 +134,7 @@ export default class WalletScreen extends React.Component {
           list={mockTxns}
           onItemClick={id => navigation.navigate('Inventory')}
         />
-      </Container>
+      </ScreenContainer>
     )
   }
 }

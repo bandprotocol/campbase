@@ -22,11 +22,14 @@ const HeaderLink = Style.Text`
   margin-bottom: 5;
 `
 
-const Product = Style.TouchableOpacity`
+const Product = Style.TouchableHighlight`
   position: relative;
   height: 100;
   border-radius: 8;
   margin-bottom: 10;
+`
+const ProductInner = Style.View`
+  flex: 1;
   justify-content: flex-end;
 `
 const ProductImage = Style.Image`
@@ -38,12 +41,12 @@ const ProductImage = Style.Image`
   border-radius: 8;
 `
 const ProductName = Style.Text`
-  font-size: 20;
+  font-size: 18;
   color: #ffffff;
   margin-left: 15;
 `
 const ProductDetails = Style.Text`
-  font-size: 16;
+  font-size: 15;
   color: #ffffff;
   margin-left: 15;
   margin-bottom: 10;
@@ -82,10 +85,16 @@ export default class PrettyProductList extends React.Component {
           )}
         </Header>
         {list.map(product => (
-          <Product key={product.id} onPress={() => onItemClick(product)}>
-            <ProductImage source={product.imageSrc} />
-            <ProductName>{product.name}</ProductName>
-            <ProductDetails>{product.details}</ProductDetails>
+          <Product
+            key={product.id}
+            onPress={() => onItemClick(product)}
+            underlayColor="rgba(145, 107, 255, 0.3)"
+          >
+            <ProductInner>
+              <ProductImage source={product.imageSrc} />
+              <ProductName>{product.name}</ProductName>
+              <ProductDetails>{product.details}</ProductDetails>
+            </ProductInner>
           </Product>
         ))}
       </Container>

@@ -2,7 +2,7 @@ import React from 'react'
 import { StatusBar } from 'react-native'
 import Style from 'styled-components'
 import { Button, TextareaItem, Switch, Stepper } from '~/antd'
-import Color from '~/color'
+import { Color } from '~/utils'
 import { Ionicons } from '@expo/vector-icons'
 import ScreenContainer from '~/components/ScreenContainer'
 
@@ -104,10 +104,11 @@ const mockPostComments = [
   {
     id: 3,
     user: {
-      name: 'John Nash',
+      name: 'Wilson Mayer',
       profileImageSrc: Profile3Src,
     },
-    message: "Keep it up! We're rooting for you as always",
+    message:
+      'Your song touches my heart like premium grass-fed beef steak. It’s sweet, tender, and delicious. ',
     stars: 58,
     time: '38m ago',
   },
@@ -120,7 +121,8 @@ const mockRankedPostComments = [
       name: 'Johny Bravo',
       profileImageSrc: Profile4Src,
     },
-    message: "Keep it up! We're rooting for you as always",
+    message:
+      'You’re one of the best rock band of all time. Even my 10-year-old nephew loves you. ',
     stars: 58,
     time: '3m ago',
     status: '#1 Fan',
@@ -128,10 +130,11 @@ const mockRankedPostComments = [
   {
     id: 5,
     user: {
-      name: 'Johny Bravo',
+      name: 'Jeff Philly',
       profileImageSrc: Profile5Src,
     },
-    message: "Keep it up! We're rooting for you as always",
+    message:
+      'OMG I’m so glad I finally got to meet you today. I’ve been a fan since high school. Your songs move me to tear every single time. I’m in love!',
     stars: 58,
     time: '3m ago',
     status: '#2 Fan',
