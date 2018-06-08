@@ -17,7 +17,7 @@ import ProfilPlaygroundSrc from '~/assets/band-playground.jpg'
 
 const WalletPanel = Style.View`
   padding: 20px 30px;
-  background-color: rgba(0,0,0,0.5)
+  background-color: ${Color.primary};
 `
 const BalanceContainer = Style.View`
   flex: 1;
