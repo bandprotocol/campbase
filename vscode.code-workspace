@@ -1,0 +1,29 @@
+{
+  "folders": [
+    {
+      "path": "server"
+    },
+    {
+      "path": "mobile-app"
+    },
+    {
+      "path": "web-app"
+    }
+  ],
+  "settings": {
+    "javascript.validate.enable": false,
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact",
+      "css": "javascriptreact"
+    },
+    "emmet.syntaxProfiles": {
+      "javascript": "javascriptreact"
+    },
+    "path-autocomplete.pathMappings": {
+      "~": "${folder}/src"
+    },
+    "files.associations": {
+      "*.css": "scss"
+    }
+  }
+}
