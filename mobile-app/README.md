@@ -8,10 +8,10 @@ See me at https://campbase.app
 
 This React Native app is built on the following tech
 
-- [Create React Native App](https://github.com/react-community/create-react-native-app)
-- [React Navigation](https://reactnavigation.org)
-- [React-Redux](https://github.com/reduxjs/react-redux)
-- [Styled Components](https://www.styled-components.com/docs/basics#react-native)
+* [Create React Native App](https://github.com/react-community/create-react-native-app)
+* [React Navigation](https://reactnavigation.org)
+* [React-Redux](https://github.com/reduxjs/react-redux)
+* [Styled Components](https://www.styled-components.com/docs/basics#react-native)
 
 We're following [AirBnB's React/JSX Style guide](https://github.com/airbnb/javascript/tree/master/react#basic-rules)
 
@@ -27,7 +27,7 @@ We recommend [VSCode](https://code.visualstudio.com/) for smooth development exp
 
 ### VSCode Plugins
 
-- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+* [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Development
 
@@ -43,7 +43,11 @@ You can install `npm install -g react-devtools` to get inspection tool as well.
 
 ## Build & Deploy
 
-TBD
+Make sure you have `exp` installed (via `npm i -g exp`). Login as `innocationteam@gmail.com` and run:
+
+```
+exp publish
+```
 
 ## Documentation
 
