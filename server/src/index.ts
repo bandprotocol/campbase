@@ -1,16 +1,11 @@
 import * as Koa from 'koa'
-import * as Router from 'koa-router'
+import router from './router'
 
 const app = new Koa()
-const router = new Router()
-
-router.get('/*', async ctx => {
-  ctx.body = 'Hello Band Protocol'
-})
 
 app.use(router.routes())
 
-const PORT = 5000
+const PORT = process.env.PORT || 5000
 app.listen(PORT)
 
-console.log(`App listening on port ${PORT}`)
+console.log(`CAMPBASE server listening on port: ${PORT}`)
