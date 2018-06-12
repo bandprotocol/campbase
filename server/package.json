@@ -6,20 +6,27 @@
   "author": "Band Protocol Developers <dev@bandprotocol.com>",
   "license": "PRIVATE",
   "scripts": {
-    "start": "nodemon --watch src --exec ts-node ./src/index.ts"
+    "start": "nodemon --watch src --exec ts-node -r tsconfig-paths/register ./src/index.ts"
   },
   "dependencies": {
     "bcrypt": "^2.0.1",
+    "jsonwebtoken": "^8.3.0",
     "knex": "^0.14.6",
     "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.3.2",
+    "koa-passport": "^4.1.0",
     "koa-router": "^7.4.0",
     "mysql": "^2.15.0"
   },
   "devDependencies": {
+    "@types/knex": "^0.14.14",
     "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.28",
     "nodemon": "^1.17.5",
     "ts-node": "^6.1.0",
+    "tsconfig-paths": "^3.3.2",
     "typescript": "^2.9.1"
   },
   "prettier": {

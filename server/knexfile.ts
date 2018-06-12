@@ -32,4 +32,19 @@ module.exports = {
       directory: path.join(BASE_PATH, 'seeds'),
     },
   },
+
+  prod: {
+    client: 'mysql',
+    connection: {
+      host: process.env.MYSQL_HOST || 'localhost',
+      port: process.env.MYSQL_PORT || 3306,
+      database: process.env.MYSQL_DATABASE || 'campbase_api_prod',
+      user: process.env.MYSQL_USER || 'root',
+      password: process.env.MYSQL_PASSWORD || '',
+    },
+    migrations: {
+      directory: path.join(BASE_PATH, 'migrations'),
+    },
+    // Prod doesn't need seed
+  },
 }
