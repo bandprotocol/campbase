@@ -9,8 +9,11 @@
     "start": "nodemon --watch src --exec ts-node ./src/index.ts"
   },
   "dependencies": {
+    "bcrypt": "^2.0.1",
+    "knex": "^0.14.6",
     "koa": "^2.5.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "@types/koa": "^2.0.46",
