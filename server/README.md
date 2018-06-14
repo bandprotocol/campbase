@@ -6,10 +6,10 @@ API server that powers CAMPBASE mobile apps and Community Manager web portal. It
 
 This Node.js server app is built on the following tech
 
-* TypeScript
-* Koa & Koa-Router
-* Knex
-* MySQL
+- TypeScript
+- Koa & Koa-Router
+- Knex
+- MySQL
 
 This project uses [Knex](https://knexjs.org/) to help manage database executions and migrations. It also conveniently functions as an ORM.
 
@@ -44,10 +44,18 @@ We recommend [VSCode](https://code.visualstudio.com/) for smooth development exp
 
 ### VSCode Plugins
 
-* [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Development
 
 ```
 yarn start
+```
+
+## Testing
+
+In this backend repo, we're testing extensively to make sure things work the way they should.
+
+```
+yart test
 ```
