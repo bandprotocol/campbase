@@ -1,11 +1,10 @@
 import * as Koa from 'koa'
-import * as KoaBodyparser from 'koa-bodyparser'
-import { useRoutes, useAuthentication } from './routes'
+import { useRoutes, useAuthentication, useCustomException } from './routes'
 import { PORT } from './config'
 
 const app = new Koa()
 
-app.use(KoaBodyparser())
+useCustomException(app)
 useRoutes(app)
 //useAuthentication(app)
 
