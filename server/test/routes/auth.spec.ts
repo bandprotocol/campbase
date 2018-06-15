@@ -2,7 +2,12 @@ import * as sinon from 'sinon'
 import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 import Knex from '~/db/connection'
-import { mockSendSMSSuccess, mockSendSMSFail } from 'test/mocks'
+import {
+  mockSendSMSSuccess,
+  mockSendSMSFail,
+  mockCheckSMSSuccess,
+  mockCheckSMSFail,
+} from 'test/mocks'
 
 import { AUTH_ROOT } from '~/config'
 import server from '~/index'
@@ -10,7 +15,7 @@ import server from '~/index'
 chai.use(chaiHttp)
 const should = chai.should()
 
-describe('routes: auth', () => {
+describe('routes:auth', () => {
   let sandbox: sinon.SinonSandbox
 
   beforeEach(async () => {
@@ -56,6 +61,31 @@ describe('routes: auth', () => {
         .then(res => {
           res.should.have.status(500)
         })
+    })
+  })
+
+  describe(`POST ${AUTH_ROOT}/register`, () => {
+    it('should get 200 if success w/ email_activated = false', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/register`)
+        .send({
+          country_code: '1',
+          phone_number: '111111111',
+          phone_pin: '1111',
+          email: 'new_user@example.com',
+          password: 'password',
+          display_name: 'Example New User',
+        })
+        .then(res => {
+          res.should.have.status(200)
+        })
+
+      const newUser = await Knex('users')
+        .where({ email: 'new_user@example.com' })
+        .first()
+      chai.expect(newUser.email_activated).to.be.not.ok
     })
   })
 })

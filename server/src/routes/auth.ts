@@ -56,8 +56,14 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
     display_name,
   } = ctx.request.body
 
-  // TODO: Check phone_pin
   // TODO: Check data format
+
+  // Check phone_pin
+  try {
+    await SMS.checkVerificationCode(country_code, phone_number, phone_pin)
+  } catch (e) {
+    throw new Exception(400, 'Invalid PIN')
+  }
 
   const user_phone = await Knex('users')
     .where({ country_code, phone_number })
@@ -78,10 +84,11 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
   // Create new user
   const password_hash = await Bcrypt.hash(password, PASSWORD_SALT_ROUNDS)
   await Knex('users').insert({
+    country_code,
     phone_number,
     email,
     password_hash,
-    activated: false,
+    email_activated: false,
     display_name,
     profile_image: `https://api.adorable.io/avatars/300/${phone_number}@adorable.png`,
   })

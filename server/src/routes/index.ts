@@ -36,6 +36,8 @@ export function useCustomException(app: Koa) {
         ctx.body = err.toObject()
         ctx.status = err.status
       } else {
+        // TODO: Write error log somewhere
+        console.error(err)
         ctx.status = 500
         ctx.body = {
           status: 500,
