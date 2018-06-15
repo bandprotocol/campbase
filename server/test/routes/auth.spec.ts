@@ -87,5 +87,59 @@ describe('routes:auth', () => {
         .first()
       chai.expect(newUser.email_activated).to.be.not.ok
     })
+
+    it('should get 400 if incorrect PIN', async () => {
+      mockCheckSMSFail(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/register`)
+        .send({
+          country_code: '1',
+          phone_number: '111111111',
+          phone_pin: '1111',
+          email: 'new_user@example.com',
+          password: 'password',
+          display_name: 'Example New User',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
+
+    it('should get 400 if phone number already exist', async () => {
+      mockCheckSMSFail(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/register`)
+        .send({
+          country_code: '1',
+          phone_number: '123456789',
+          phone_pin: '1111',
+          email: 'new_user@example.com',
+          password: 'password',
+          display_name: 'Example New User',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
+
+    it('should get 400 if email already exist', async () => {
+      mockCheckSMSFail(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/register`)
+        .send({
+          country_code: '1',
+          phone_number: '111111111',
+          phone_pin: '1111',
+          email: 'user@example.com',
+          password: 'password',
+          display_name: 'Example New User',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
   })
 })
