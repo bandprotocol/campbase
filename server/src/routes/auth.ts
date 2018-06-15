@@ -137,7 +137,7 @@ router.post(`${AUTH_ROOT}/login/email`, async (ctx, next) => {
     .where({ email })
     .first()
 
-  if (user) {
+  if (user && user.email_activated) {
     const { password_hash, ...userDataWithoutPassword } = user
 
     const isCorrectPassword = await Bcrypt.compare(password, password_hash)
