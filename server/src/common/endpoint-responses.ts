@@ -21,3 +21,11 @@ export class Exception extends Error {
     }
   }
 }
+
+export function checkBodyIncludesAllParams(
+  ctx: Koa.Context,
+  params: Array<string>
+) {
+  if (params.some(param => ctx.request.body[param] === undefined))
+    throw new Exception(400, `Expect an object with ${params.join(', ')}`)
+}

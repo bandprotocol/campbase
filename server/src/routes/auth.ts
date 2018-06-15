@@ -1,6 +1,10 @@
 import * as Router from 'koa-router'
 import * as Bcrypt from 'bcrypt'
-import { Exception, sendSuccess } from '~/common/endpoint-responses'
+import {
+  Exception,
+  sendSuccess,
+  checkBodyIncludesAllParams,
+} from '~/common/endpoint-responses'
 import JWT from '~/common/jwt'
 import Knex from '~/db/connection'
 import * as SMS from '~/external/sms'
@@ -14,12 +18,9 @@ const router = new Router()
  * Needs country_code, phone_number
  */
 router.post(`${AUTH_ROOT}/request_pin`, async (ctx, next) => {
-  const { country_code, phone_number } = ctx.request.body
+  checkBodyIncludesAllParams(ctx, ['country_code', 'phone_number'])
 
-  // Check required params
-  if (!(country_code && phone_number)) {
-    throw new Exception(400, 'Expect an object with country_code, phone_number')
-  }
+  const { country_code, phone_number } = ctx.request.body
 
   // TODO: Apply rate limit for SMS
 
@@ -37,6 +38,15 @@ router.post(`${AUTH_ROOT}/request_pin`, async (ctx, next) => {
  * Needs country_code, phone_number, phone_pin, email, password, display_name
  */
 router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
+  checkBodyIncludesAllParams(ctx, [
+    'country_code',
+    'phone_number',
+    'phone_pin',
+    'email',
+    'password',
+    'display_name',
+  ])
+
   const {
     country_code,
     phone_number,
@@ -45,23 +55,6 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
     password,
     display_name,
   } = ctx.request.body
-
-  // Check required params
-  if (
-    !(
-      country_code &&
-      phone_number &&
-      phone_pin &&
-      email &&
-      password &&
-      display_name
-    )
-  ) {
-    throw new Exception(
-      400,
-      'Expect an object with country_code, phone_number, phone_pin, email, password, display_name'
-    )
-  }
 
   // TODO: Check phone_pin
   // TODO: Check data format
@@ -102,12 +95,9 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
  * Needs country_code, phone_number, phone_pin
  */
 router.post(`${AUTH_ROOT}/login/phone`, async (ctx, next) => {
-  const { country_code, phone_number, phone_pin } = ctx.request.body
+  checkBodyIncludesAllParams(ctx, ['country_code', 'phone_number', 'phone_pin'])
 
-  // Check required params
-  if (!(country_code && phone_number && phone_pin)) {
-    throw new Exception(400, 'Expect an object with phone_number, phone_pin')
-  }
+  const { country_code, phone_number, phone_pin } = ctx.request.body
 
   // TODO: Check phone_pin
   const user = await Knex('users')
@@ -126,12 +116,9 @@ router.post(`${AUTH_ROOT}/login/phone`, async (ctx, next) => {
  * Needs email, password
  */
 router.post(`${AUTH_ROOT}/login/email`, async (ctx, next) => {
-  const { email, password } = ctx.request.body
+  checkBodyIncludesAllParams(ctx, ['email', 'password'])
 
-  // Check required params
-  if (!(email && password)) {
-    throw new Exception(400, 'Expect an object with email, password')
-  }
+  const { email, password } = ctx.request.body
 
   const user = await Knex('users')
     .where({ email })

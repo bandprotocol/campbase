@@ -2,7 +2,7 @@ import * as sinon from 'sinon'
 import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 import Knex from '~/db/connection'
-import { mockSMSSuccess, mockSMSFail } from 'test/mocks'
+import { mockSendSMSSuccess, mockSendSMSFail } from 'test/mocks'
 
 import { AUTH_ROOT } from '~/config'
 import server from '~/index'
@@ -26,7 +26,7 @@ describe('routes: auth', () => {
 
   describe(`POST ${AUTH_ROOT}/request_pin`, () => {
     it('should get 200 if all parameters are supplied', async () => {
-      mockSMSSuccess(sandbox)
+      mockSendSMSSuccess(sandbox)
       await chai
         .request(server)
         .post(`${AUTH_ROOT}/request_pin`)
@@ -37,7 +37,7 @@ describe('routes: auth', () => {
     })
 
     it('should get 400 if country_code not supplied', async () => {
-      mockSMSSuccess(sandbox)
+      mockSendSMSSuccess(sandbox)
       await chai
         .request(server)
         .post(`${AUTH_ROOT}/request_pin`)
@@ -48,7 +48,7 @@ describe('routes: auth', () => {
     })
 
     it('should get 500 if SMS service not available', async () => {
-      mockSMSFail(sandbox)
+      mockSendSMSFail(sandbox)
       await chai
         .request(server)
         .post(`${AUTH_ROOT}/request_pin`)
