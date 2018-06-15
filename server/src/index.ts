@@ -8,5 +8,9 @@ useCustomException(app)
 useRoutes(app)
 //useAuthentication(app)
 
-app.listen(PORT)
+// Start server
+const server = app.listen(PORT)
 console.log(`CAMPBASE server listening on port: ${PORT}`)
+
+// Export for test
+export default server

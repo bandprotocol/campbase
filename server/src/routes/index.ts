@@ -30,7 +30,7 @@ export function useAuthentication(app: Koa) {
 export function useCustomException(app: Koa) {
   app.use(async (ctx, next) => {
     try {
-      return next()
+      return await next()
     } catch (err) {
       if (err instanceof Exception) {
         ctx.body = err.toObject()

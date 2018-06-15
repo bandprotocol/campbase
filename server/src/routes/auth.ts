@@ -3,7 +3,7 @@ import * as Bcrypt from 'bcrypt'
 import { Exception, sendSuccess } from '~/common/endpoint-responses'
 import JWT from '~/common/jwt'
 import Knex from '~/db/connection'
-import SMS from '~/external/sms'
+import * as SMS from '~/external/sms'
 
 import { AUTH_ROOT, PASSWORD_SALT_ROUNDS } from '~/config'
 
@@ -25,7 +25,7 @@ router.post(`${AUTH_ROOT}/request_pin`, async (ctx, next) => {
 
   // Send SMS
   try {
-    await SMS.sendVericationCode(country_code, phone_number)
+    await SMS.sendVerificationCode(country_code, phone_number)
     sendSuccess(ctx)
   } catch (e) {
     throw new Exception(500, 'SMS Service unavailable.')
