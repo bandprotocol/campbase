@@ -143,7 +143,6 @@ describe('routes:auth', () => {
     })
   })
 
-  
   describe(`POST ${AUTH_ROOT}/login/phone`, () => {
     it('should get 200 and return JWT if PIN is correct', async () => {
       mockCheckSMSSuccess(sandbox)
@@ -157,9 +156,95 @@ describe('routes:auth', () => {
         })
         .then(res => {
           res.should.have.status(200)
-          console.log(res.body)
+          res.body.data.should.include.key('jwt')
         })
+    })
 
+    it('should get 400 if phone_pin not supplied', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/phone`)
+        .send({
+          country_code: '1',
+          phone_number: '123456789',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
+
+    it('should get 400 if account with phone_number does not exist', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/phone`)
+        .send({
+          country_code: '1',
+          phone_number: '111111111',
+          phone_pin: '1111',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
+  })
+
+  describe(`POST ${AUTH_ROOT}/login/email`, () => {
+    it('should get 200 and return JWT if password is correct', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/email`)
+        .send({
+          email: 'user@example.com',
+          password: 'password',
+        })
+        .then(res => {
+          res.should.have.status(200)
+          res.body.data.should.include.key('jwt')
+        })
+    })
+
+    it('should get 400 if password not supplied', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/email`)
+        .send({
+          email: 'user@example.com',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
+
+    it('should get 400 if account with email does not exist', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/email`)
+        .send({
+          email: 'user_not_existed@example.com',
+          password: 'password',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
+    })
+
+    it('should get 400 if account mot activated', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/email`)
+        .send({
+          email: 'user_email_unactivated@example.com',
+          password: 'password',
+        })
+        .then(res => {
+          res.should.have.status(400)
+        })
     })
   })
 })

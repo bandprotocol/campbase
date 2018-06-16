@@ -14,18 +14,27 @@ exports.seed = function(knex, Promise) {
           phone_number: '123456789',
           email: 'user@example.com',
           password_hash:
-            ' $2b$10$bLB9lm4G5vk3Hu2eVB3fdeMMEql6Wij.Oav2ZnrhgJWU6/GJPXaUC',
+            '$2b$10$bLB9lm4G5vk3Hu2eVB3fdeMMEql6Wij.Oav2ZnrhgJWU6/GJPXaUC',
           email_activated: true,
           display_name: 'Example User',
           profile_image: 'https://api.adorable.io/avatars/300/0@adorable.png',
         },
         {
+          country_code: '1',
+          phone_number: '234567891',
+          email: 'user_email_unactivated@example.com',
+          password_hash:
+            '$2b$10$bLB9lm4G5vk3Hu2eVB3fdeMMEql6Wij.Oav2ZnrhgJWU6/GJPXaUC',
+          email_activated: false,
+          display_name: 'Example User (Unactivated)',
+          profile_image: 'https://api.adorable.io/avatars/300/1@adorable.png',
+        },
+        {
           country_code: '66',
           phone_number: '623385559',
           email: 'paul@bandprotocol.com',
-          // plain_password = 'password'
           password_hash:
-            ' $2b$10$bLB9lm4G5vk3Hu2eVB3fdeMMEql6Wij.Oav2ZnrhgJWU6/GJPXaUC',
+            '$2b$10$bLB9lm4G5vk3Hu2eVB3fdeMMEql6Wij.Oav2ZnrhgJWU6/GJPXaUC',
           email_activated: true,
           display_name: 'Paul Chonpimai',
           profile_image:
