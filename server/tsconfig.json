@@ -15,5 +15,5 @@
       "test/*": ["../test/*"]
     }
   },
-  "include": ["./src/**/*", "./test/**/*"]
+  "include": ["./src/**/*", "./test/**/*", "./knexfile.ts"]
 }
