@@ -142,4 +142,24 @@ describe('routes:auth', () => {
         })
     })
   })
+
+  
+  describe(`POST ${AUTH_ROOT}/login/phone`, () => {
+    it('should get 200 and return JWT if PIN is correct', async () => {
+      mockCheckSMSSuccess(sandbox)
+      await chai
+        .request(server)
+        .post(`${AUTH_ROOT}/login/phone`)
+        .send({
+          country_code: '1',
+          phone_number: '123456789',
+          phone_pin: '1111',
+        })
+        .then(res => {
+          res.should.have.status(200)
+          console.log(res.body)
+        })
+
+    })
+  })
 })

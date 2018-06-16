@@ -21,7 +21,7 @@ We also use [Prettier](https://github.com/prettier/prettier) to automagically fo
 
 _NOTE: Please consider adding Docker that manage the installation process for dev environment as you see fit_
 
-First, install [MySQL](https://www.mysql.com/downloads/). Then get into mysql console with `mysql -u root -p` and create deevlopment and test databases with the commands below:
+First, install [MySQL](https://www.mysql.com/downloads/). Make sure the **root** user has no password set. Then get into mysql console with `mysql -u root -p` and create devlopment and test databases with the commands below:
 
 ```
 CREATE DATABASE campbase_api_dev;
@@ -54,7 +54,9 @@ yarn start
 
 ## Testing
 
-In this backend repo, we're testing extensively to make sure things work the way they should.
+In this backend repo, we're testing extensively to make sure things work the way they should. Most of the tests right now would be **integration tests** that make sure endpoints works correctly with the seed database.
+
+You can start the tests by running:
 
 ```
 yart test
