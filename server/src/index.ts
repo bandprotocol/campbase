@@ -5,8 +5,8 @@ import { PORT } from './config'
 const app = new Koa()
 
 useCustomException(app)
+useAuthentication(app)
 useRoutes(app)
-//useAuthentication(app)
 
 // Start server
 const server = app.listen(PORT)

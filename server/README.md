@@ -52,6 +52,26 @@ We recommend [VSCode](https://code.visualstudio.com/) for smooth development exp
 yarn start
 ```
 
+## Database Migration
+
+Knex provides great utilities for us:
+
+```
+knex migrate:latest --env dev
+knex seed:run --env dev
+
+or
+
+yarn migrate-dev
+yarn seed-dev
+```
+
+To create a new migration:
+
+```
+knex migrate:make <MIGRATION_NAME>
+```
+
 ## Testing
 
 In this backend repo, we're testing extensively to make sure things work the way they should. Most of the tests right now would be **integration tests** that make sure endpoints works correctly with the seed database.
