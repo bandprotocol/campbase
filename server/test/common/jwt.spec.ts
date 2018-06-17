@@ -13,11 +13,10 @@ describe('common:jwt', () => {
   describe('fn:signJWT', () => {
     it('should generate validly signed JWT from jwtUser instance', async () => {
       const user: JWTUserInterface = {
+        id: 1,
         country_code: '1',
         phone_number: '123456789',
         email: 'example@gmail.com',
-        display_name: 'Example User',
-        profile_image: 'https://profile_image.com',
       }
       const mockJWTUser = <JWTUser>{
         serialized: user,
