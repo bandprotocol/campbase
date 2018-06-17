@@ -1,15 +1,17 @@
 import * as Koa from 'koa'
-import * as JWT from 'koa-jwt'
+import * as KoaJWT from 'koa-jwt'
 import * as KoaBodyparser from 'koa-bodyparser'
 import GenericRouter from './generic'
 import AuthRouter from './auth'
+import WalletRouter from './wallet'
 import { JWT_SECRET } from '~/config'
-import { Exception } from '~/common/endpoint-responses'
+import { Exception } from '~/common/endpoint-response'
 
 export function useRoutes(app: Koa) {
   app.use(KoaBodyparser())
 
   app.use(AuthRouter.routes())
+  app.use(WalletRouter.routes())
   app.use(GenericRouter.routes())
 }
 
@@ -24,7 +26,9 @@ export function useAuthentication(app: Koa) {
     })
   })
 
-  app.use(JWT({ secret: JWT_SECRET }).unless({ path: [/^\/auth/] }))
+  app.use(
+    KoaJWT({ secret: JWT_SECRET, key: 'user' }).unless({ path: [/^\/auth/] })
+  )
 }
 
 export function useCustomException(app: Koa) {
@@ -33,7 +37,7 @@ export function useCustomException(app: Koa) {
       return await next()
     } catch (err) {
       if (err instanceof Exception) {
-        ctx.body = err.toObject()
+        ctx.body = err.getBody()
         ctx.status = err.status
       } else {
         // TODO: Write error log somewhere

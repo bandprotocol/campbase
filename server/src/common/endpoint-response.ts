@@ -1,6 +1,16 @@
 import * as Koa from 'koa'
 
 /**
+ * Data in Koa.Context.body
+ */
+export interface EndpointBodyInterface {
+  success: boolean
+  status: number
+  data?: Object
+  error?: string
+}
+
+/**
  * Populate context with success status and
  * standardized data format
  *
@@ -14,7 +24,7 @@ export function sendSuccess(
   data: Object = undefined
 ) {
   ctx.status = status
-  ctx.body = { success: true, status, data }
+  ctx.body = <EndpointBodyInterface>{ success: true, status, data }
 }
 
 /**
@@ -22,12 +32,9 @@ export function sendSuccess(
  * context.request.body
  *
  * @param ctx Koa Context
- * @param params Array of params needed
+ * @param params Array of params required
  */
-export function checkBodyIncludesAllParams(
-  ctx: Koa.Context,
-  params: Array<string>
-) {
+export function checkBodyIncludesAllParams(ctx: Koa.Context, params: string[]) {
   if (params.some(param => ctx.request.body[param] === undefined))
     throw new Exception(400, `Expect an object with ${params.join(', ')}`)
 }
@@ -40,8 +47,9 @@ export class Exception extends Error {
     super(message)
   }
 
-  toObject(): Object {
+  getBody(): EndpointBodyInterface {
     return {
+      success: false,
       status: this.status,
       error: this.message,
     }

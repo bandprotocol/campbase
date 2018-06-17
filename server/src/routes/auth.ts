@@ -4,8 +4,9 @@ import {
   Exception,
   sendSuccess,
   checkBodyIncludesAllParams,
-} from '~/common/endpoint-responses'
-import JWT from '~/common/jwt'
+} from '~/common/endpoint-response'
+import { JWTUser } from '~/common/jwt-user'
+import { signJWT } from '~/common/jwt'
 import Knex from '~/db/connection'
 import * as SMS from '~/external/sms'
 
@@ -112,8 +113,8 @@ router.post(`${AUTH_ROOT}/login/phone`, async (ctx, next) => {
     .first()
 
   if (user) {
-    const { password_hash, ...userDataWithoutPassword } = user
-    const signedJwt = JWT.sign(userDataWithoutPassword)
+    const jwtUser = JWTUser.createFromDBUser(user)
+    const signedJwt = signJWT(jwtUser)
     sendSuccess(ctx, 200, { jwt: signedJwt })
   } else throw new Exception(400, 'Incorrect phone number')
 })
@@ -132,12 +133,11 @@ router.post(`${AUTH_ROOT}/login/email`, async (ctx, next) => {
     .first()
 
   if (user && user.email_activated) {
-    const { password_hash, ...userDataWithoutPassword } = user
-
-    const isCorrectPassword = await Bcrypt.compare(password, password_hash)
+    const isCorrectPassword = await Bcrypt.compare(password, user.password_hash)
 
     if (isCorrectPassword) {
-      const signedJwt = JWT.sign(userDataWithoutPassword)
+      const jwtUser = JWTUser.createFromDBUser(user)
+      const signedJwt = signJWT(jwtUser)
       sendSuccess(ctx, 200, { jwt: signedJwt })
       next()
     } else throw new Exception(400, 'Incorrect password')
