@@ -6,7 +6,7 @@ import * as Koa from 'koa'
 export interface EndpointBodyInterface {
   success: boolean
   status: number
-  data?: Object
+  data?: object
   error?: string
 }
 
@@ -21,7 +21,7 @@ export interface EndpointBodyInterface {
 export function sendSuccess(
   ctx: Koa.Context,
   status: number = 200,
-  data: Object = undefined
+  data: object = undefined
 ) {
   ctx.status = status
   ctx.body = <EndpointBodyInterface>{ success: true, status, data }
