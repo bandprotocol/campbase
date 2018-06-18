@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2017",
+    "jsx": "react",
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["../"],
+      "test/*": ["../test/*"]
+    }
+  },
+  "include": ["./App.tsx", "./src/**/*"],
+  "exclude": ["node_modules"]
+}
