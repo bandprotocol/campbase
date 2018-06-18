@@ -1,12 +1,16 @@
 import React from 'react'
-import Routes from './src/Routes'
+import { Provider } from 'react-redux'
+import Routes from '~/Routes'
+import { configureStore } from '~/store/configureStore'
+
+const store = configureStore()
 
 export default class App extends React.Component {
-  componentDidMount() {
-    // TBD
-  }
-
   render() {
-    return <Routes />
+    return (
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    )
   }
 }

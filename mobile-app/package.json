@@ -23,6 +23,7 @@
   "dependencies": {
     "antd-mobile": "^2.1.10",
     "expo": "^27.0.1",
+    "immutable": "^3.8.2",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "~0.55.2",
@@ -31,6 +32,8 @@
     "react-navigation": "^2.0.4",
     "react-navigation-material-bottom-tabs": "^0.3.0",
     "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^3.3.0"
   },
   "prettier": {

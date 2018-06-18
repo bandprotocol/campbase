@@ -11,19 +11,8 @@ const Container = Style.SafeAreaView`
   justify-content: center;
 `
 
-export default class SignInScreen extends React.Component {
-  static navigationOptions = { tabBarLabel: 'Sign In' }
-
-  render() {
-    return (
-      <Container>
-        <StatusBar barStyle="light-content" backgroundColor={Color.primary} />
-        <Button
-          onClick={() => this.props.navigation.navigate('CommunitySuggested')}
-        >
-          Sign In
-        </Button>
-      </Container>
-    )
-  }
-}
+export default ({ onSignIn }) => (
+  <Container>
+    <Button onClick={onSignIn}>Sign In</Button>
+  </Container>
+)
