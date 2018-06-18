@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import ColorButton from '~/components/ColorButton'
@@ -61,7 +62,9 @@ const OrderText = Style.Text``
 const mockBuyOrders = ['0.313', '0.310', '0.307', '0.307', '0.302', '0.296']
 const mockSellOrders = ['0.321', '0.322', '0.325', '0.328', '0.333']
 
-export default class MarketplaceScreen extends React.Component {
+export default class MarketplaceScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = {
     tabBarLabel: 'Marketplace',
   }

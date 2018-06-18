@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Button, Modal, Toast } from 'antd-mobile-rn'
@@ -99,7 +100,14 @@ const mockTxns = [
   },
 ]
 
-export default class WalletScreen extends React.Component {
+interface WalletScreenState {
+  showAddressModal: boolean
+}
+
+export default class WalletScreen extends React.Component<
+  withNavigationProps,
+  WalletScreenState
+> {
   static navigationOptions = ({ navigation }) => ({
     title: 'Your Wallet',
     headerLeft: <DrawerButton navigation={navigation} />,

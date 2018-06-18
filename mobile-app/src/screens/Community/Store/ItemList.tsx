@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
@@ -41,7 +42,9 @@ const mockProductList = [
   },
 ]
 
-export default class ItemListScreen extends React.Component {
+export default class ItemListScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = {
     title: 'Your Bodyslam Items',
   }

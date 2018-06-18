@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import EventList from '~/components/EventList'
@@ -54,7 +55,9 @@ const MonthList = [
   },
 ]
 
-export default class CommunityEventsScreen extends React.Component {
+export default class CommunityEventsScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = {
     tabBarLabel: 'Events',
     tabBarIcon: ({ focused, tintColor }) => (

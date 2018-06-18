@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
@@ -24,7 +25,9 @@ const TierDescription = Style.Text`
   flex: 1;
 `
 
-export default class SubscriptionScreen extends React.Component {
+export default class SubscriptionScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = {
     title: 'Subscription',
     headerRight: (

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
@@ -127,7 +128,15 @@ const ProductModal = ({ product, visible, onClose }) => (
   </Modal>
 )
 
-export default class ProductListScreen extends React.Component {
+interface ProductListScreenState {
+  modalProduct: object
+  modalVisible: boolean
+}
+
+export default class ProductListScreen extends React.Component<
+  withNavigationProps,
+  ProductListScreenState
+> {
   static navigationOptions = {
     title: 'Your Bodyslam Receipts',
   }

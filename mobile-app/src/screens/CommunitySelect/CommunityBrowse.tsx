@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import { SearchBar } from 'antd-mobile-rn'
@@ -43,7 +44,9 @@ const mockCommunities = [
   },
 ]
 
-export default class CommunityBrowseScreen extends React.Component {
+export default class CommunityBrowseScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = { tabBarLabel: 'Browse' }
 
   render() {

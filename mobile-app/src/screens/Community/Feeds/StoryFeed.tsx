@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import Style from '~/styled-components'
 import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
@@ -89,7 +90,9 @@ const Container = Style.View`
   background: #ffffff;
 `
 
-export default class CommunityStoryScreen extends React.Component {
+export default class CommunityStoryScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = {
     tabBarLabel: 'Story',
     tabBarIcon: ({ focused, tintColor }) => (

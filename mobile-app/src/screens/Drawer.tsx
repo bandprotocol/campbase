@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps, withDraweProps } from '~/declare'
 import Style from '~/styled-components'
 import { DrawerActions } from 'react-navigation'
 import { Size, Color } from '~/utils'
@@ -75,7 +76,9 @@ const LinkText = Style.Text`
   opacity: ${p => (p.active ? '1' : '0.6')};
 `
 
-export default class Drawer extends React.Component {
+export default class Drawer extends React.Component<
+  withNavigationProps & withDraweProps
+> {
   goTo(path) {
     const { navigation } = this.props
     navigation.navigate(path)

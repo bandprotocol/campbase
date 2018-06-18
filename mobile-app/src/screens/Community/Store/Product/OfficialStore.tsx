@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import { Alert } from 'react-native'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
@@ -40,7 +41,9 @@ const mockListData = [
   },
 ]
 
-export default class OfficialStoreScreen extends React.Component {
+export default class OfficialStoreScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = {
     tabBarLabel: 'Official Store',
   }

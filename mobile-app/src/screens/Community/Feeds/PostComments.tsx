@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withNavigationProps } from '~/declare'
 import { StatusBar } from 'react-native'
 import Style from '~/styled-components'
 import { Button, TextareaItem, Switch, Stepper } from 'antd-mobile-rn'
@@ -141,7 +142,9 @@ const mockRankedPostComments = [
   },
 ]
 
-export default class PostCommentsScreen extends React.Component {
+export default class PostCommentsScreen extends React.Component<
+  withNavigationProps
+> {
   static navigationOptions = { title: 'Comments' }
 
   constructor(props) {
