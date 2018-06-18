@@ -1,9 +1,10 @@
 import React from 'react'
+import { Alert } from 'react-native'
 import { connect } from '~/store'
 import SignIn from './SignIn'
 
 @connect(state => ({
-  test: 'Some xxx',
+  // KV
 }))
 export default class SignInScreen extends React.Component {
   static navigationOptions = { tabBarLabel: 'Sign In' }
@@ -18,6 +19,6 @@ export default class SignInScreen extends React.Component {
   }
 
   render() {
-    return <SignIn onSignIn={onSignIn} />
+    return <SignIn onSignIn={this.onSignIn} />
   }
 }

@@ -8,7 +8,7 @@ import api from './api'
 
 export default combineReducers({
   app,
-  api,
+  //api,
 
   // ^^^ Add more reducers here
 })

@@ -1,5 +1,4 @@
 import React from 'react'
-import { StatusBar } from 'react-native'
 import Style from 'styled-components'
 import { Button } from '~/antd'
 import { Color } from '~/utils'
@@ -13,6 +12,6 @@ const Container = Style.SafeAreaView`
 
 export default ({ onSignIn }) => (
   <Container>
-    <Button onClick={onSignIn}>Sign In</Button>
+    <Button onClick={onSignIn}>Sign In!</Button>
   </Container>
 )

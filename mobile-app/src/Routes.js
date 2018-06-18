@@ -14,7 +14,7 @@ import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 
 import Drawer from '~/screens/Drawer'
-import SignIn from '~/screens/Auth/SignIn'
+import SignInContainer from '~/screens/Auth/SignInContainer'
 import SignUp from '~/screens/Auth/SignUp'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
 import CommunityBrowse from '~/screens/CommunitySelect/CommunityBrowse'
@@ -41,7 +41,7 @@ import Wallet from '~/screens/Wallet'
 
 const AuthTab = createMaterialTopTabNavigator(
   {
-    SignIn,
+    SignInContainer,
     SignUp,
   },
   {

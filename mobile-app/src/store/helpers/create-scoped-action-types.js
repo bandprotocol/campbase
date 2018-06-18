@@ -2,7 +2,7 @@
  * Create map of actions, given action's names
  */
 
-export default (scope, actions) => {
+export default function createScopedActionTypes(scope, actions) {
   if (typeof scope !== 'string')
     throw Error('Scope (first argument) must be a string')
 
