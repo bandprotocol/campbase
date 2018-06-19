@@ -30,7 +30,7 @@ router.post(`${AUTH_ROOT}/request_pin`, async (ctx, next) => {
     await SMS.sendVerificationCode(country_code, phone_number)
     sendSuccess(ctx)
   } catch (e) {
-    throw new Exception(500, 'SMS Service unavailable.')
+    throw new Exception(503, 'SMS Service unavailable.')
   }
 })
 
@@ -63,7 +63,7 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
   try {
     await SMS.checkVerificationCode(country_code, phone_number, phone_pin)
   } catch (e) {
-    throw new Exception(400, 'Invalid PIN')
+    throw new Exception(403, 'Invalid PIN')
   }
 
   const user_phone = await Knex('users')
@@ -71,7 +71,7 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
     .first()
   // User already exist
   if (user_phone) {
-    throw new Exception(400, 'User with this phone number already exists')
+    throw new Exception(403, 'User with this phone number already exists')
   }
 
   const user_email = await Knex('users')
@@ -79,7 +79,7 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
     .first()
   // User already exist
   if (user_email) {
-    throw new Exception(400, 'User with this email already exists')
+    throw new Exception(403, 'User with this email already exists')
   }
 
   // Create new user
@@ -94,7 +94,7 @@ router.post(`${AUTH_ROOT}/register`, async (ctx, next) => {
     profile_image: `https://api.adorable.io/avatars/300/${phone_number}@adorable.png`,
   })
 
-  sendSuccess(ctx)
+  sendSuccess(ctx, 201)
   next()
 })
 
@@ -116,7 +116,7 @@ router.post(`${AUTH_ROOT}/login/phone`, async (ctx, next) => {
     const jwtUser = JWTUser.createFromDBUser(user)
     const signedJwt = signJWT(jwtUser)
     sendSuccess(ctx, 200, { jwt: signedJwt })
-  } else throw new Exception(400, 'Incorrect phone number')
+  } else throw new Exception(403, 'Incorrect phone number')
 })
 
 /**
@@ -132,16 +132,20 @@ router.post(`${AUTH_ROOT}/login/email`, async (ctx, next) => {
     .where({ email })
     .first()
 
-  if (user && user.email_activated) {
+  if (user) {
     const isCorrectPassword = await Bcrypt.compare(password, user.password_hash)
 
     if (isCorrectPassword) {
+      if (!user.email_activated) {
+        throw new Exception(403, `Email ${email} not activated`)
+      }
+
       const jwtUser = JWTUser.createFromDBUser(user)
       const signedJwt = signJWT(jwtUser)
       sendSuccess(ctx, 200, { jwt: signedJwt })
       next()
-    } else throw new Exception(400, 'Incorrect password')
-  } else throw new Exception(400, `No user with email ${email}`)
+    } else throw new Exception(403, 'Incorrect password')
+  } else throw new Exception(403, `No user with email ${email}`)
 })
 
 export default router

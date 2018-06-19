@@ -52,20 +52,20 @@ describe('routes:auth', () => {
         })
     })
 
-    it('should get 500 if SMS service not available', async () => {
+    it('should get 503 if SMS service not available', async () => {
       mockSendSMSFail(sandbox)
       await chai
         .request(server)
         .post(`${AUTH_ROOT}/request_pin`)
         .send({ country_code: '66', phone_number: '830088333' })
         .then(res => {
-          res.should.have.status(500)
+          res.should.have.status(503)
         })
     })
   })
 
   describe(`POST ${AUTH_ROOT}/register`, () => {
-    it('should get 200 if success w/ email_activated = false', async () => {
+    it('should get 201 if success w/ email_activated = false', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
@@ -79,7 +79,7 @@ describe('routes:auth', () => {
           display_name: 'Example New User',
         })
         .then(res => {
-          res.should.have.status(200)
+          res.should.have.status(201)
         })
 
       const newUser = await Knex('users')
@@ -88,7 +88,7 @@ describe('routes:auth', () => {
       chai.expect(newUser.email_activated).to.be.not.ok
     })
 
-    it('should get 400 if incorrect PIN', async () => {
+    it('should get 403 if incorrect PIN', async () => {
       mockCheckSMSFail(sandbox)
       await chai
         .request(server)
@@ -102,11 +102,11 @@ describe('routes:auth', () => {
           display_name: 'Example New User',
         })
         .then(res => {
-          res.should.have.status(400)
+          res.should.have.status(403)
         })
     })
 
-    it('should get 400 if phone number already exist', async () => {
+    it('should get 403 if phone number already exist', async () => {
       mockCheckSMSFail(sandbox)
       await chai
         .request(server)
@@ -120,11 +120,11 @@ describe('routes:auth', () => {
           display_name: 'Example New User',
         })
         .then(res => {
-          res.should.have.status(400)
+          res.should.have.status(403)
         })
     })
 
-    it('should get 400 if email already exist', async () => {
+    it('should get 403 if email already exist', async () => {
       mockCheckSMSFail(sandbox)
       await chai
         .request(server)
@@ -138,7 +138,7 @@ describe('routes:auth', () => {
           display_name: 'Example New User',
         })
         .then(res => {
-          res.should.have.status(400)
+          res.should.have.status(403)
         })
     })
   })
@@ -174,7 +174,7 @@ describe('routes:auth', () => {
         })
     })
 
-    it('should get 400 if account with phone_number does not exist', async () => {
+    it('should get 403 if account with phone_number does not exist', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
@@ -185,7 +185,7 @@ describe('routes:auth', () => {
           phone_pin: '1111',
         })
         .then(res => {
-          res.should.have.status(400)
+          res.should.have.status(403)
         })
     })
   })
@@ -219,7 +219,7 @@ describe('routes:auth', () => {
         })
     })
 
-    it('should get 400 if account with email does not exist', async () => {
+    it('should get 403 if account with email does not exist', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
@@ -229,11 +229,11 @@ describe('routes:auth', () => {
           password: 'password',
         })
         .then(res => {
-          res.should.have.status(400)
+          res.should.have.status(403)
         })
     })
 
-    it('should get 400 if account mot activated', async () => {
+    it('should get 403 if account not activated', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
@@ -243,7 +243,7 @@ describe('routes:auth', () => {
           password: 'password',
         })
         .then(res => {
-          res.should.have.status(400)
+          res.should.have.status(403)
         })
     })
   })
