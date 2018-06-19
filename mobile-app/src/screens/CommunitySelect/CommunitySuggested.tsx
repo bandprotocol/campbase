@@ -4,11 +4,11 @@ import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import CommunityList from '~/components/CommunityList'
 
-import * as ProfileBodyslamSrc from '~/assets/band-bodyslam.jpg'
-import * as ProfilePotatoSrc from '~/assets/band-potato.jpg'
-import * as ProfileZealSrc from '~/assets/band-zeal.jpg'
-import * as ProfileTattooSrc from '~/assets/band-tattoo.jpg'
-import * as ProfilPlaygroundSrc from '~/assets/band-playground.jpg'
+const ProfileBodyslamSrc = require('~/assets/band-bodyslam.jpg')
+const ProfilePotatoSrc = require('~/assets/band-potato.jpg')
+const ProfileZealSrc = require('~/assets/band-zeal.jpg')
+const ProfileTattooSrc = require('~/assets/band-tattoo.jpg')
+const ProfilPlaygroundSrc = require('~/assets/band-playground.jpg')
 
 const Category = Style.View`
   margin: 10px 20px;

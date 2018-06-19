@@ -7,10 +7,10 @@ import ScreenContainer from '~/components/ScreenContainer'
 import StakingTier from '~/components/StakingTier'
 import PrettyProductList from '~/components/PrettyProductList'
 
-import * as ProductImage1Src from '~/assets/product-1.jpg'
-import * as ProductImage2Src from '~/assets/product-2.jpg'
-import * as ProductImage3Src from '~/assets/product-3.jpg'
-import * as ProductImage4Src from '~/assets/product-4.jpg'
+const ProductImage1Src = require('~/assets/product-1.jpg')
+const ProductImage2Src = require('~/assets/product-2.jpg')
+const ProductImage3Src = require('~/assets/product-3.jpg')
+const ProductImage4Src = require('~/assets/product-4.jpg')
 
 const mockBestSellingProducts = [
   {

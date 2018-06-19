@@ -6,10 +6,10 @@ import FeedPost from '~/components/FeedPost'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Ionicons } from '@expo/vector-icons'
 
-import * as FeedImage3Src from '~/assets/bodyslam-3.jpg'
-import * as FeedImage4Src from '~/assets/bodyslam-4.jpg'
-import * as Profile1Src from '~/assets/profile-1.jpg'
-import * as Profile2Src from '~/assets/profile-2.jpg'
+const FeedImage3Src = require('~/assets/bodyslam-3.jpg')
+const FeedImage4Src = require('~/assets/bodyslam-4.jpg')
+const Profile1Src = require('~/assets/profile-1.jpg')
+const Profile2Src = require('~/assets/profile-2.jpg')
 
 const mockPosts = [
   {

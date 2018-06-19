@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { withNavigationProps, withDraweProps } from '~/declare'
+import { withNavigationProps, withDrawerProps } from '~/declare'
 import Style from '~/styled-components'
 import { DrawerActions } from 'react-navigation'
 import { Size, Color } from '~/utils'
 
-import * as ProfileSrc from '~/assets/profile-5.jpg'
+const ProfileSrc = require('~/assets/profile-5.jpg')
 
 const Container = Style.View`
   flex: 1;
@@ -77,7 +77,7 @@ const LinkText = Style.Text`
 `
 
 export default class Drawer extends React.Component<
-  withNavigationProps & withDraweProps
+  withNavigationProps & withDrawerProps
 > {
   goTo(path) {
     const { navigation } = this.props

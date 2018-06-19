@@ -9,11 +9,11 @@ import ScreenContainer from '~/components/ScreenContainer'
 
 import FeedPostComment from '~/components/FeedPostComment'
 
-import * as Profile1Src from '~/assets/profile-1.jpg'
-import * as Profile2Src from '~/assets/profile-2.jpg'
-import * as Profile3Src from '~/assets/profile-3.jpg'
-import * as Profile4Src from '~/assets/profile-4.jpg'
-import * as Profile5Src from '~/assets/profile-5.jpg'
+const Profile1Src = require('~/assets/profile-1.jpg')
+const Profile2Src = require('~/assets/profile-2.jpg')
+const Profile3Src = require('~/assets/profile-3.jpg')
+const Profile4Src = require('~/assets/profile-4.jpg')
+const Profile5Src = require('~/assets/profile-5.jpg')
 
 const KeyboardAvoidingContainer = Style.KeyboardAvoidingView.attrs({
   behavior: 'padding',

@@ -10,9 +10,9 @@ import ColorButton from '~/components/ColorButton'
 import ProductList from '~/components/ProductList'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
-import * as Product2ImageSrc from '~/assets/product-2.jpg'
-import * as Product4ImageSrc from '~/assets/product-4.jpg'
-import * as ProductQRSrc from '~/assets/product-qrcode.jpg'
+const Product2ImageSrc = require('~/assets/product-2.jpg')
+const Product4ImageSrc = require('~/assets/product-4.jpg')
+const ProductQRSrc = require('~/assets/product-qrcode.jpg')
 
 const Title = Style.View`
   height: 40;

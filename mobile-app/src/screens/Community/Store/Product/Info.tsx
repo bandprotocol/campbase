@@ -5,7 +5,7 @@ import ScreenContainer from '~/components/ScreenContainer'
 
 import TitledList from '~/components/TitledList'
 
-import * as ImageSrc from '~/assets/concert.jpg'
+const ImageSrc = require('~/assets/concert.jpg')
 
 const Image = Style.Image`
   height: 240;

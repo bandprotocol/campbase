@@ -10,10 +10,10 @@ import { Color } from '~/utils'
 import ColorButton from '~/components/ColorButton'
 import ProductList from '~/components/ProductList'
 
-import * as Product1ImageSrc from '~/assets/product-1.jpg'
-import * as Product2ImageSrc from '~/assets/product-2.jpg'
-import * as Product3ImageSrc from '~/assets/product-3.jpg'
-import * as Product4ImageSrc from '~/assets/product-4.jpg'
+const Product1ImageSrc = require('~/assets/product-1.jpg')
+const Product2ImageSrc = require('~/assets/product-2.jpg')
+const Product3ImageSrc = require('~/assets/product-3.jpg')
+const Product4ImageSrc = require('~/assets/product-4.jpg')
 
 const mockProductList = [
   {

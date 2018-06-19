@@ -3,7 +3,7 @@ import Style from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Color } from '~/utils'
 
-import * as MedalSrc from '~/assets/medal.png'
+const MedalSrc = require('~/assets/medal.png')
 
 const Container = Style.View`
   padding: 15px 30px;
@@ -40,7 +40,12 @@ const UpgradeButton = Style.TouchableOpacity`
   justify-content: center;
 `
 
-export default class StakingTier extends React.Component {
+interface StakingTierProps {
+  navigation
+  noUpgrade: boolean
+}
+
+export default class StakingTier extends React.Component<StakingTierProps> {
   render() {
     const { navigation, noUpgrade } = this.props
 

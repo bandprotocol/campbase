@@ -7,7 +7,7 @@ import { Color } from '~/utils'
 
 import TitledList from '~/components/TitledList'
 
-import * as PriceGraphSrc from '~/assets/price-graph.png'
+const PriceGraphSrc = require('~/assets/price-graph.png')
 
 const PriceGraph = Style.View`
   flex-direction: row;

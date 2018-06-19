@@ -6,7 +6,7 @@ import { withNavigationProps } from '~/declare'
 import TicketList from '~/components/TicketList'
 import TitledList from '~/components/TitledList'
 
-import * as EventImageSrc from '~/assets/concert.jpg'
+const EventImageSrc = require('~/assets/concert.jpg')
 
 const EventImage = Style.Image`
   height: 240;

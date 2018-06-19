@@ -5,9 +5,9 @@ import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
 import ScreenContainer from '~/components/ScreenContainer'
 
-import * as FeedImage1Src from '~/assets/bodyslam-1.jpg'
-import * as FeedImage2Src from '~/assets/bodyslam-2.jpg'
-import * as ProfileBodyslamSrc from '~/assets/band-bodyslam.jpg'
+const FeedImage1Src = require('~/assets/bodyslam-1.jpg')
+const FeedImage2Src = require('~/assets/bodyslam-2.jpg')
+const ProfileBodyslamSrc = require('~/assets/band-bodyslam.jpg')
 
 const posts = [
   {

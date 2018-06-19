@@ -8,6 +8,6 @@ export interface withNavigationProps {
   navigation?: NavigationScreenProp<NavigationState>
 }
 
-export interface withDraweProps {
+export interface withDrawerProps {
   activeItemKey?
 }
