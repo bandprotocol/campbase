@@ -15,7 +15,7 @@ import server from '~/index'
 chai.use(chaiHttp)
 const should = chai.should()
 
-describe('routes:auth', () => {
+describe('route:api:auth', () => {
   let sandbox: sinon.SinonSandbox
 
   beforeEach(async () => {

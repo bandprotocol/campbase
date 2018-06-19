@@ -1,11 +1,15 @@
 import * as Koa from 'koa'
-import { useRoutes, useAuthentication, useCustomException } from './routes'
+import { useRoutes } from './route/api'
+import { useValidateMethods } from '~/route/middlewares/validate-methods'
+import { useAuthentication } from '~/route/middlewares/authentication'
+import { useSuccessFailMethods } from '~/route/middlewares/success-fail-methods'
 import { PORT } from './config'
 
 const app = new Koa()
 
-useCustomException(app)
+useSuccessFailMethods(app)
 useAuthentication(app)
+useValidateMethods(app)
 useRoutes(app)
 
 // Start server

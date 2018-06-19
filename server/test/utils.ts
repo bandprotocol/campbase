@@ -1,3 +1,4 @@
+import * as Koa from 'koa'
 import * as sinon from 'sinon'
 
 export function mockModule<T>(
@@ -16,4 +17,15 @@ export function mockModule<T>(
         .callsFake((returns[f] as any) || defaultMockValuesForMock[f])
     })
   }
+}
+
+export function mockApplyMiddleware(
+  ctx: Koa.Context,
+  middleware: (app: Koa) => void
+) {
+  const app = {
+    use: middleware => middleware(ctx, async () => false),
+  } as Koa
+
+  middleware(app)
 }

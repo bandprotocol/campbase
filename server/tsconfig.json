@@ -12,8 +12,9 @@
     "paths": {
       "~/*": ["./*"],
       "@/*": ["../"],
-      "test/*": ["../test/*"]
+      "test/*": ["../test/*"],
+      "spec/*": ["../../spec/*"]
     }
   },
-  "include": ["./src/**/*", "./test/**/*", "./knexfile.ts"]
+  "include": ["./src/**/*", "./test/**/*", "./knexfile.ts", "../spec/**/*"]
 }
