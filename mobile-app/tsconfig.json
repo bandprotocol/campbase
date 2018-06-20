@@ -11,9 +11,10 @@
     "paths": {
       "~/*": ["./*"],
       "@/*": ["../"],
-      "test/*": ["../test/*"]
+      "test/*": ["../test/*"],
+      "spec/*": ["../../spec/*"]
     }
   },
-  "include": ["./App.tsx", "./src/**/*"],
+  "include": ["./App.tsx", "./src/**/*", "../spec/**/*"],
   "exclude": ["node_modules"]
 }

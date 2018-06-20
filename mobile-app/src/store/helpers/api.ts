@@ -2,14 +2,18 @@
  * A helper class that handle all the hassles bundling API with redux
  */
 
+import { APIMethod } from 'spec/api/base'
 import { createScopedActionTypes } from './create-scoped-action-types'
 import { SERVER_ENDPOINT } from '~/config'
 
-export default class API {
-  constructor(name, path) {
-    this.path = path
-    this.name = name
+export default class API /* Resource */ {
+  public actionTypes
 
+  constructor(
+    public name: string,
+    public path: string
+  ) // public methods: {[K in keyof typeof APIMethod]: any}
+  {
     this.actionTypes = createScopedActionTypes(`api:${this.path}`, [
       'REQUEST',
       'SUCCESS',
@@ -28,10 +32,9 @@ export default class API {
    * @param {function/object} params Object/Function that takes state as a parameter, and returns parameter object for the api call
    * @return {Promise}
    */
-  action(params = {}) {
+  action(params: object | ((state) => object) = {}) {
     // Prevent API call after hot-reload
     // This enables us to have a smooth dev experience ;)
-    if (window.justHotReloaded) return () => {}
 
     const actionTypes = this.actionTypes
     const path = this.path

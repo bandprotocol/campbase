@@ -1,3 +1,10 @@
+export enum APIMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
+
 export enum APIResponseStatus {
   OK = 200,
   CREATED = 201,
