@@ -16,8 +16,8 @@ describe('common:password', () => {
 
       should.exist(hash)
 
-      const correctHash = await Bcrypt.compare(password, hash)
-      should.equal(correctHash, true)
+      const isPasswordCorrect = await Bcrypt.compare(password, hash)
+      should.equal(isPasswordCorrect, true)
     })
   })
 
@@ -26,8 +26,8 @@ describe('common:password', () => {
       const password = 'SOME_RANDOM_PASSWORD!@#$%^&*('
       const hash = await Bcrypt.hash(password, PASSWORD_SALT_ROUNDS)
 
-      const correctHash = await verifyHash(password, hash)
-      should.equal(correctHash, true)
+      const isPasswordCorrect = await verifyHash(password, hash)
+      should.equal(isPasswordCorrect, true)
     })
 
     it('should reject password with incorrect hash', async () => {
@@ -35,8 +35,8 @@ describe('common:password', () => {
       const fake_password = '!@#$%^&*(FAKE_PASSWORD'
       const hash = await Bcrypt.hash(password, PASSWORD_SALT_ROUNDS)
 
-      const correctHash = await verifyHash(fake_password, hash)
-      should.equal(correctHash, false)
+      const isFakePasswordCorrect = await verifyHash(fake_password, hash)
+      should.equal(isFakePasswordCorrect, false)
     })
   })
 })
