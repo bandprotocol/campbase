@@ -1,12 +1,26 @@
-import * as Router from 'koa-router'
+import ResourceRouter from '~/common/resource-router'
 import { APIResponseStatus as Status } from 'spec/api/base'
+import Knex from '~/db/connection'
 
-import { API_ROOT } from '~/config'
+import { Context } from '~/route/interfaces'
+import { UsersId } from 'spec/api/resources/users'
 
-const router = new Router()
+const router = new ResourceRouter()
 
-router.get(`${API_ROOT}/user`, async (ctx, next) => {
-  ctx.success(Status.OK, { user: ctx.user })
-})
+/**
+ * /api/v1/users/:id
+ *
+ *
+ */
+router.get(
+  UsersId.path,
+  async (ctx: Context<UsersId.GET.params, UsersId.GET.response>) => {
+    const user = await Knex('users')
+      .where({ id: ctx.user.id })
+      .first()
+
+    ctx.success(Status.OK, { user })
+  }
+)
 
 export default router

@@ -9,7 +9,6 @@ import {
   mockCheckSMSFail,
 } from 'test/mocks'
 
-import { AUTH_ROOT } from '~/config'
 import server from '~/index'
 
 chai.use(chaiHttp)
@@ -29,12 +28,12 @@ describe('route:api:auth', () => {
     sandbox.restore()
   })
 
-  describe(`POST ${AUTH_ROOT}/request_pin`, () => {
+  describe(`POST /auth/v1/request_pin`, () => {
     it('should get 200 if all parameters are supplied', async () => {
       mockSendSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/request_pin`)
+        .post(`/auth/v1/request_pin`)
         .send({ country_code: '66', phone_number: '830088333' })
         .then(res => {
           res.should.have.status(200)
@@ -45,7 +44,7 @@ describe('route:api:auth', () => {
       mockSendSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/request_pin`)
+        .post(`/auth/v1/request_pin`)
         .send({ country_code: '66' })
         .then(res => {
           res.should.have.status(400)
@@ -56,7 +55,7 @@ describe('route:api:auth', () => {
       mockSendSMSFail(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/request_pin`)
+        .post(`/auth/v1/request_pin`)
         .send({ country_code: '66', phone_number: '830088333' })
         .then(res => {
           res.should.have.status(503)
@@ -64,12 +63,12 @@ describe('route:api:auth', () => {
     })
   })
 
-  describe(`POST ${AUTH_ROOT}/register`, () => {
+  describe(`POST /auth/v1/register`, () => {
     it('should get 201 if success w/ email_activated = false', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/register`)
+        .post(`/auth/v1/register`)
         .send({
           country_code: '1',
           phone_number: '111111111',
@@ -92,7 +91,7 @@ describe('route:api:auth', () => {
       mockCheckSMSFail(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/register`)
+        .post(`/auth/v1/register`)
         .send({
           country_code: '1',
           phone_number: '111111111',
@@ -110,7 +109,7 @@ describe('route:api:auth', () => {
       mockCheckSMSFail(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/register`)
+        .post(`/auth/v1/register`)
         .send({
           country_code: '1',
           phone_number: '123456789',
@@ -128,7 +127,7 @@ describe('route:api:auth', () => {
       mockCheckSMSFail(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/register`)
+        .post(`/auth/v1/register`)
         .send({
           country_code: '1',
           phone_number: '111111111',
@@ -143,12 +142,12 @@ describe('route:api:auth', () => {
     })
   })
 
-  describe(`POST ${AUTH_ROOT}/login/phone`, () => {
+  describe(`POST /auth/v1/login/phone`, () => {
     it('should get 200 and return JWT if PIN is correct', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/phone`)
+        .post(`/auth/v1/login/phone`)
         .send({
           country_code: '1',
           phone_number: '123456789',
@@ -164,7 +163,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/phone`)
+        .post(`/auth/v1/login/phone`)
         .send({
           country_code: '1',
           phone_number: '123456789',
@@ -178,7 +177,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/phone`)
+        .post(`/auth/v1/login/phone`)
         .send({
           country_code: '1',
           phone_number: '111111111',
@@ -190,12 +189,12 @@ describe('route:api:auth', () => {
     })
   })
 
-  describe(`POST ${AUTH_ROOT}/login/email`, () => {
+  describe(`POST /auth/v1/login/email`, () => {
     it('should get 200 and return JWT if password is correct', async () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/email`)
+        .post(`/auth/v1/login/email`)
         .send({
           email: 'user@example.com',
           password: 'password',
@@ -210,7 +209,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/email`)
+        .post(`/auth/v1/login/email`)
         .send({
           email: 'user@example.com',
         })
@@ -223,7 +222,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/email`)
+        .post(`/auth/v1/login/email`)
         .send({
           email: 'user_not_existed@example.com',
           password: 'password',
@@ -237,7 +236,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       await chai
         .request(server)
-        .post(`${AUTH_ROOT}/login/email`)
+        .post(`/auth/v1/login/email`)
         .send({
           email: 'user_email_unactivated@example.com',
           password: 'password',
