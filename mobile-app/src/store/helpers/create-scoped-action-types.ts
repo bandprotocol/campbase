@@ -2,10 +2,10 @@
  * Create map of actions, given action's names
  */
 
-export default function createScopedActionTypes(scope, actions) {
-  if (typeof scope !== 'string')
-    throw Error('Scope (first argument) must be a string')
-
+export default function createScopedActionTypes(
+  scope: string,
+  actions: string[]
+): object {
   return actions.reduce(
     (map, action) => ({ ...map, [action]: `${scope}:${action}` }),
     {}

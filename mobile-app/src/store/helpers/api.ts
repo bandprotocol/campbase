@@ -1,19 +1,18 @@
 /**
  * A helper class that handle all the hassles bundling API with redux
+ *
+ * Note that we always assume that only --> one <-- gets called at a time
+ * for any given resource
  */
 
 import { APIMethod } from 'spec/api/base'
-import { createScopedActionTypes } from './create-scoped-action-types'
+import createScopedActionTypes from './create-scoped-action-types'
 import { SERVER_ENDPOINT } from '~/config'
 
-export default class API /* Resource */ {
+export default class API {
   public actionTypes
 
-  constructor(
-    public name: string,
-    public path: string
-  ) // public methods: {[K in keyof typeof APIMethod]: any}
-  {
+  constructor(public path: string, public methods: Array<APIMethod>) {
     this.actionTypes = createScopedActionTypes(`api:${this.path}`, [
       'REQUEST',
       'SUCCESS',
@@ -38,7 +37,8 @@ export default class API /* Resource */ {
 
     const actionTypes = this.actionTypes
     const path = this.path
-    const name = this.name
+
+    return
 
     return async (dispatch, getState) => {
       try {
@@ -51,7 +51,9 @@ export default class API /* Resource */ {
         } else if (typeof params === 'object') {
           queryParams = params
         } else {
-          throw Error(`API param of ${this.name} have to be function or object`)
+          throw new Error(
+            `API param of ${this.path} have to be function or object`
+          )
         }
 
         const response = await query(path, queryParams)
@@ -75,7 +77,7 @@ export default class API /* Resource */ {
     }
   }
 
-  /** A typical reducer for storing API status inside Redux */
+  /** A simple reducer for storing API status inside Redux */
   reducer(state = null, action) {
     const actionTypes = this.actionTypes
 
