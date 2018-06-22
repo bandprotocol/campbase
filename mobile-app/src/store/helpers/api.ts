@@ -7,14 +7,20 @@
 
 import { APIMethod } from 'spec/api/base'
 import { query } from './query'
-import createScopedActionTypes from './create-scoped-action-types'
+import { createScopedActionTypes } from './create-scoped-action-types'
 
-export type APIActionParams = object | ((state) => object)
+export type APIParamsType<T> = T | ((state) => T)
+export type APIResponseType<T> = Promise<(dispatch, getState) => Promise<T>>
 
-export default class API {
-  public actionTypes
+export abstract class API {
+  protected path: string
+  private actionTypes: any
 
-  constructor(public path: string, public methods: APIMethod[]) {
+  constructor() {
+    if (!this.path) {
+      throw new Error('Please set this.path before calling super()')
+    }
+
     this.actionTypes = createScopedActionTypes(`api:${this.path}`, [
       'REQUEST',
       'SUCCESS',
@@ -25,42 +31,26 @@ export default class API {
     this.reducer = this.reducer.bind(this)
   }
 
-  async GET<Params, Response>(
-    params: Params | ((state) => Params)
-  ): Promise<(dispatch, getState) => Promise<Response>> {
-    if (!this.methods.includes(APIMethod.GET))
-      throw new Error(`Method GET not allowed for ${this.path}`)
-    return this.action<Params, Response>(APIMethod.GET, params)
+  async GET(params: any): Promise<any> {
+    throw new Error(`Method GET not allowed for ${this.path}`)
   }
 
-  async POST<Params, Response>(
-    params: Params | ((state) => Params)
-  ): Promise<(dispatch, getState) => Promise<Response>> {
-    if (!this.methods.includes(APIMethod.POST))
-      throw new Error(`Method POST not allowed for ${this.path}`)
-    return this.action<Params, Response>(APIMethod.POST, params)
+  async POST(params: any): Promise<any> {
+    throw new Error(`Method POST not allowed for ${this.path}`)
   }
 
-  async PUT<Params, Response>(
-    params: Params | ((state) => Params)
-  ): Promise<(dispatch, getState) => Promise<Response>> {
-    if (!this.methods.includes(APIMethod.PUT))
-      throw new Error(`Method PUT not allowed for ${this.path}`)
-    return this.action<Params, Response>(APIMethod.PUT, params)
+  async PUT(params: any): Promise<any> {
+    throw new Error(`Method PUT not allowed for ${this.path}`)
   }
 
-  async DELETE<Params, Response>(
-    params: Params | ((state) => Params)
-  ): Promise<(dispatch, getState) => Promise<Response>> {
-    if (!this.methods.includes(APIMethod.DELETE))
-      throw new Error(`Method DELETE not allowed for ${this.path}`)
-    return this.action<Params, Response>(APIMethod.DELETE, params)
+  async DELETE(params: any): Promise<any> {
+    throw new Error(`Method DELETE not allowed for ${this.path}`)
   }
 
-  async action<Params, Response>(
+  async action<Response, Params = any>(
     method: APIMethod,
-    params: Params | ((state) => Params)
-  ): Promise<(dispatch2, getState) => Promise<Response>> {
+    params: APIParamsType<Params>
+  ): Promise<(dispatch, getState) => Promise<Response>> {
     const actionTypes = this.actionTypes
     const path = this.path
 
@@ -80,10 +70,11 @@ export default class API {
       try {
         dispatch({ type: actionTypes.REQUEST })
 
-        const response = await query<Params, Response>(
+        const response = await query<Response, Params>(
           path,
           method,
-          queryParams
+          queryParams,
+          getState().app.Auth.get('jwt')
         )
 
         // Save response to Redux store

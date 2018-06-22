@@ -2,10 +2,7 @@
  * Create map of actions, given action's names
  */
 
-export default function createScopedActionTypes(
-  scope: string,
-  actions: string[]
-): object {
+export function createScopedActionTypes(scope: string, actions: string[]): any {
   return actions.reduce(
     (map, action) => ({ ...map, [action]: `${scope}:${action}` }),
     {}

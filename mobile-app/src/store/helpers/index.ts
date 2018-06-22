@@ -1,2 +1,2 @@
 export { createScopedActionTypes } from './create-scoped-action-types'
-export { default as connect } from './connect'
+export { connect } from './connect'

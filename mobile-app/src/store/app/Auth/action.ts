@@ -6,15 +6,6 @@ import { AsyncStorage } from 'react-native'
 import { createScopedActionTypes } from '~/store/helpers'
 
 export const actionTypes = createScopedActionTypes('app.Auth', [
-  'PIN_REQUEST',
-  'PIN_SUCCESS',
-  'PIN_FAILURE',
-  'LOGIN_REQUEST',
-  'LOGIN_SUCCESS',
-  'LOGIN_FAILURE',
-  'REGISTER_REQUEST',
-  'REGISTER_SUCCESS',
-  'REGISTER_FAILURE',
   'REVIVE',
   'LOGOUT',
 ])
@@ -23,12 +14,31 @@ export const actionTypes = createScopedActionTypes('app.Auth', [
 export const revive = () => async (dispatch, getState) => {
   try {
     // Get JWT
-    const jwt = await AsyncStorage.getItem('jwt')
+    const jwt = getState().app.Auth.get('jwt')
 
     if (jwt) {
       // Store success state
       dispatch({
         type: actionTypes.REVIVE,
+        payload: {
+          jwt,
+        },
+      })
+    }
+  } catch (e) {
+    // Nothing here :)
+  }
+}
+
+export const logout = () => async (dispatch, getState) => {
+  try {
+    // Get JWT
+    const jwt = getState().app.Auth.get('jwt')
+
+    if (jwt) {
+      // Store success state
+      dispatch({
+        type: actionTypes.LOGOUT,
         payload: {
           jwt,
         },

@@ -6,10 +6,14 @@ import { AsyncStorage } from 'react-native'
 
 export const JWTStorageKey = 'auth:jwt'
 
-export async function setJWT(jwt: string) {
+export async function setPersistentJWT(jwt: string) {
   await AsyncStorage.setItem(JWTStorageKey, jwt)
 }
 
-export async function getJWT() {
+export async function getPersistentJWT() {
   return await AsyncStorage.getItem(JWTStorageKey)
+}
+
+export async function removePersistentJWT() {
+  await AsyncStorage.removeItem(JWTStorageKey)
 }

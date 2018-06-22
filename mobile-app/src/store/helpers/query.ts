@@ -5,34 +5,25 @@
 import Axios, { AxiosInstance } from 'axios'
 import { APIMethod } from 'spec/api/base'
 import { SERVER_ENDPOINT } from '~/config'
-import { getJWT } from './jwt'
 import { getPathParams, populatePath } from './path'
 
 let axiosInstance: AxiosInstance
 
 export async function initializeQuery(): Promise<AxiosInstance> {
-  const jwt = await getJWT()
   axiosInstance = Axios.create({
     baseURL: SERVER_ENDPOINT,
     timeout: 1000,
-    headers: jwt
-      ? {
-          Authorization: `Bearer ${jwt}`,
-        }
-      : {},
   })
   return axiosInstance
 }
 
-export async function query<Params, Response>(
+export async function query<Response, Params = any>(
   path: string,
   method: APIMethod,
   params: Params,
-  bypassJWT = false
+  jwt: string
 ): Promise<Response> {
   if (!axiosInstance) initializeQuery()
-
-  const jwt = bypassJWT && (await getJWT())
 
   // Calculate path to call (inject params to path)
   const url: string = populatePath(path, params)
@@ -52,6 +43,13 @@ export async function query<Params, Response>(
 
     // Use json data in POST | PUT | DELETE
     data: method === APIMethod.GET ? {} : realParams,
+
+    // User
+    headers: jwt
+      ? {
+          Authorization: `Bearer ${jwt}`,
+        }
+      : {},
   })
 
   return <Response>result.data
