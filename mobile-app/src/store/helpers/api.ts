@@ -1,18 +1,20 @@
 /**
  * A helper class that handle all the hassles bundling API with redux
  *
- * Note that we always assume that only --> one <-- gets called at a time
- * for any given resource
+ * Note: make sure that --> only ONE method <-- gets called at a time
+ * for any given resource, since we only use one set for the
  */
 
 import { APIMethod } from 'spec/api/base'
+import { query } from './query'
 import createScopedActionTypes from './create-scoped-action-types'
-import { SERVER_ENDPOINT } from '~/config'
+
+export type APIActionParams = object | ((state) => object)
 
 export default class API {
   public actionTypes
 
-  constructor(public path: string, public methods: Array<APIMethod>) {
+  constructor(public path: string, public methods: APIMethod[]) {
     this.actionTypes = createScopedActionTypes(`api:${this.path}`, [
       'REQUEST',
       'SUCCESS',
@@ -23,44 +25,70 @@ export default class API {
     this.reducer = this.reducer.bind(this)
   }
 
-  query(params) {
-    return query(this.path, params)
+  async GET<Params, Response>(
+    params: Params | ((state) => Params)
+  ): Promise<(dispatch, getState) => Promise<Response>> {
+    if (!this.methods.includes(APIMethod.GET))
+      throw new Error(`Method GET not allowed for ${this.path}`)
+    return this.action<Params, Response>(APIMethod.GET, params)
   }
 
-  /**
-   * @param {function/object} params Object/Function that takes state as a parameter, and returns parameter object for the api call
-   * @return {Promise}
-   */
-  action(params: object | ((state) => object) = {}) {
-    // Prevent API call after hot-reload
-    // This enables us to have a smooth dev experience ;)
+  async POST<Params, Response>(
+    params: Params | ((state) => Params)
+  ): Promise<(dispatch, getState) => Promise<Response>> {
+    if (!this.methods.includes(APIMethod.POST))
+      throw new Error(`Method POST not allowed for ${this.path}`)
+    return this.action<Params, Response>(APIMethod.POST, params)
+  }
 
+  async PUT<Params, Response>(
+    params: Params | ((state) => Params)
+  ): Promise<(dispatch, getState) => Promise<Response>> {
+    if (!this.methods.includes(APIMethod.PUT))
+      throw new Error(`Method PUT not allowed for ${this.path}`)
+    return this.action<Params, Response>(APIMethod.PUT, params)
+  }
+
+  async DELETE<Params, Response>(
+    params: Params | ((state) => Params)
+  ): Promise<(dispatch, getState) => Promise<Response>> {
+    if (!this.methods.includes(APIMethod.DELETE))
+      throw new Error(`Method DELETE not allowed for ${this.path}`)
+    return this.action<Params, Response>(APIMethod.DELETE, params)
+  }
+
+  async action<Params, Response>(
+    method: APIMethod,
+    params: Params | ((state) => Params)
+  ): Promise<(dispatch2, getState) => Promise<Response>> {
     const actionTypes = this.actionTypes
     const path = this.path
 
-    return
+    return async (
+      dispatch: (action) => any,
+      getState: () => any
+    ): Promise<Response> => {
+      // Calculate query params
+      var queryParams
+      if (typeof params === 'function') {
+        queryParams = params(getState())
+      } else {
+        queryParams = params
+      }
 
-    return async (dispatch, getState) => {
+      // Start fetching
       try {
         dispatch({ type: actionTypes.REQUEST })
 
-        // Calculate query params
-        var queryParams
-        if (typeof params === 'function') {
-          queryParams = params(getState())
-        } else if (typeof params === 'object') {
-          queryParams = params
-        } else {
-          throw new Error(
-            `API param of ${this.path} have to be function or object`
-          )
-        }
+        const response = await query<Params, Response>(
+          path,
+          method,
+          queryParams
+        )
 
-        const response = await query(path, queryParams)
-
-        // Populate data (derived)
-        if (response.data) {
-          dispatch(updateDataFields(response.data))
+        // Save response to Redux store
+        if (response) {
+          //dispatch(updateDataFields(response))
         }
 
         dispatch({ type: actionTypes.SUCCESS })
@@ -68,11 +96,12 @@ export default class API {
         return response
       } catch (e) {
         // DEBUG
-        console.error('API', name, 'Error:', e)
+        console.error('Fail to fet', e)
 
-        dispatch({ type: actionTypes.FAILURE })
-
-        throw Error(`API ${name} Error: ${e}`)
+        dispatch({ type: actionTypes.FAILURE })`Method DELETE not allowed for `
+        throw Error(
+          `API ${this.path}:${method} failed with params ${queryParams}`
+        )
       }
     }
   }

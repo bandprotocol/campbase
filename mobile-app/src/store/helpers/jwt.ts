@@ -11,5 +11,5 @@ export async function setJWT(jwt: string) {
 }
 
 export async function getJWT() {
-  await AsyncStorage.getItem(JWTStorageKey)
+  return await AsyncStorage.getItem(JWTStorageKey)
 }
