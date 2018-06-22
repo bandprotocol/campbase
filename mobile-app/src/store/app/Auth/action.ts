@@ -2,19 +2,35 @@
  * Everything Authentication-related
  */
 
-import { AsyncStorage } from 'react-native'
+import { getPersistentJWT } from '~/store/helpers/jwt'
 import { createScopedActionTypes } from '~/store/helpers'
+
+import { AuthLoginPhoneAPI } from '~/store/api/Auth'
 
 export const actionTypes = createScopedActionTypes('app.Auth', [
   'REVIVE',
   'LOGOUT',
 ])
 
+export const loginPhone = (
+  country_code: string,
+  phone_number: string,
+  phone_pin: string
+) => async (dispatch, getState) => {
+  const result = await dispatch(
+    AuthLoginPhoneAPI.POST({
+      country_code,
+      phone_number,
+      phone_pin,
+    })
+  )
+}
+
 /* Revive session */
 export const revive = () => async (dispatch, getState) => {
   try {
     // Get JWT
-    const jwt = getState().app.Auth.get('jwt')
+    const jwt = await getPersistentJWT()
 
     if (jwt) {
       // Store success state
@@ -31,20 +47,5 @@ export const revive = () => async (dispatch, getState) => {
 }
 
 export const logout = () => async (dispatch, getState) => {
-  try {
-    // Get JWT
-    const jwt = getState().app.Auth.get('jwt')
-
-    if (jwt) {
-      // Store success state
-      dispatch({
-        type: actionTypes.LOGOUT,
-        payload: {
-          jwt,
-        },
-      })
-    }
-  } catch (e) {
-    // Nothing here :)
-  }
+  dispatch({ type: actionTypes.LOGOUT })
 }

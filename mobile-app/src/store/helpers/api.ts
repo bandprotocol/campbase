@@ -74,7 +74,7 @@ export abstract class API {
           path,
           method,
           queryParams,
-          getState().app.Auth.get('jwt')
+          getState().app.Auth.jwt
         )
 
         // Save response to Redux store
