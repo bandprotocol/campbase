@@ -19,33 +19,25 @@ import {
 // }
 
 export const AuthRequestPinAPI = new class extends API {
-  path = AuthRequestPin.path
-
   async POST(params: APIParamsType<AuthRequestPin.POST.params>) {
     return this.action<AuthRequestPin.POST.response>(APIMethod.POST, params)
   }
-}()
+}(AuthRequestPin.path)
 
 export const AuthRegisterAPI = new class extends API {
-  path = AuthRegister.path
-
   async POST(params: APIParamsType<AuthRegister.POST.params>) {
     return this.action<AuthRegister.POST.response>(APIMethod.POST, params)
   }
-}()
+}(AuthRegister.path)
 
 export const AuthLoginPhoneAPI = new class extends API {
-  path = AuthLoginPhone.path
-
   async POST(params: APIParamsType<AuthLoginPhone.POST.params>) {
     return this.action<AuthLoginPhone.POST.response>(APIMethod.POST, params)
   }
-}()
+}(AuthLoginPhone.path)
 
 export const AuthLoginEmailAPI = new class extends API {
-  path = AuthLoginEmail.path
-
   async POST(params: APIParamsType<AuthLoginEmail.POST.params>) {
     return this.action<AuthLoginEmail.POST.response>(APIMethod.POST, params)
   }
-}()
+}(AuthLoginEmail.path)

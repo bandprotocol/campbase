@@ -5,15 +5,15 @@
 import { Record } from 'immutable'
 import { actionTypes } from './action'
 
-const RecordState = Record({
+const DefaultState = {
   jwt: null,
-})
-
-class State extends RecordState {
-  jwt: string = null
 }
 
-export default (state = new State(), { type, payload }) => {
+class State extends Record(DefaultState) {
+  jwt: string
+}
+
+export default (state = new State(DefaultState), { type, payload }) => {
   switch (type) {
     case actionTypes.REVIVE:
       return state.set('jwt', payload.jwt)

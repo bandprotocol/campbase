@@ -13,12 +13,11 @@ export type APIParamsType<T> = T | ((state) => T)
 export type APIResponseType<T> = Promise<(dispatch, getState) => Promise<T>>
 
 export abstract class API {
-  protected path: string
   private actionTypes: any
 
-  constructor() {
+  constructor(protected path: string) {
     if (!this.path) {
-      throw new Error('Please set this.path before calling super()')
+      throw new Error('Please pass a `path` to constructor')
     }
 
     this.actionTypes = createScopedActionTypes(`api:${this.path}`, [
