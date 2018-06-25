@@ -15,7 +15,7 @@ export type APIResponseType<T> = Promise<(dispatch, getState) => Promise<T>>
 export abstract class API {
   private actionTypes: any
 
-  constructor(protected path: string) {
+  constructor(public path: string) {
     if (!this.path) {
       throw new Error('Please pass a `path` to constructor')
     }

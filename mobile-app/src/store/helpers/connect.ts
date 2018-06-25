@@ -5,12 +5,12 @@
 import { connect as reduxConnect } from 'react-redux'
 
 export const connect = (
-  mapStateToProps,
-  mapActionsToProps?
+  stateToProps = (state?, ownProps?, apiStatus?) => null,
+  actionsToProps = (dispatch?, getState?) => null
 ) => wrappedComponent => {
   const connectedComponent = reduxConnect(
-    (state, ownProps) => mapStateToProps(state, ownProps || {}),
-    mapActionsToProps
+    (state, ownProps = {}) => stateToProps(state, ownProps),
+    actionsToProps
   )(wrappedComponent)
   // connectedComponent.__component__ = wrappedComponent
   return connectedComponent
