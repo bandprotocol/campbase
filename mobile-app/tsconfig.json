@@ -3,11 +3,14 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2017",
-    "jsx": "react",
+    "jsx": "react-native",
     "noEmit": true,
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "baseUrl": "src",
+    "traceResolution": true,
     "paths": {
       "~/*": ["./*"],
       "@/*": ["../"],
@@ -15,6 +18,6 @@
       "spec/*": ["../../spec/*"]
     }
   },
-  "include": ["./App.tsx", "./src/**/*", "../spec/**/*"],
+  "include": ["./src/**/*", "../spec/**/*"],
   "exclude": ["node_modules"]
 }

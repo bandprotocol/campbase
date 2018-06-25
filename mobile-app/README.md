@@ -8,10 +8,10 @@ See me at https://campbase.app
 
 This React Native app is built on the following tech
 
-* [Create React Native App](https://github.com/react-community/create-react-native-app)
-* [React Navigation](https://reactnavigation.org)
-* [React-Redux](https://github.com/reduxjs/react-redux)
-* [Styled Components](https://www.styled-components.com/docs/basics#react-native)
+- [Create React Native App](https://github.com/react-community/create-react-native-app)
+- [React Navigation](https://reactnavigation.org)
+- [React-Redux](https://github.com/reduxjs/react-redux)
+- [Styled Components](https://www.styled-components.com/docs/basics#react-native)
 
 We're following [AirBnB's React/JSX Style guide](https://github.com/airbnb/javascript/tree/master/react#basic-rules)
 
@@ -27,7 +27,7 @@ We recommend [VSCode](https://code.visualstudio.com/) for smooth development exp
 
 ### VSCode Plugins
 
-* [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Development
 
@@ -56,3 +56,7 @@ TBD
 ## Contribution
 
 Main contributors would be Band Protocol Core development team for now. However, please feel free to fork and send in a pull-request at any time.
+
+## Known Issues
+
+- Docker is known to mess up with the network configuration of expo. See [this Github issue](https://github.com/react-community/create-react-native-app/issues/270).

@@ -12,10 +12,11 @@
     "babel-plugin-import": "^1.7.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "jest-expo": "~27.0.0",
-    "react-native-scripts": "1.14.0",
+    "react-native-scripts": "^1.14.0",
     "react-native-typescript-transformer": "^1.2.10",
     "react-test-renderer": "16.3.1",
-    "tsconfig-paths": "^3.4.0",
+    "ts-node": "^7.0.0",
+    "tsconfig-paths": "^3.4.1",
     "typescript": "^2.9.2"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -24,7 +25,8 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "jest"
+    "test": "jest",
+    "packager": "ts-node -r ts-node/register -r tsconfig-paths/register ./node_modules/react-native-scripts/build/scripts/start.js"
   },
   "jest": {
     "preset": "jest-expo"
