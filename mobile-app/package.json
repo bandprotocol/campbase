@@ -21,12 +21,11 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
+    "prestart": "npm install ../spec",
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "test": "jest",
-    "packager": "ts-node -r ts-node/register -r tsconfig-paths/register ./node_modules/react-native-scripts/build/scripts/start.js"
+    "ios": "react-native-scripts ios"
   },
   "jest": {
     "preset": "jest-expo"
