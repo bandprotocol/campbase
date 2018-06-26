@@ -25,20 +25,13 @@ type InjectedProps<T> = {
  *   }
  */
 export const connectAPI = <
-  StateToPropsReturn,
-  ActionsToPropsReturn,
+  StateToPropsReturn extends object,
+  ActionsToPropsReturn extends object,
   ApiArg extends { [alias: string]: API }
 >(
   apis: ApiArg,
-  stateToProps: <StateToPropsReturn>(
-    state?,
-    ownProps?,
-    apiStatus?
-  ) => StateToPropsReturn,
-  actionsToProps: <ActionsToPropsReturn>(
-    dispatch?,
-    getState?
-  ) => ActionsToPropsReturn
+  stateToProps: (state?, ownProps?, apiStatus?) => StateToPropsReturn,
+  actionsToProps: (dispatch?, getState?) => ActionsToPropsReturn
 ) => {
   type WithAliasKey = { [K in keyof ApiArg]: any }
 
