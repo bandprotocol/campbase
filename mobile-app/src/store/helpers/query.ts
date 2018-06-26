@@ -2,8 +2,8 @@
  * Utility for sending request to server
  */
 
-import Axios, { AxiosInstance } from 'axios'
-import { APIMethod } from 'spec/api/base'
+import Axios, { AxiosInstance, AxiosError } from 'axios'
+import { APIMethod, APIResponse } from 'spec/api/base'
 import { SERVER_ENDPOINT } from '~/config'
 import { getPathParams, populatePath } from './path'
 
@@ -17,7 +17,13 @@ export async function initializeQuery(): Promise<AxiosInstance> {
   return axiosInstance
 }
 
-export async function query<Response, Params = any>(
+export class QueryException extends Error {
+  constructor(public status: number, public message: string) {
+    super(message)
+  }
+}
+
+export async function query<Params = any, Response = any>(
   path: string,
   method: APIMethod,
   params: Params,
@@ -33,24 +39,33 @@ export async function query<Response, Params = any>(
   const realParams: Partial<Params> = Object.assign(params, {})
   pathParams.forEach(p => delete realParams[p])
 
-  // Make a call
-  const result = await axiosInstance.request({
-    method,
-    url,
+  try {
+    // Make a call
+    const axiosResponse = await axiosInstance.request({
+      method,
+      url,
 
-    // Use url params in GET
-    params: method === APIMethod.GET ? realParams : {},
+      // Use url params in GET
+      params: method === APIMethod.GET ? realParams : {},
 
-    // Use json data in POST | PUT | DELETE
-    data: method === APIMethod.GET ? {} : realParams,
+      // Use json data in POST | PUT | DELETE
+      data: method === APIMethod.GET ? {} : realParams,
 
-    // User
-    headers: jwt
-      ? {
-          Authorization: `Bearer ${jwt}`,
-        }
-      : {},
-  })
+      // User
+      headers: jwt
+        ? {
+            Authorization: `Bearer ${jwt}`,
+          }
+        : {},
+    })
 
-  return <Response>result.data
+    const axiosData = <APIResponse<Response>>axiosResponse.data
+
+    return axiosData.data
+  } catch (e) {
+    if (e.response) {
+      const axiosData = <APIResponse<Response>>e.response.data
+      throw new QueryException(axiosData.status, axiosData.error)
+    } else throw e
+  }
 }

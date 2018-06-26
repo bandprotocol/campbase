@@ -1,2 +1,3 @@
-export { createScopedActionTypes } from './create-scoped-action-types'
-export { connect } from './connect'
+export * from './create-scoped-action-types'
+export * from './connect'
+export * from './connect-api'

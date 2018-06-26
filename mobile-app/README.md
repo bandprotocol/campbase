@@ -13,7 +13,7 @@ This React Native app is built on the following tech
 - [React-Redux](https://github.com/reduxjs/react-redux)
 - [Styled Components](https://www.styled-components.com/docs/basics#react-native)
 
-We're following [AirBnB's React/JSX Style guide](https://github.com/airbnb/javascript/tree/master/react#basic-rules)
+We're using TypeScript. [This guide](https://github.com/piotrwitek/react-redux-typescript-guide) provides comprehensive walkthrough and examples of how to use TypeScript with React & Redux. For the style guide, we're following [AirBnB's React/JSX Style guide](https://github.com/airbnb/javascript/tree/master/react#basic-rules) and use [Prettier](https://github.com/prettier/prettier) for auto-formatting.
 
 ## Installation
 
