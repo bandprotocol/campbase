@@ -20,8 +20,8 @@ export default class SignInScreen extends connect(
 ) {
   static navigationOptions = { tabBarLabel: 'Sign In' }
 
-  constructor(props) {
-    super(props)
+  constructor(props, context) {
+    super(props, context)
   }
 
   @autobind

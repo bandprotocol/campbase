@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { View, Text } from 'react-native'
 import {
   createStackNavigator,
   createMaterialTopTabNavigator,
@@ -41,7 +40,7 @@ import Wallet from '~/screens/Wallet'
 
 const AuthTab = createMaterialTopTabNavigator(
   {
-    SignInContainer,
+    SignIn: SignInContainer,
     SignUp,
   },
   {
