@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { withNavigationProps, withDrawerProps } from '~/declare'
 import Style from '~/styled-components'
 import { DrawerActions } from 'react-navigation'
 import { Size, Color } from '~/utils'
+import { PropTypes } from 'declare'
 
 const ProfileSrc = require('~/assets/profile-5.jpg')
 
@@ -77,7 +77,7 @@ const LinkText = Style.Text`
 `
 
 export default class Drawer extends React.Component<
-  withNavigationProps & withDrawerProps
+  PropTypes.withNavigation & PropTypes.withDrawer
 > {
   goTo(path) {
     const { navigation } = this.props

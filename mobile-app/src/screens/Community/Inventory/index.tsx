@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import ColorButton from '~/components/ColorButton'
@@ -28,7 +28,7 @@ const ButtonContainer = Style.View`
 `
 
 export default class CommunityInventoryScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     title: 'Your Bodyslam Inventory',

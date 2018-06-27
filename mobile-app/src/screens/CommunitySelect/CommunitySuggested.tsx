@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import CommunityList from '~/components/CommunityList'
@@ -61,7 +61,7 @@ const RecommendationList = [
 ]
 
 export default class CommunitySuggestedScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = { tabBarLabel: 'Suggested' }
 

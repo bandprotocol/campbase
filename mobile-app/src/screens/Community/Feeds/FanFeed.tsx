@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import { ScrollView } from 'react-native'
 import Style from '~/styled-components'
 import FeedPost from '~/components/FeedPost'
@@ -94,7 +94,7 @@ const Container = Style.View`
 `
 
 export default class CommunityFanFeedScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     tabBarLabel: 'Fan Feed',

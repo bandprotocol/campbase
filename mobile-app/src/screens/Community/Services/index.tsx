@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import { Alert } from 'react-native'
 import Style from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
@@ -39,7 +39,7 @@ const services = [
 ]
 
 export default class CommunityServicesScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     tabBarLabel: 'Services',

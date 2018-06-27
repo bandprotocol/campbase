@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 
@@ -23,7 +23,7 @@ const mockDescription =
   'In 2015 Bodyslam was given the award, Seed award of the year (Rock) from Seed Radio, And they show a concert with Carabao band (famous music band in Thailand). On 19 July 2015 Bodyslam released a new single " Wala Tao Nun " ( เวลาเท่านั้น Time Only ) is mean " everything will have the answer by time ".'
 
 export default class ProductInfoScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     tabBarLabel: 'Product Info',

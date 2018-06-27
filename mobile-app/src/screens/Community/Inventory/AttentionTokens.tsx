@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
@@ -46,7 +46,7 @@ const DescriptionText = Style.Text`
   color: #ffffff;
 `
 export default class AttentionTokensScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     title: 'Attention Tokens',

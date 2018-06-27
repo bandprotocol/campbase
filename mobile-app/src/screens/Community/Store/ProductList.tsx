@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
@@ -60,7 +60,7 @@ const mockProductList = [
 ]
 
 export default class ProductListScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     title: 'Bodyslam Products',

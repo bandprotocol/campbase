@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
@@ -91,7 +91,7 @@ const Container = Style.View`
 `
 
 export default class CommunityStoryScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     tabBarLabel: 'Story',

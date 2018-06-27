@@ -4,10 +4,13 @@ import { NavigationScreenProp, NavigationState } from 'react-navigation'
 declare module '*.png'
 declare module '*.jpg'
 
-export interface withNavigationProps {
-  navigation?: NavigationScreenProp<NavigationState>
-}
+declare namespace PropTypes {
+  export interface withNavigation {
+    navigationOptions?: object
+    navigation?: NavigationScreenProp<NavigationState>
+  }
 
-export interface withDrawerProps {
-  activeItemKey?
+  export interface withDrawer {
+    activeItemKey?
+  }
 }

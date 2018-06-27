@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Style from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 
 import TicketList from '~/components/TicketList'
 import TitledList from '~/components/TitledList'
@@ -50,7 +50,7 @@ const mockTicketList = [
 ]
 
 export default class EventDetailScreen extends React.Component<
-  withNavigationProps
+  PropTypes.withNavigation
 > {
   static navigationOptions = {
     title: 'Concert 15 Year Bodyslam',

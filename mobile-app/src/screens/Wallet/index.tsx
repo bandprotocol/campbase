@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { withNavigationProps } from '~/declare'
+import { PropTypes } from '~/declare'
 import Style from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Button, Modal, Toast } from 'antd-mobile-rn'
@@ -105,7 +105,7 @@ interface WalletScreenState {
 }
 
 export default class WalletScreen extends React.Component<
-  withNavigationProps,
+  PropTypes.withNavigation,
   WalletScreenState
 > {
   static navigationOptions = ({ navigation }) => ({
