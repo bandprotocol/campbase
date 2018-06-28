@@ -5,7 +5,7 @@
 import { getPersistentJWT } from '~/store/helpers/jwt'
 import { createScopedActionTypes } from '~/store/helpers'
 
-import * as AuthLoginPhone from '~/store/api/AuthLoginPhone'
+import * as AuthValidatePin from '~/store/api/AuthValidatePin'
 
 export const actionTypes = createScopedActionTypes('app.Auth', [
   'REVIVE',
@@ -18,7 +18,7 @@ export const loginPhone = (
   phone_pin: string
 ) => async (dispatch, getState) => {
   const result = await dispatch(
-    AuthLoginPhone.POST.action({
+    AuthValidatePin.POST.action({
       country_code,
       phone_number,
       phone_pin,
