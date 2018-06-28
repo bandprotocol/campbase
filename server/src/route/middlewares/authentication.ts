@@ -23,19 +23,26 @@ export function useAuthentication(app: Koa) {
   // Populate user object
   app.use(async (ctx, next) => {
     if (ctx.state.jwtUser) {
-      try {
-        const id: number = ctx.state.jwtUser.data.id
-        const user = await Knex('users')
-          .where({ id })
-          .first()
+      const id: number = ctx.state.jwtUser.data.id
 
-        if (!user) {
-          ctx.fail(400, `No user with id ${ctx.state.jwtUser.data.id} found`)
+      if (id) {
+        // Find existing user
+        try {
+          const user = await Knex('users')
+            .where({ id })
+            .first()
+
+          if (!user) {
+            ctx.fail(400, `No user with id ${ctx.state.jwtUser.data.id} found`)
+          }
+
+          ctx.user = <DBUserInterface>user
+        } catch (e) {
+          ctx.fail()
         }
-
-        ctx.user = <DBUserInterface>user
-      } catch (e) {
-        ctx.fail()
+      } else {
+        // New user
+        ctx.user = ctx.state.jwtUser.data
       }
     }
 

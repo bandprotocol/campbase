@@ -17,3 +17,7 @@ export function signJWT(user: JWTUser) {
 
   return JsonWebToken.sign(payload, JWT_SECRET)
 }
+
+export function decodeJWT(jwt: string) {
+  return JsonWebToken.verify(jwt, JWT_SECRET)
+}

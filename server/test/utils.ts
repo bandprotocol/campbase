@@ -1,5 +1,7 @@
 import * as Koa from 'koa'
 import * as sinon from 'sinon'
+import { JWTUser, JWTUserInterface } from 'common/jwt-user'
+import { signJWT } from 'common/jwt'
 
 export function mockModule<T>(
   moduleToMock: T,
@@ -28,4 +30,9 @@ export function mockApplyMiddleware(
   } as Koa
 
   middleware(app)
+}
+
+export function createAuthorizationHeader(user: JWTUserInterface) {
+  const jwtUser = new JWTUser(user.id, user.country_code, user.phone_number)
+  return `Bearer ${signJWT(jwtUser)}`
 }

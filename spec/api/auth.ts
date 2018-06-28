@@ -1,5 +1,5 @@
 export namespace AuthRequestPin {
-  export const path = '/auth/v1/request_pin'
+  export const path = '/auth/v1/pin/request'
 
   export namespace POST {
     export interface params {
@@ -10,47 +10,30 @@ export namespace AuthRequestPin {
   }
 }
 
-export namespace AuthRegister {
-  export const path = '/auth/v1/register'
+export namespace AuthValidatePin {
+  export const path = '/auth/v1/pin/validate'
 
   export namespace POST {
     export interface params {
       country_code: string
       phone_number: string
       phone_pin: string
+    }
+    export type response = {
+      account_created: boolean
+      jwt: string
+    }
+  }
+}
+
+export namespace AuthActivateEmail {
+  export const path = '/auth/v1/email/activate'
+
+  export namespace POST {
+    export interface params {
       email: string
-      password: string
-      display_name: string
+      secret: string
     }
     export type response = undefined
-  }
-}
-
-export namespace AuthLoginPhone {
-  export const path = '/auth/v1/login/phone'
-
-  export namespace POST {
-    export interface params {
-      country_code: string
-      phone_number: string
-      phone_pin: string
-    }
-    export interface response {
-      jwt: string
-    }
-  }
-}
-
-export namespace AuthLoginEmail {
-  export const path = '/auth/v1/login/email'
-
-  export namespace POST {
-    export interface params {
-      email: string
-      password: string
-    }
-    export interface response {
-      jwt: string
-    }
   }
 }
