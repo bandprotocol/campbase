@@ -88,7 +88,7 @@ export default class Drawer extends React.Component<
   render() {
     const { navigation, activeItemKey } = this.props
 
-    if (activeItemKey === 'AuthTab')
+    if (activeItemKey === 'AuthStack' || activeItemKey === 'Welcome')
       return (
         <Container>
           <Bottom>

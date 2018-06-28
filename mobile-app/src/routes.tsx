@@ -13,8 +13,7 @@ import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 
 import Drawer from '~/screens/Drawer'
-import SignInContainer from '~/screens/Auth/SignInContainer'
-import SignUp from '~/screens/Auth/SignUp'
+import WelcomeContainer from '~/screens/Welcome/WelcomeContainer'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
 import CommunityBrowse from '~/screens/CommunitySelect/CommunityBrowse'
 
@@ -38,23 +37,35 @@ import Subscription from '~/screens/Community/Subscription'
 
 import Wallet from '~/screens/Wallet'
 
-const AuthTab = createMaterialTopTabNavigator(
+const AuthStack = createStackNavigator(
   {
-    SignIn: SignInContainer,
-    SignUp,
+    // Community: createMaterialBottomTabNavigator({}),
+    WelcomeContainer,
   },
   {
-    tabBarOptions: {
-      style: { paddingTop: Size.statusBarHeight, backgroundColor: '#ffffff' },
-      indicatorStyle: { backgroundColor: Color.primary },
-      activeTintColor: Color.primary,
-      inactiveTintColor: '#d1c1ff',
+    initialRouteName: 'CommunitySelectTab',
+    navigationOptions: {
+      headerTintColor: Color.primary,
+      headerTransparent: true,
+      headerBackground: (
+        <LinearGradient
+          colors={[
+            'rgba(255,255,255,1)',
+            'rgba(255,255,255,0.9)',
+            'rgba(255,255,255,0.95)',
+          ]}
+          style={{
+            flex: 1,
+          }}
+        />
+      ),
+      headerTitleStyle: { color: Color.primary },
+      headerBackTitleStyle: { color: Color.primary },
     },
   }
 )
-AuthTab.navigationOptions = {
-  title: 'Auth',
-  drawerLabel: 'Sign Out',
+AuthStack.navigationOptions = {
+  drawerLabel: 'Communities',
 }
 // NOTE: This is how we configure the Header's Title
 // Default options are default fot the navigator's
@@ -221,12 +232,13 @@ WalletStack.navigationOptions = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    AuthTab,
+    Welcome: WelcomeContainer,
+    AuthStack,
     RootStack,
     WalletStack,
   },
   {
-    initialRouteName: 'AuthTab',
+    initialRouteName: 'Welcome',
     contentComponent: Drawer,
   }
 )
