@@ -28,6 +28,8 @@ We recommend [VSCode](https://code.visualstudio.com/) for smooth development exp
 ### VSCode Plugins
 
 - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+- [Sort Typescript Imports](https://marketplace.visualstudio.com/items?itemName=miclo.sort-typescript-imports)
 
 ## Development
 

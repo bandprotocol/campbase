@@ -5,6 +5,9 @@
       "sourceExts": ["ts", "tsx"],
       "transformer":
         "./node_modules/react-native-typescript-transformer/index.js"
-    }
+    },
+    "orientation": "portrait",
+    "primaryColor": "#916bff",
+    "icon": "./src/assets/branding/icon.png"
   }
 }

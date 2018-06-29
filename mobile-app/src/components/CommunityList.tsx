@@ -11,7 +11,7 @@ const ProfileImage = Style.Image`
 
 interface CommunityListProps {
   title: string
-  list?: Array<{ name; detail; profileImageSrc }>
+  list?: Array<{ id; name; detail; profileImageSrc }>
   onItemClick?
 }
 
