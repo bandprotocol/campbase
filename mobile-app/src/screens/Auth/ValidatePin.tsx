@@ -2,6 +2,7 @@ import * as React from 'react'
 import Styled from '~/styled-components'
 import ColorButton from '~/components/ColorButton'
 import { Color, Fonts } from '~/utils'
+import DigitInput from '~/components/DigitInput'
 
 const Container = Styled.View`
   flex: 1;
@@ -10,4 +11,8 @@ const Container = Styled.View`
   justify-content: center;
 `
 
-export default ({}) => <Container>{/* xxx */}</Container>
+export default ({ code }) => (
+  <Container>
+    <DigitInput />
+  </Container>
+)

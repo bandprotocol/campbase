@@ -8,9 +8,9 @@ import { requestPin } from '~/store/app/Auth/action'
 
 type Props = PropTypes.withNavigation
 type State = {
-  country_code: string
-  phone_number: string
-  valid_number: boolean
+  countryCode: string
+  phoneNumber: string
+  validNumber: boolean
 }
 
 const mapState = state => ({ state })
@@ -23,30 +23,33 @@ class RequestPinScreen extends React.Component<
   private phoneNumberPicker
 
   state = {
-    country_code: '',
-    phone_number: '',
-    valid_number: false,
+    countryCode: '',
+    phoneNumber: '',
+    validNumber: false,
   }
 
   @autobind
-  onSelectCountry(country_code: string) {
+  onSelectCountry(countryCode: string) {
     this.setState({
-      country_code,
-      valid_number: this.phoneNumberPicker.isValidNumber(),
+      countryCode,
+      validNumber: this.phoneNumberPicker.isValidNumber(),
     })
   }
 
   @autobind
-  onChangePhoneNumber(phone_number: string) {
+  onChangePhoneNumber(phoneNumber: string) {
     this.setState({
-      phone_number,
-      valid_number: this.phoneNumberPicker.isValidNumber(),
+      phoneNumber,
+      validNumber: this.phoneNumberPicker.isValidNumber(),
     })
   }
 
   @autobind
   async onRequestPin() {
-    if (!this.state.valid_number) {
+    // Debug:
+    this.props.navigation.navigate('ValidatePin')
+
+    if (!this.state.validNumber) {
       return Alert.alert(
         'Hang on, cowboy!',
         'Ya gotta enter valid phone number before riding the horse.'
@@ -55,8 +58,8 @@ class RequestPinScreen extends React.Component<
 
     if (
       await this.props.requestPin(
-        this.state.country_code,
-        this.state.phone_number
+        this.state.countryCode,
+        this.state.phoneNumber
       )
     ) {
       this.props.navigation.navigate('ValidatePin')
@@ -66,7 +69,7 @@ class RequestPinScreen extends React.Component<
   render() {
     return (
       <RequestPin
-        isValidNumber={this.state.valid_number}
+        isValidNumber={this.state.validNumber}
         onRequestPin={this.onRequestPin}
         onSelectCountry={this.onSelectCountry}
         onChangePhoneNumber={this.onChangePhoneNumber}
