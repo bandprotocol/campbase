@@ -13,6 +13,8 @@ const paleRed = '#ffdff0'
 const grey = '#aaaaaa'
 const darkGrey = '#999999'
 
+const white = '#ffffff'
+
 export default {
   primary,
   secondary,
@@ -24,4 +26,5 @@ export default {
   paleRed,
   grey,
   darkGrey,
+  white,
 }

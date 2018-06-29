@@ -14,6 +14,7 @@ import HeaderButton from '~/components/HeaderButton'
 
 import Drawer from '~/screens/Drawer'
 import WelcomeContainer from '~/screens/Welcome/WelcomeContainer'
+import ValidatePinContainer from '~/screens/Auth/ValidatePinContainer'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
 import CommunityBrowse from '~/screens/CommunitySelect/CommunityBrowse'
 
@@ -40,25 +41,14 @@ import Wallet from '~/screens/Wallet'
 const AuthStack = createStackNavigator(
   {
     // Community: createMaterialBottomTabNavigator({}),
-    WelcomeContainer,
+    Welcome: WelcomeContainer,
+    ValidatePin: ValidatePinContainer,
   },
   {
-    initialRouteName: 'CommunitySelectTab',
+    initialRouteName: 'Welcome',
     navigationOptions: {
-      headerTintColor: Color.primary,
+      headerTintColor: Color.white,
       headerTransparent: true,
-      headerBackground: (
-        <LinearGradient
-          colors={[
-            'rgba(255,255,255,1)',
-            'rgba(255,255,255,0.9)',
-            'rgba(255,255,255,0.95)',
-          ]}
-          style={{
-            flex: 1,
-          }}
-        />
-      ),
       headerTitleStyle: { color: Color.primary },
       headerBackTitleStyle: { color: Color.primary },
     },
@@ -232,13 +222,12 @@ WalletStack.navigationOptions = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    Welcome: WelcomeContainer,
     AuthStack,
     RootStack,
     WalletStack,
   },
   {
-    initialRouteName: 'Welcome',
+    initialRouteName: 'AuthStack',
     contentComponent: Drawer,
   }
 )
