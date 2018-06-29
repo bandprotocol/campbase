@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
@@ -12,35 +12,35 @@ import { Color } from '~/utils'
 import ColorButton from '~/components/ColorButton'
 import { Ionicons } from '@expo/vector-icons'
 
-const Packages = Style.View`
+const Packages = Styled.View`
   margin: 10px 20px;
   background: #ffffff;
   border-radius: 8;
 `
 
-const PackageDetail = Style.View`
+const PackageDetail = Styled.View`
   padding: 10px 20px;
   flex-direction: row;
 `
-const PackageDescription = Style.Text`
+const PackageDescription = Styled.Text`
   flex: 1;
 `
 
-const PossesedTokens = Style.View`
+const PossesedTokens = Styled.View`
   padding: 15px 30px;
   flex-direction: row;
   align-items: center;
   background: ${Color.primary};
 `
-const Info = Style.View`
+const Info = Styled.View`
   flex: 1;
   margin-left: 20;
 `
-const AmountText = Style.Text`
+const AmountText = Styled.Text`
   font-size: 20px;
   color: #ffffff;
 `
-const DescriptionText = Style.Text`
+const DescriptionText = Styled.Text`
   font-weight: 300;
   line-height: 22;
   color: #ffffff;

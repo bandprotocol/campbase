@@ -1,8 +1,8 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { List } from 'antd-mobile-rn'
 
-const ProfileImage = Style.Image`
+const ProfileImage = Styled.Image`
   height: 40;
   width: 40;
   border-radius: 4;

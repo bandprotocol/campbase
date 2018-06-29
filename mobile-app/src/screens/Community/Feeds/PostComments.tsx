@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
 import { StatusBar } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Button, TextareaItem, Switch, Stepper } from 'antd-mobile-rn'
 import { Color } from '~/utils'
 import { Ionicons } from '@expo/vector-icons'
@@ -15,65 +15,65 @@ const Profile3Src = require('~/assets/profile-3.jpg')
 const Profile4Src = require('~/assets/profile-4.jpg')
 const Profile5Src = require('~/assets/profile-5.jpg')
 
-const KeyboardAvoidingContainer = Style.KeyboardAvoidingView.attrs({
+const KeyboardAvoidingContainer = Styled.KeyboardAvoidingView.attrs({
   behavior: 'padding',
 })`
   flex: 1;
   background-color: #ffffff;
 `
 
-const CommentContainer = Style.ScrollView`
+const CommentContainer = Styled.ScrollView`
   flex: 1;
 `
 
-const Comments = Style.View`
+const Comments = Styled.View`
   padding-top: 10;
   padding-bottom: 10;
   background-color: ${Color.paleBackground};
 `
 
-const Spacer = Style.View`
+const Spacer = Styled.View`
   width: 100%;
   height: 3;
   background-color: #c4afff;
 `
 
-const RankedComments = Style.View`
+const RankedComments = Styled.View`
   padding-top: 10;
   padding-bottom: 10;
 `
 
-const NewCommentContainer = Style.View`
+const NewCommentContainer = Styled.View`
   background-color: #efefef;
   flex-shrink: 0;
   padding: 10px;
 `
-const BoostContainer = Style.View`
+const BoostContainer = Styled.View`
   flex-direction: row;
   padding-bottom: 8px;
   align-items: center;
 `
-const BoostText = Style.Text`
+const BoostText = Styled.Text`
   margin-left: 5px;
   font-weight: bold;
   font-size: 16;
 `
-const InputContainer = Style.View`
+const InputContainer = Styled.View`
   flex-direction: row;
   
 `
-const TextareaContainer = Style.View`
+const TextareaContainer = Styled.View`
   flex: 1;
 `
-const PostButton = Style.View`
+const PostButton = Styled.View`
   padding-horizontal: 10;
 `
-const PostButtonText = Style.Text`
+const PostButtonText = Styled.Text`
   font-size: 18;
   font-weight: bold;
   color: ${Color.primary};
 `
-const BoostAmount = Style.View`
+const BoostAmount = Styled.View`
   flex-direction: row;
   flex: 1;
   margin-right: 60;

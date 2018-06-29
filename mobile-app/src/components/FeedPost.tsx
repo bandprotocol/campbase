@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Alert } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Button } from 'antd-mobile-rn'
 import ElevatedView from 'react-native-elevated-view'
 import { Color } from '~/utils'
@@ -8,64 +8,64 @@ import { Ionicons } from '@expo/vector-icons'
 
 import ProfileImage from '~/components/ProfileImage'
 
-const Container = Style.View`
+const Container = Styled.View`
   padding: 7px 15px;
 `
 
-const MediaContainer = Style.View`
+const MediaContainer = Styled.View`
 
 `
-const MediaImage = Style.Image`
+const MediaImage = Styled.Image`
   height: 220;
   width: 100%;
   border-top-right-radius: 8;
   border-top-left-radius: 8;
 `
-const MediaDetails = Style.View`
+const MediaDetails = Styled.View`
 
 `
 
-const InfoContainer = Style.View`
+const InfoContainer = Styled.View`
   flex-direction: row;
   padding-top: 15;
   padding-right: 15;
   padding-bottom: 10;
 `
-const LeftInfoContainer = Style.View`
+const LeftInfoContainer = Styled.View`
   padding-top: 5;
   width: 90;
   align-items: center;
 `
-const RightInfoLinkContainer = Style.TouchableWithoutFeedback`
+const RightInfoLinkContainer = Styled.TouchableWithoutFeedback`
   flex: 1;
 `
-const RightInfoContainer = Style.View`
+const RightInfoContainer = Styled.View`
   flex: 1;
 `
 
-const PostStarText = Style.Text`
+const PostStarText = Styled.Text`
   margin-top: 10;
   margin-bottom: 5;
   color: ${Color.secondary};
   flex-direction: row;
 `
 
-const Line = Style.Text`
+const Line = Styled.Text`
   margin-bottom: 5;
   flex-direction: row;
   flex-wrap: wrap;
   line-height: 20;
 `
-const BoldText = Style.Text`
+const BoldText = Styled.Text`
   font-weight: bold;
 `
-const BolderText = Style.Text`
+const BolderText = Styled.Text`
   font-weight: 900;
   color: ${Color.primary};
 `
-const Text = Style.Text`
+const Text = Styled.Text`
 `
-const StarText = Style.Text`
+const StarText = Styled.Text`
   color: ${Color.grey};
   flex-direction: row;
 `

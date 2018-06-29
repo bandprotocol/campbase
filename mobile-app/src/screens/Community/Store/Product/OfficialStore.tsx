@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
 import { Alert } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import ColorButton from '~/components/ColorButton'
 import { Color } from '~/utils'
@@ -10,18 +10,18 @@ import TitledList from '~/components/TitledList'
 
 const PriceGraphSrc = require('~/assets/price-graph.png')
 
-const PriceGraph = Style.View`
+const PriceGraph = Styled.View`
   flex-direction: row;
   padding : 20px;
   background-color: #ffffff;
   margin-top: 5;
 `
-const PriceGraphImage = Style.Image`
+const PriceGraphImage = Styled.Image`
   flex: 1;
   aspect-ratio: 1.5;
   resize-mode: contain;
 `
-const ButtonContainer = Style.View`
+const ButtonContainer = Styled.View`
   flex-direction: row;
   padding: 10px;
 `

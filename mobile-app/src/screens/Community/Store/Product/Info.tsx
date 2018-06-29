@@ -1,23 +1,23 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 
 import TitledList from '~/components/TitledList'
 
 const ImageSrc = require('~/assets/concert.jpg')
 
-const Image = Style.Image`
+const Image = Styled.Image`
   height: 240;
   width: 100%;
 `
 
-const Description = Style.View`
+const Description = Styled.View`
   padding: 20px;
   background-color: #ffffff;
   margin-top: 5;
 `
-const DescriptionText = Style.Text``
+const DescriptionText = Styled.Text``
 
 const mockDescription =
   'In 2015 Bodyslam was given the award, Seed award of the year (Rock) from Seed Radio, And they show a concert with Carabao band (famous music band in Thailand). On 19 July 2015 Bodyslam released a new single " Wala Tao Nun " ( เวลาเท่านั้น Time Only ) is mean " everything will have the answer by time ".'

@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Text } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { List } from 'antd-mobile-rn'
 
-const Date = Style.View`
+const Date = Styled.View`
   height: 40;
   width: 40;
   border-radius: 4;
@@ -11,7 +11,7 @@ const Date = Style.View`
   align-items: center;
   justify-content: center;
 `
-const DateText = Style.Text`
+const DateText = Styled.Text`
   font-size: 24;
 `
 

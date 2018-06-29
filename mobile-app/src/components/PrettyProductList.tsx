@@ -1,39 +1,39 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 
-const Container = Style.View`
+const Container = Styled.View`
   padding: 20px;
 `
 
-const Header = Style.View`
+const Header = Styled.View`
   flex-direction: row;
   align-items: flex-end;
   margin-bottom: 10;
   padding-horizontal: 10;
 `
-const HeaderTitleText = Style.Text`
+const HeaderTitleText = Styled.Text`
   font-size: 22;
   flex: 1;
 `
-const HeaderLink = Style.TouchableOpacity`
+const HeaderLink = Styled.TouchableOpacity`
   margin-bottom: 5;
 `
-const HeaderLinkText = Style.Text`
+const HeaderLinkText = Styled.Text`
   color: #777777;
 `
 
-const Product = Style.TouchableHighlight`
+const Product = Styled.TouchableHighlight`
   position: relative;
   height: 100;
   border-radius: 8;
   margin-bottom: 10;
 `
-const ProductInner = Style.View`
+const ProductInner = Styled.View`
   flex: 1;
   justify-content: flex-end;
 `
-const ProductImage = Style.Image`
+const ProductImage = Styled.Image`
   position: absolute;
   top: 0;
   left: 0;
@@ -41,12 +41,12 @@ const ProductImage = Style.Image`
   width: 100%;
   border-radius: 8;
 `
-const ProductName = Style.Text`
+const ProductName = Styled.Text`
   font-size: 18;
   color: #ffffff;
   margin-left: 15;
 `
-const ProductDetails = Style.Text`
+const ProductDetails = Styled.Text`
   font-size: 15;
   color: #ffffff;
   margin-left: 15;

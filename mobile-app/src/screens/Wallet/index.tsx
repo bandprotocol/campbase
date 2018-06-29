@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Button, Modal, Toast } from 'antd-mobile-rn'
 import { Color } from '~/utils'
@@ -17,31 +17,31 @@ const ProfileTattooSrc = require('~/assets/band-tattoo.jpg')
 const ProfilPlaygroundSrc = require('~/assets/band-playground.jpg')
 const QRSrc = require('~/assets/product-qrcode.jpg')
 
-const WalletPanel = Style.View`
+const WalletPanel = Styled.View`
   padding: 20px 30px;
   background-color: ${Color.primary};
 `
-const BalanceContainer = Style.View`
+const BalanceContainer = Styled.View`
   flex: 1;
 `
-const WalletNameText = Style.Text`
+const WalletNameText = Styled.Text`
   font-size: 18px;
   line-height: 28;
   margin-bottom: 50;
   color: #ffffff;
 `
-const BalanceButtonContainer = Style.View`
+const BalanceButtonContainer = Styled.View`
   flex-direction: row;
 `
-const BalanceText = Style.Text`
+const BalanceText = Styled.Text`
   font-size: 24px;
   margin-top: 5px;
   color: #ffffff;
 `
-const UnitText = Style.Text`
+const UnitText = Styled.Text`
   font-size: 18px;
 `
-const BuySellButton = Style.TouchableOpacity`
+const BuySellButton = Styled.TouchableOpacity`
   height: 40;
   width: 40;
   background: rgba(0,0,0,0.5);
@@ -50,7 +50,7 @@ const BuySellButton = Style.TouchableOpacity`
   justify-content: center;
   margin-left: 10;
 `
-const QRImage = Style.Image`
+const QRImage = Styled.Image`
   aspect-ratio: 1;
   resize-mode: contain;
   margin-top: 10;

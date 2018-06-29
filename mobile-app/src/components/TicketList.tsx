@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Text } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { List } from 'antd-mobile-rn'
 
-const Availability = Style.View`
+const Availability = Styled.View`
   height: 40;
   width: 40;
   border-radius: 4;
@@ -11,10 +11,10 @@ const Availability = Style.View`
   align-items: center;
   justify-content: center;
 `
-const AvailabilityText = Style.Text`
+const AvailabilityText = Styled.Text`
   font-size: 20;
 `
-const SubtitleText = Style.Text`
+const SubtitleText = Styled.Text`
   font-size: 8;
 `
 

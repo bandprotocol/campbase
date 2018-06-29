@@ -1,42 +1,42 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Button } from 'antd-mobile-rn'
 import { Color } from '~/utils'
 
 import { Ionicons } from '@expo/vector-icons'
 import ProfileImage from '~/components/ProfileImage'
 
-const InfoContainer = Style.View`
+const InfoContainer = Styled.View`
   flex-direction: row;
   padding-top: 5;
   padding-horizontal: 5;
   margin-bottom: 5;
 `
-const LeftInfoContainer = Style.View`
+const LeftInfoContainer = Styled.View`
   width: 90;
   align-items: center;
 `
-const RightInfoContainer = Style.View`
+const RightInfoContainer = Styled.View`
   flex: 1;
 `
 
-const StatusText = Style.Text`
+const StatusText = Styled.Text`
   color: ${Color.primary};
   font-weight: bold;
 `
 
-const Line = Style.Text`
+const Line = Styled.Text`
   margin-bottom: 3;
   flex-direction: row;
   flex-wrap: wrap;
   line-height: 20;
 `
-const BoldText = Style.Text`
+const BoldText = Styled.Text`
   font-weight: bold;
 `
-const Text = Style.Text`
+const Text = Styled.Text`
 `
-const StarText = Style.Text`
+const StarText = Styled.Text`
   flex-direction: row;
   color: ${Color.grey};
 `

@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
 import { Alert } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import ScreenContainer from '~/components/ScreenContainer'
 
 import StakingTier from '~/components/StakingTier'
 import IconList from '~/components/IconList'
 
-const Services = Style.View`
+const Services = Styled.View`
   margin: 10px 20px;
   background: #ffffff;
   border-radius: 8;

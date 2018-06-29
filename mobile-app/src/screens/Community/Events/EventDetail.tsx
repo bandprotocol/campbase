@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import { PropTypes } from '~/declare'
 
@@ -8,7 +8,7 @@ import TitledList from '~/components/TitledList'
 
 const EventImageSrc = require('~/assets/concert.jpg')
 
-const EventImage = Style.Image`
+const EventImage = Styled.Image`
   height: 240;
   width: 100%;
 `

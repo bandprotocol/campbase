@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
 import { List, Modal, SearchBar } from 'antd-mobile-rn'
@@ -14,7 +14,7 @@ const Product2ImageSrc = require('~/assets/product-2.jpg')
 const Product4ImageSrc = require('~/assets/product-4.jpg')
 const ProductQRSrc = require('~/assets/product-qrcode.jpg')
 
-const Title = Style.View`
+const Title = Styled.View`
   height: 40;
   width: 80;
   border-radius: 4;
@@ -22,11 +22,11 @@ const Title = Style.View`
   padding-horizontal: 10;
   justify-content: center;
 `
-const TitleText = Style.Text`
+const TitleText = Styled.Text`
   font-size: 15;
   font-weight: 500;
 `
-const QRImage = Style.Image`
+const QRImage = Styled.Image`
   aspect-ratio: 1;
   resize-mode: contain;
   margin-top: 10;
