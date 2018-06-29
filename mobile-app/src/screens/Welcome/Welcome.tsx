@@ -63,19 +63,23 @@ const MoutainImage = Styled.Image.attrs({
   width: 100%;
 `
 
-export default ({ onLogin, onSignUp }) => (
+export default ({ onStartPhoneAuth }) => (
   <Container>
     <TopContainer>
       <Header>CAMPBASE</Header>
       <Subheader>curate you communities</Subheader>
       <ButtonContainer>
-        <ColorButton color="#4E25C4" style={{ width: 220 }} onClick={onSignUp}>
+        <ColorButton
+          color={Color.darkPurple}
+          style={{ width: 220 }}
+          onClick={onStartPhoneAuth}
+        >
           SIGN UP
         </ColorButton>
         <ColorButton
           color="transparent"
           style={{ borderColor: '#ffffff', marginTop: 15, width: 220 }}
-          onClick={onLogin}
+          onClick={onStartPhoneAuth}
         >
           LOG IN
         </ColorButton>

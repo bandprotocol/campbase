@@ -94,6 +94,8 @@ export class API<Params = any, Response = any> {
         if (this.onFail) {
           dispatch(this.onFail(e.message))
         }
+
+        throw e
       }
     }
   }

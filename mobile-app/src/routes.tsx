@@ -14,6 +14,7 @@ import HeaderButton from '~/components/HeaderButton'
 
 import Drawer from '~/screens/Drawer'
 import WelcomeContainer from '~/screens/Welcome/WelcomeContainer'
+import RequestPinContainer from '~/screens/Auth/RequestPinContainer'
 import ValidatePinContainer from '~/screens/Auth/ValidatePinContainer'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
 import CommunityBrowse from '~/screens/CommunitySelect/CommunityBrowse'
@@ -42,6 +43,7 @@ const AuthStack = createStackNavigator(
   {
     // Community: createMaterialBottomTabNavigator({}),
     Welcome: WelcomeContainer,
+    RequestPin: RequestPinContainer,
     ValidatePin: ValidatePinContainer,
   },
   {

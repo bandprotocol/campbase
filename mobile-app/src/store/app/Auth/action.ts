@@ -2,21 +2,52 @@
  * Everything Authentication-related
  */
 
+import { Alert } from 'react-native'
 import { getPersistentJWT } from '~/store/helpers/jwt'
 import { createScopedActionTypes } from '~/store/helpers'
 
-import * as AuthValidatePin from '~/store/api/AuthValidatePin'
+import { AuthRequestPin, AuthValidatePin } from '~/store/api'
 
-export const actionTypes = createScopedActionTypes('app.Auth', [
-  'REVIVE',
-  'LOGOUT',
-])
+enum actions {
+  REVIVE = 'REVIVE',
+  LOGOUT = 'LOGOUT',
+  PHONE_AUTH = 'PHONE_AUTH',
+}
+export const actionTypes = createScopedActionTypes('app.Auth', actions)
 
-export const loginPhone = (
+export const requestPin = (
   country_code: string,
-  phone_number: string,
-  phone_pin: string
+  phone_number: string
 ) => async (dispatch, getState) => {
+  try {
+    await dispatch(
+      AuthRequestPin.POST.action({
+        country_code,
+        phone_number,
+      })
+    )
+
+    dispatch({
+      type: actionTypes.PHONE_AUTH,
+      payload: {
+        country_code,
+        phone_number,
+      },
+    })
+  } catch (e) {
+    // TODO: Display error
+    Alert.alert('Pin Request Failed', 'Please try again with different number')
+    return false
+  }
+  return true
+}
+
+export const validatePin = (phone_pin: string) => async (
+  dispatch,
+  getState
+) => {
+  const { country_code, phone_number } = getState().app.Auth
+
   const result = await dispatch(
     AuthValidatePin.POST.action({
       country_code,

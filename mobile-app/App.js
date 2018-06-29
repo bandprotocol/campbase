@@ -28,6 +28,8 @@ export default class App extends React.Component<{}, State> {
     const images = [
       require('~/assets/branding/welcome-moutain.png'),
       require('~/assets/branding/welcome-sun.png'),
+
+      require('~/assets/images/paper-plane.png'),
     ]
 
     await Promise.all(
