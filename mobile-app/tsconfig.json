@@ -15,7 +15,12 @@
       "~/*": ["./*"],
       "@/*": ["../"],
       "test/*": ["../test/*"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "include": ["./src/**/*", "./node_modules/spec/**/*"]
 }

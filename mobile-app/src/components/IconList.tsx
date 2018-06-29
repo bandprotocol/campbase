@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Text } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { List } from 'antd-mobile-rn'
 import { Ionicons } from '@expo/vector-icons'
 
-const Icon = Style.View`
+const Icon = Styled.View`
   height: 40;
   width: 40;
   border-radius: 4;

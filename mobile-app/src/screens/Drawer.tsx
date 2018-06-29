@@ -1,38 +1,38 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { DrawerActions } from 'react-navigation'
 import { Size, Color } from '~/utils'
 import { PropTypes } from 'declare'
 
 const ProfileSrc = require('~/assets/profile-5.jpg')
 
-const Container = Style.View`
+const Container = Styled.View`
   flex: 1;
   paddingTop: ${Size.statusBarHeight};
   backgroundColor: ${Color.primary};
 `
 
-const Top = Style.View`
+const Top = Styled.View`
   height: 105;
 `
-const Bottom = Style.View`
+const Bottom = Styled.View`
   flex: 1;
   padding-top: 75;
   align-items: center;
   backgroundColor: ${Color.paleBackground};
 `
-const Name = Style.Text`
+const Name = Styled.Text`
   font-weight: bold;
   font-size: 22;
   color: ${Color.primary};
   line-height: 26;
 `
-const Status = Style.Text`
+const Status = Styled.Text`
   font-size: 16;
   color: #777777;
 `
 
-const ProfileImage = Style.Image`
+const ProfileImage = Styled.Image`
   position: absolute;
   border-width: 16;
   border-color: #7f53ff;
@@ -44,17 +44,17 @@ const ProfileImage = Style.Image`
   margin-left: -60;
   top: ${Size.statusBarHeight + 43};
 `
-const Spacer = Style.View`
+const Spacer = Styled.View`
   flex: 1;
 `
-const SignOut = Style.TouchableOpacity`
+const SignOut = Styled.TouchableOpacity`
   padding: 20px;
   margin-bottom: 20px;
 `
-const SignOutText = Style.Text`
+const SignOutText = Styled.Text`
   color: #777777;
 `
-const Links = Style.View`
+const Links = Styled.View`
   margin-top: 20;
   padding: 0px 10px;
   background-color: rgba(255,255,255,0.5);
@@ -62,14 +62,14 @@ const Links = Style.View`
   overflow: hidden;
   width: 80%;
 `
-const Link = Style.TouchableOpacity`
+const Link = Styled.TouchableOpacity`
   height: 50;
   align-items: center;
   justify-content: center;
   border-bottom-color: #eee;
   border-bottom-width: 1;
 `
-const LinkText = Style.Text`
+const LinkText = Styled.Text`
   font-size: 18;
   font-weight: ${p => (p.active ? 'bold' : 'normal')};
   color: ${Color.secondary};
@@ -88,7 +88,7 @@ export default class Drawer extends React.Component<
   render() {
     const { navigation, activeItemKey } = this.props
 
-    if (activeItemKey === 'AuthTab')
+    if (activeItemKey === 'AuthStack' || activeItemKey === 'Welcome')
       return (
         <Container>
           <Bottom>

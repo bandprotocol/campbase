@@ -5,7 +5,7 @@ const ColorButton = ({ color, style = {}, children, ...props }) => {
   return (
     <Button
       type="primary"
-      style={{ ...style, backgroundColor: color, borderColor: color }}
+      style={{ backgroundColor: color, borderColor: color, ...style }}
       {...props}
     >
       {children}

@@ -10,6 +10,7 @@ import {
 } from 'test/mocks'
 
 import server from '~/index'
+import { decodeJWT } from 'common/jwt'
 
 chai.use(chaiHttp)
 const should = chai.should()
@@ -28,222 +29,101 @@ describe('route:api:auth', () => {
     sandbox.restore()
   })
 
-  describe(`POST /auth/v1/request_pin`, () => {
+  describe(`POST /auth/v1/pin/request`, () => {
     it('should get 200 if all parameters are supplied', async () => {
       mockSendSMSSuccess(sandbox)
-      await chai
+      const res = await chai
         .request(server)
-        .post(`/auth/v1/request_pin`)
+        .post(`/auth/v1/pin/request`)
         .send({ country_code: '66', phone_number: '830088333' })
-        .then(res => {
-          res.should.have.status(200)
-        })
+
+      res.should.have.status(200)
     })
 
     it('should get 400 if country_code not supplied', async () => {
       mockSendSMSSuccess(sandbox)
-      await chai
+      const res = await chai
         .request(server)
-        .post(`/auth/v1/request_pin`)
+        .post(`/auth/v1/pin/request`)
         .send({ country_code: '66' })
-        .then(res => {
-          res.should.have.status(400)
-        })
+
+      res.should.have.status(400)
     })
 
     it('should get 503 if SMS service not available', async () => {
       mockSendSMSFail(sandbox)
-      await chai
+      const res = await chai
         .request(server)
-        .post(`/auth/v1/request_pin`)
+        .post(`/auth/v1/pin/request`)
         .send({ country_code: '66', phone_number: '830088333' })
-        .then(res => {
-          res.should.have.status(503)
-        })
+
+      res.should.have.status(503)
     })
   })
 
-  describe(`POST /auth/v1/register`, () => {
-    it('should get 201 if success w/ email_activated = false', async () => {
-      mockCheckSMSSuccess(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/register`)
-        .send({
-          country_code: '1',
-          phone_number: '111111111',
-          phone_pin: '1111',
-          email: 'new_user@example.com',
-          password: 'password',
-          display_name: 'Example New User',
-        })
-        .then(res => {
-          res.should.have.status(201)
-        })
-
-      const newUser = await Knex('users')
-        .where({ email: 'new_user@example.com' })
-        .first()
-      chai.expect(newUser.email_activated).to.be.not.ok
-    })
-
+  describe(`POST /auth/v1/pin/validate`, () => {
     it('should get 403 if incorrect PIN', async () => {
       mockCheckSMSFail(sandbox)
-      await chai
+      const res = await chai
         .request(server)
-        .post(`/auth/v1/register`)
-        .send({
-          country_code: '1',
-          phone_number: '111111111',
-          phone_pin: '1111',
-          email: 'new_user@example.com',
-          password: 'password',
-          display_name: 'Example New User',
-        })
-        .then(res => {
-          res.should.have.status(403)
-        })
-    })
-
-    it('should get 403 if phone number already exist', async () => {
-      mockCheckSMSFail(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/register`)
-        .send({
-          country_code: '1',
-          phone_number: '123456789',
-          phone_pin: '1111',
-          email: 'new_user@example.com',
-          password: 'password',
-          display_name: 'Example New User',
-        })
-        .then(res => {
-          res.should.have.status(403)
-        })
-    })
-
-    it('should get 403 if email already exist', async () => {
-      mockCheckSMSFail(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/register`)
-        .send({
-          country_code: '1',
-          phone_number: '111111111',
-          phone_pin: '1111',
-          email: 'user@example.com',
-          password: 'password',
-          display_name: 'Example New User',
-        })
-        .then(res => {
-          res.should.have.status(403)
-        })
-    })
-  })
-
-  describe(`POST /auth/v1/login/phone`, () => {
-    it('should get 200 and return JWT if PIN is correct', async () => {
-      mockCheckSMSSuccess(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/login/phone`)
-        .send({
-          country_code: '1',
-          phone_number: '123456789',
-          phone_pin: '1111',
-        })
-        .then(res => {
-          res.should.have.status(200)
-          res.body.data.should.include.key('jwt')
-        })
-    })
-
-    it('should get 400 if phone_pin not supplied', async () => {
-      mockCheckSMSSuccess(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/login/phone`)
-        .send({
-          country_code: '1',
-          phone_number: '123456789',
-        })
-        .then(res => {
-          res.should.have.status(400)
-        })
-    })
-
-    it('should get 403 if account with phone_number does not exist', async () => {
-      mockCheckSMSSuccess(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/login/phone`)
+        .post(`/auth/v1/pin/validate`)
         .send({
           country_code: '1',
           phone_number: '111111111',
           phone_pin: '1111',
         })
-        .then(res => {
-          res.should.have.status(403)
-        })
-    })
-  })
 
-  describe(`POST /auth/v1/login/email`, () => {
-    it('should get 200 and return JWT if password is correct', async () => {
-      mockCheckSMSSuccess(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/login/email`)
-        .send({
-          email: 'user@example.com',
-          password: 'password',
-        })
-        .then(res => {
-          res.should.have.status(200)
-          res.body.data.should.include.key('jwt')
-        })
+      res.should.have.status(403)
     })
 
-    it('should get 400 if password not supplied', async () => {
+    it('should get 200 and JWT without user id if correct PIN and user not exists', async () => {
       mockCheckSMSSuccess(sandbox)
-      await chai
+      const res = await chai
         .request(server)
-        .post(`/auth/v1/login/email`)
+        .post(`/auth/v1/pin/validate`)
         .send({
-          email: 'user@example.com',
+          country_code: '1',
+          phone_number: '111111111',
+          phone_pin: '1111',
         })
-        .then(res => {
-          res.should.have.status(400)
-        })
+
+      res.should.have.status(200)
+      res.body.data.should.includes.key('jwt')
+
+      const jwt = res.body.data.jwt
+      const jwtDecoded: any = decodeJWT(jwt)
+
+      should.exist(jwtDecoded)
+      jwtDecoded.data.should.not.include.key('id')
+      jwtDecoded.data.should.deep.equal({
+        country_code: '1',
+        phone_number: '111111111',
+      })
     })
 
-    it('should get 403 if account with email does not exist', async () => {
+    it('should get 200 and JWT with user id if correct PIN and user exists', async () => {
       mockCheckSMSSuccess(sandbox)
-      await chai
+      const res = await chai
         .request(server)
-        .post(`/auth/v1/login/email`)
+        .post(`/auth/v1/pin/validate`)
         .send({
-          email: 'user_not_existed@example.com',
-          password: 'password',
+          country_code: '1',
+          phone_number: '123456789',
+          phone_pin: '1111',
         })
-        .then(res => {
-          res.should.have.status(403)
-        })
-    })
 
-    it('should get 403 if account not activated', async () => {
-      mockCheckSMSSuccess(sandbox)
-      await chai
-        .request(server)
-        .post(`/auth/v1/login/email`)
-        .send({
-          email: 'user_email_unactivated@example.com',
-          password: 'password',
-        })
-        .then(res => {
-          res.should.have.status(403)
-        })
+      res.should.have.status(200)
+      res.body.data.should.includes.key('jwt')
+
+      const jwt = res.body.data.jwt
+      const jwtDecoded: any = decodeJWT(jwt)
+
+      should.exist(jwtDecoded)
+      jwtDecoded.data.should.include.key('id')
+      jwtDecoded.data.should.contain({
+        country_code: '1',
+        phone_number: '123456789',
+      })
     })
   })
 })

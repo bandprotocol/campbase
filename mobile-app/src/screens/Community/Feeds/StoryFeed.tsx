@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import FeedPost from '~/components/FeedPost'
 import { Ionicons } from '@expo/vector-icons'
 import ScreenContainer from '~/components/ScreenContainer'
@@ -85,7 +85,7 @@ const posts = [
   },
 ]
 
-const Container = Style.View`
+const Container = Styled.View`
   flex: 1;
   background: #ffffff;
 `

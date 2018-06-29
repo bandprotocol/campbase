@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import * as querystring from 'querystring'
-import { TWILLIO_API_KEY } from '~/config'
+import { TWILLIO_API_KEY, TWILLIO_VERIFICATION_CODE_LENGTH } from '~/config'
 
 export const sendVerificationCode = async (
   country_code: string,
@@ -13,6 +13,7 @@ export const sendVerificationCode = async (
       via: 'sms',
       phone_number,
       country_code,
+      code_length: TWILLIO_VERIFICATION_CODE_LENGTH,
     })
   )
 }

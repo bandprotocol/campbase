@@ -1,9 +1,9 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { List } from 'antd-mobile-rn'
 
-const Title = Style.View`
+const Title = Styled.View`
   height: 40;
   width: 80;
   border-radius: 4;
@@ -11,11 +11,11 @@ const Title = Style.View`
   padding-horizontal: 10;
   justify-content: center;
 `
-const TitleText = Style.Text`
+const TitleText = Styled.Text`
   font-size: 15;
   font-weight: 500;
 `
-const Text = Style.Text``
+const Text = Styled.Text``
 
 interface TitledListProps {
   title: string

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import EventList from '~/components/EventList'
 import { Ionicons } from '@expo/vector-icons'
 
-const Month = Style.View`
+const Month = Styled.View`
   margin: 10px 20px;
   background: #ffffff;
   border-radius: 8;

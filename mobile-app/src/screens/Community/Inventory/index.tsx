@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import ColorButton from '~/components/ColorButton'
 import { Color } from '~/utils'
@@ -8,22 +8,22 @@ import ScreenContainer from '~/components/ScreenContainer'
 
 import IconList from '~/components/IconList'
 
-const PricePanel = Style.View`
+const PricePanel = Styled.View`
   padding: 20px 30px;
   background-color: ${Color.darkBackground};
 `
-const PriceText = Style.Text`
+const PriceText = Styled.Text`
   font-size: 24px;
   margin-top: 5px;
   color: #ffffff;
 `
-const SubPriceText = Style.Text`
+const SubPriceText = Styled.Text`
   font-size: 18px;
   line-height: 28;
   margin-bottom: 50;
   color: #ffffff;
 `
-const ButtonContainer = Style.View`
+const ButtonContainer = Styled.View`
   flex-direction: row;
 `
 

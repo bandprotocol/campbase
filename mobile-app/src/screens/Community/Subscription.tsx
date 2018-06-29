@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Alert } from 'react-native'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Text } from 'react-native'
@@ -11,17 +11,17 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Color } from '~/utils'
 import ColorButton from '~/components/ColorButton'
 
-const Tiers = Style.View`
+const Tiers = Styled.View`
   margin: 10px 20px;
   background: #ffffff;
   border-radius: 8;
 `
 
-const TierDetail = Style.View`
+const TierDetail = Styled.View`
   padding: 10px 20px;
   flex-direction: row;
 `
-const TierDescription = Style.Text`
+const TierDescription = Styled.Text`
   flex: 1;
 `
 

@@ -4,18 +4,16 @@
 
 import { combineReducers, Reducer } from 'redux'
 import { API } from '../helpers/api'
-import * as AuthLoginEmail from './AuthLoginEmail'
-import * as AuthLoginPhone from './AuthLoginPhone'
-import * as AuthRegister from './AuthRegister'
 import * as AuthRequestPin from './AuthRequestPin'
+import * as AuthValidatePin from './AuthValidatePin'
+import * as UserSignUp from './UserSignUp'
 
 export default combineReducers({
-  AuthLoginEmail: AuthLoginEmail.default,
-  AuthLoginPhone: AuthLoginPhone.default,
-  AuthRegister: AuthRegister.default,
   AuthRequestPin: AuthRequestPin.default,
+  AuthValidatePin: AuthValidatePin.default,
+  UserSignUp: UserSignUp.default,
 
   // ^^^ Add more reducers here
 })
 
-export { AuthLoginEmail, AuthLoginPhone, AuthRegister, AuthRequestPin }
+export { AuthRequestPin, AuthValidatePin, UserSignUp }

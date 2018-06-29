@@ -40,6 +40,7 @@ export function useSuccessFailMethods(app: Koa) {
       } else {
         // TODO: Write error log somewhere
         console.error(err, ctx.request)
+
         ctx.status = Status.INTERNAL_SERVER_ERROR
         ctx.body = {
           status: Status.INTERNAL_SERVER_ERROR,

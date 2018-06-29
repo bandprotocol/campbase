@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
 import { ScrollView } from 'react-native'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import FeedPost from '~/components/FeedPost'
 import ScreenContainer from '~/components/ScreenContainer'
 import { Ionicons } from '@expo/vector-icons'
@@ -88,7 +88,7 @@ const mockPosts = [
   },
 ]
 
-const Container = Style.View`
+const Container = Styled.View`
   flex: 1;
   background: #ffffff;
 `

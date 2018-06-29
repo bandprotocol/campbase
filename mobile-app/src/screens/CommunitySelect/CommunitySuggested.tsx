@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PropTypes } from '~/declare'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import ScreenContainer from '~/components/ScreenContainer'
 import CommunityList from '~/components/CommunityList'
 
@@ -10,7 +10,7 @@ const ProfileZealSrc = require('~/assets/band-zeal.jpg')
 const ProfileTattooSrc = require('~/assets/band-tattoo.jpg')
 const ProfilPlaygroundSrc = require('~/assets/band-playground.jpg')
 
-const Category = Style.View`
+const Category = Styled.View`
   margin: 10px 20px;
   background: #ffffff;
   border-radius: 8;

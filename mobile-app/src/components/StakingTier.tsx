@@ -1,37 +1,37 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 import { Ionicons } from '@expo/vector-icons'
 import { Color } from '~/utils'
 
 const MedalSrc = require('~/assets/medal.png')
 
-const Container = Style.View`
+const Container = Styled.View`
   padding: 15px 30px;
   flex-direction: row;
   align-items: center;
   background: ${Color.primary};
 `
 
-const MedalImage = Style.Image`
+const MedalImage = Styled.Image`
   height: 46;
   flex: 0;
   flexBasis: 46;
   margin-right: 10;
   resize-mode: contain;
 `
-const Info = Style.View`
+const Info = Styled.View`
   flex: 1;
 `
-const TierNameText = Style.Text`
+const TierNameText = Styled.Text`
   font-size: 20px;
   color: #ffffff;
 `
-const TierStakeText = Style.Text`
+const TierStakeText = Styled.Text`
   font-weight: 300;
   line-height: 22;
   color: #ffffff;
 `
-const UpgradeButton = Style.TouchableOpacity`
+const UpgradeButton = Styled.TouchableOpacity`
   height: 40;
   width: 40;
   background: rgba(0,0,0,0.5);

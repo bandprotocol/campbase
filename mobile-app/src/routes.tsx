@@ -13,8 +13,9 @@ import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 
 import Drawer from '~/screens/Drawer'
-import SignInContainer from '~/screens/Auth/SignInContainer'
-import SignUp from '~/screens/Auth/SignUp'
+import WelcomeContainer from '~/screens/Welcome/WelcomeContainer'
+import RequestPinContainer from '~/screens/Auth/RequestPinContainer'
+import ValidatePinContainer from '~/screens/Auth/ValidatePinContainer'
 import CommunitySuggested from '~/screens/CommunitySelect/CommunitySuggested'
 import CommunityBrowse from '~/screens/CommunitySelect/CommunityBrowse'
 
@@ -38,23 +39,25 @@ import Subscription from '~/screens/Community/Subscription'
 
 import Wallet from '~/screens/Wallet'
 
-const AuthTab = createMaterialTopTabNavigator(
+const AuthStack = createStackNavigator(
   {
-    SignIn: SignInContainer,
-    SignUp,
+    // Community: createMaterialBottomTabNavigator({}),
+    Welcome: WelcomeContainer,
+    RequestPin: RequestPinContainer,
+    ValidatePin: ValidatePinContainer,
   },
   {
-    tabBarOptions: {
-      style: { paddingTop: Size.statusBarHeight, backgroundColor: '#ffffff' },
-      indicatorStyle: { backgroundColor: Color.primary },
-      activeTintColor: Color.primary,
-      inactiveTintColor: '#d1c1ff',
+    initialRouteName: 'Welcome',
+    navigationOptions: {
+      headerTintColor: Color.white,
+      headerTransparent: true,
+      headerTitleStyle: { color: Color.primary },
+      headerBackTitleStyle: { color: Color.primary },
     },
   }
 )
-AuthTab.navigationOptions = {
-  title: 'Auth',
-  drawerLabel: 'Sign Out',
+AuthStack.navigationOptions = {
+  drawerLabel: 'Communities',
 }
 // NOTE: This is how we configure the Header's Title
 // Default options are default fot the navigator's
@@ -221,12 +224,12 @@ WalletStack.navigationOptions = {
 
 const DrawerNavigator = createDrawerNavigator(
   {
-    AuthTab,
+    AuthStack,
     RootStack,
     WalletStack,
   },
   {
-    initialRouteName: 'AuthTab',
+    initialRouteName: 'AuthStack',
     contentComponent: Drawer,
   }
 )

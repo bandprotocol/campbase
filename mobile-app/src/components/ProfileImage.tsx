@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Style from '~/styled-components'
+import Styled from '~/styled-components'
 
-const Image = Style.Image`
+const Image = Styled.Image`
   height: 52;
   width: 52;
   border-radius: 26;
