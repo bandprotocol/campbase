@@ -48,8 +48,8 @@ class RequestPinScreen extends React.Component<
   async onRequestPin() {
     if (!this.state.valid_number) {
       return Alert.alert(
-        'Hold on!',
-        'Please enter valid phone number before proceeding.'
+        'Hang on, cowboy!',
+        'Ya gotta enter valid phone number before riding the horse.'
       )
     }
 
