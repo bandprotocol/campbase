@@ -24,6 +24,12 @@ class State<Response> extends Record(DefaultState) {
   data: Response
 }
 
+enum actions {
+  FETCH = 'FETCH',
+  SUCCESS = 'SUCCESS',
+  FAIL = 'FAIL',
+}
+
 export class API<Params = any, Response = any> {
   private actionTypes: any
 
@@ -39,19 +45,15 @@ export class API<Params = any, Response = any> {
       throw new Error('Please pass a `path` to constructor')
     }
 
-    this.actionTypes = createScopedActionTypes(`api:${this.path}`, [
-      'FETCH',
-      'SUCCESS',
-      'FAIL',
-    ])
+    this.actionTypes = createScopedActionTypes(`api:${this.path}`, actions)
 
     this.action = this.action.bind(this)
     this.reducer = this.reducer.bind(this)
   }
 
-  async action(
+  action(
     params: APIParamsType<Params>
-  ): Promise<(dispatch, getState) => Promise<Response>> {
+  ): (dispatch, getState) => Promise<Response> {
     return async (
       dispatch: (action) => any,
       getState: () => any

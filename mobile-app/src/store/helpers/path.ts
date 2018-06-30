@@ -2,10 +2,10 @@
  * Utility for manipulating koa-path such as /user/:id/:action
  */
 
-import PathToRegexp, { Key } from 'path-to-regexp'
+import * as PathToRegexp from 'path-to-regexp'
 
 export function getPathParams<Params>(path: string): (keyof Params)[] {
-  const keys = <Key[]>(
+  const keys = <PathToRegexp.Key[]>(
     PathToRegexp.parse(path).filter(t => typeof t !== 'string')
   )
 
@@ -16,6 +16,6 @@ export function getPathParams<Params>(path: string): (keyof Params)[] {
   return keys.map(k => <keyof Params>k.name)
 }
 
-export function populatePath<Params>(path: string, params: Params): string {
+export function populatePath(path: string, params: any = {}): string {
   return PathToRegexp.compile(path)(params)
 }

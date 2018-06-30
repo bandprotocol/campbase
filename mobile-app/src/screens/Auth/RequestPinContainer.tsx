@@ -46,13 +46,10 @@ class RequestPinScreen extends React.Component<
 
   @autobind
   async onRequestPin() {
-    // Debug:
-    this.props.navigation.navigate('ValidatePin')
-
     if (!this.state.validNumber) {
       return Alert.alert(
         'Hang on, cowboy!',
-        'Ya gotta enter valid phone number before riding the horse.'
+        "You've got to enter valid phone number before riding the horse."
       )
     }
 

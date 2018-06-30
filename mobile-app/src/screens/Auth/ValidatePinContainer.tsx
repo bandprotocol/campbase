@@ -21,9 +21,43 @@ class ValidatePinScreen extends React.Component<
     code: [],
   }
 
+  @autobind
+  onValidatePin() {}
+
+  @autobind
+  onDigit(digit) {
+    if (this.state.code.length < 6)
+      this.setState({
+        code: this.state.code.concat(digit),
+      })
+  }
+
+  @autobind
+  onReset() {
+    this.setState({
+      code: [],
+    })
+  }
+
+  @autobind
+  onDelete() {
+    this.setState({
+      code: this.state.code.slice(0, -1),
+    })
+  }
+
   render() {
     const { code } = this.state
-    return <ValidatePin code={code} />
+    return (
+      <ValidatePin
+        isCodeValid={code.length === 6}
+        code={code}
+        onDigit={this.onDigit}
+        onReset={this.onReset}
+        onDelete={this.onDelete}
+        onValidatePin={this.onValidatePin}
+      />
+    )
   }
 }
 

@@ -35,6 +35,7 @@ export const requestPin = (
       },
     })
   } catch (e) {
+    console.log(e)
     // TODO: Display error
     Alert.alert('Pin Request Failed', 'Please try again with different number')
     return false
