@@ -1,4 +1,5 @@
 import * as Koa from 'koa'
+import * as KoaLogger from 'koa-logger'
 import { useRoutes } from './route/api'
 import { useValidateMethods } from '~/route/middlewares/validate-methods'
 import { useAuthentication } from '~/route/middlewares/authentication'
@@ -7,6 +8,7 @@ import { PORT } from './config'
 
 const app = new Koa()
 
+app.use(KoaLogger())
 useSuccessFailMethods(app)
 useAuthentication(app)
 useValidateMethods(app)
