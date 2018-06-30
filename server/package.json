@@ -9,6 +9,7 @@
     "start": "nodemon --watch src --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "test": "cross-env NODE_ENV=test nyc mocha",
     "test-coverage": "istanbul test",
+    "rollback-dev": "knex migrate:rollback --env dev",
     "migrate-dev": "knex migrate:latest --env dev",
     "seed-dev": "knex seed:run --env dev"
   },

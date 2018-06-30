@@ -108,7 +108,7 @@ describe('route:api:auth', () => {
         .post(`/auth/v1/pin/validate`)
         .send({
           country_code: '1',
-          phone_number: '123456789',
+          phone_number: '8888888888',
           phone_pin: '1111',
         })
 
@@ -122,7 +122,7 @@ describe('route:api:auth', () => {
       jwtDecoded.data.should.include.key('id')
       jwtDecoded.data.should.contain({
         country_code: '1',
-        phone_number: '123456789',
+        phone_number: '8888888888',
       })
     })
   })

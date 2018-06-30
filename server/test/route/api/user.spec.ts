@@ -86,7 +86,7 @@ describe('route:api:user', () => {
           'Authorization',
           createAuthorizationHeader({
             country_code: '1',
-            phone_number: '123456789',
+            phone_number: '8888888888',
           })
         )
         .send({
@@ -125,7 +125,7 @@ describe('route:api:user', () => {
           createAuthorizationHeader({
             id: 1,
             country_code: '1',
-            phone_number: '123456789',
+            phone_number: '8888888888',
           })
         )
         .send()
@@ -133,7 +133,7 @@ describe('route:api:user', () => {
       res.should.have.status(200)
       res.body.data.should.contain({
         country_code: '1',
-        phone_number: '123456789',
+        phone_number: '8888888888',
         email: 'user@example.com',
         email_activated: true,
         display_name: 'Example User',

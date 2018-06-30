@@ -14,7 +14,7 @@ describe('common:jwt', () => {
       const user: JWTUserInterface = {
         id: 1,
         country_code: '1',
-        phone_number: '123456789',
+        phone_number: '8888888888',
       }
       const mockJWTUser = <JWTUser>{
         serialized: user,
@@ -37,7 +37,7 @@ describe('common:jwt', () => {
       const user: JWTUserInterface = {
         id: 1,
         country_code: '1',
-        phone_number: '123456789',
+        phone_number: '8888888888',
       }
       const mockJWTUser = <JWTUser>{
         serialized: user,

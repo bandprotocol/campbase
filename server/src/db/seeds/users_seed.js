@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       return knex('users').insert([
         {
           country_code: '1',
-          phone_number: '123456789',
+          phone_number: '8888888888',
           email: 'user@example.com',
           email_activated: true,
           display_name: 'Example User',
@@ -14,7 +14,7 @@ exports.seed = function(knex, Promise) {
         },
         {
           country_code: '1',
-          phone_number: '234567891',
+          phone_number: '8889990000',
           email: 'user_email_unactivated@example.com',
           email_activated: false,
           display_name: 'Example User (Unactivated)',
