@@ -22,7 +22,11 @@ class ValidatePinScreen extends React.Component<
   }
 
   @autobind
-  onValidatePin() {}
+  async onValidatePin() {
+    if (this.state.code.length === 6) {
+      await this.props.validatePin(this.state.code.join(''))
+    }
+  }
 
   @autobind
   onDigit(digit) {

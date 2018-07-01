@@ -3,4 +3,5 @@
  */
 
 export * from './helpers'
+export * from './interfaces'
 export { bindActionCreators as bindActions } from 'redux'
