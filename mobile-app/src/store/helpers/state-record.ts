@@ -28,3 +28,8 @@ export const createStateRecord = <S>(DefaultState: S) => {
     <StateRecord<R, S>>cls
   return TypeInjector(Record(DefaultState))
 }
+
+export type StateRecordType<S> = StateRecord<
+  Record.ClassWithType<S, keyof S>,
+  S
+>

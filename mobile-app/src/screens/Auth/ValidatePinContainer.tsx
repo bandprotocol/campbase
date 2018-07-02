@@ -2,16 +2,17 @@ import * as React from 'react'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import ValidatePin from './ValidatePin'
-import { connect, bindActions } from '~/store'
+import { connect, bindActions, StateType } from '~/store'
 import { validatePin } from '~/store/app/Auth/action'
+import { Dispatch } from 'react-redux'
 
 type Props = PropTypes.withNavigation
 type State = {
   code: string[]
 }
 
-const mapState = state => ({ state })
-const mapAction = dispatch => bindActions({ validatePin }, dispatch)
+const mapState = (state: StateType) => ({ state })
+const mapAction = (dispatch: Dispatch) => bindActions({ validatePin }, dispatch)
 
 class ValidatePinScreen extends React.Component<
   Props & ReturnType<typeof mapState> & ReturnType<typeof mapAction>,
@@ -23,8 +24,20 @@ class ValidatePinScreen extends React.Component<
 
   @autobind
   async onValidatePin() {
-    if (this.state.code.length === 6) {
-      await this.props.validatePin(this.state.code.join(''))
+    if (this.state.code.length !== 6) return null
+
+    const result = await this.props.validatePin(this.state.code.join(''))
+
+    console.log(result)
+
+    if (result) {
+      if (result.account_created) {
+        // Just login
+        this.props.navigation.navigate('CommunitySuggested')
+      } else {
+        // Go to sign up
+        this.props.navigation.navigate('UserSignUp')
+      }
     }
   }
 

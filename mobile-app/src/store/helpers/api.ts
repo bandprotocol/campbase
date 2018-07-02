@@ -6,29 +6,32 @@ import { Record } from 'immutable'
 import { APIMethod } from 'spec/api/base'
 import { query } from './query'
 import { createScopedActionTypes } from './create-scoped-action-types'
+import { createStateRecord, StateRecordType } from '~/store'
 
 export type APIParamsType<T> = T | ((state) => T)
 export type APIResponseType<T> = Promise<(dispatch, getState) => Promise<T>>
-
-const DefaultState = {
-  fetching: false,
-  success: null,
-  error: null,
-  data: null,
-}
-
-class State<Response> extends Record(DefaultState) {
-  fetching: boolean
-  success: boolean
-  error: string
-  data: Response
-}
 
 enum actions {
   FETCH = 'FETCH',
   SUCCESS = 'SUCCESS',
   FAIL = 'FAIL',
 }
+
+type StateType<Response> = {
+  fetching: boolean
+  success: boolean
+  error: string
+  data: Response
+}
+
+const defaultState = {
+  fetching: false,
+  success: null,
+  error: null,
+  data: null,
+}
+
+const StateRecord = createStateRecord(defaultState as StateType<any>)
 
 export class API<Params = any, Response = any> {
   private actionTypes: any
@@ -104,36 +107,36 @@ export class API<Params = any, Response = any> {
 
   /** A simple reducer for storing API status inside Redux */
   reducer(
-    state = new State<Response>(DefaultState),
+    state = new StateRecord(),
     {
       type,
       payload,
     }: { type: string; payload: { data: Response; error: string } }
-  ): State<Response> {
+  ): StateRecordType<Response> {
     switch (type) {
       case this.actionTypes.FETCH:
-        return new State<Response>({
+        return <StateRecordType<Response>>new StateRecord({
           fetching: true,
           success: null,
           error: null,
           data: null,
         })
       case this.actionTypes.SUCCESS:
-        return new State<Response>({
+        return <StateRecordType<Response>>new StateRecord({
           fetching: false,
           success: true,
           error: null,
           data: payload.data,
         })
       case this.actionTypes.FAIL:
-        return new State<Response>({
+        return <StateRecordType<Response>>new StateRecord({
           fetching: false,
           success: false,
           error: payload.error,
           data: null,
         })
       default:
-        return state
+        return <StateRecordType<Response>>state
     }
   }
 }

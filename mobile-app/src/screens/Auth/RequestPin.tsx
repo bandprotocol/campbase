@@ -23,7 +23,8 @@ const Form = Styled.View`
 const Image = Styled.Image.attrs({
   resizeMode: 'contain',
 })`
-  width: 200;
+  width: 120;
+  height: 80;
   margin-bottom: 30;
 `
 const Header = Styled.Text`

@@ -13,7 +13,8 @@ import {
   SyncActionCreator,
   createScopedActionTypes,
 } from '~/store'
-import { AuthRequestPin, AuthValidatePin } from '~/store/api'
+import { AuthRequestPin, AuthValidatePin, UserSignUp } from '~/store/api'
+import { getCurrentUser } from '~/store/app/User/action'
 import { AuthValidatePin as AuthValidatePinSpec } from 'spec/api/auth'
 
 enum actions {
@@ -78,6 +79,29 @@ export const validatePin: AsyncActionCreator<
   }
 }
 
+export const userSignUp: AsyncActionCreator<boolean> = (
+  display_name,
+  email: string
+) => async (dispatch, getState) => {
+  const { country_code, phone_number } = getState().app.Auth
+
+  try {
+    const result = await dispatch(
+      UserSignUp.POST.action({
+        display_name,
+        email,
+      })
+    )
+
+    dispatch(login(result.jwt))
+
+    return true
+  } catch (e) {
+    Alert.alert('Sign Up Failed', e.toString())
+    return false
+  }
+}
+
 /* Revive session */
 export const revive: AsyncActionCreator<void> = () => async (
   dispatch,
@@ -123,6 +147,8 @@ export const login: AsyncActionCreator<void> = jwt => async (
 ) => {
   try {
     await setPersistentJWT(jwt)
+
+    await getCurrentUser()
 
     dispatch({
       type: actionTypes.LOGIN,

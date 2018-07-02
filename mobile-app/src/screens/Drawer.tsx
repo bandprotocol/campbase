@@ -2,6 +2,7 @@ import * as React from 'react'
 import Styled from '~/styled-components'
 import { DrawerActions } from 'react-navigation'
 import { Size, Color } from '~/utils'
+import { connect } from '~/store'
 import { PropTypes } from 'declare'
 
 const ProfileSrc = require('~/assets/profile-5.jpg')
@@ -76,8 +77,10 @@ const LinkText = Styled.Text`
   opacity: ${p => (p.active ? '1' : '0.6')};
 `
 
-export default class Drawer extends React.Component<
-  PropTypes.withNavigation & PropTypes.withDrawer
+const mapState = state => ({ user: state.app.User })
+
+class Drawer extends React.Component<
+  PropTypes.withNavigation & PropTypes.withDrawer & ReturnType<typeof mapState>
 > {
   goTo(path) {
     const { navigation } = this.props
@@ -86,7 +89,7 @@ export default class Drawer extends React.Component<
   }
 
   render() {
-    const { navigation, activeItemKey } = this.props
+    const { navigation, activeItemKey, user } = this.props
 
     if (activeItemKey === 'AuthStack' || activeItemKey === 'Welcome')
       return (
@@ -102,7 +105,7 @@ export default class Drawer extends React.Component<
       <Container>
         <Top />
         <Bottom>
-          <Name>Maddy Belle</Name>
+          <Name>{user.display_name}</Name>
           <Status>Super Member</Status>
           <Links>
             <Link onPress={() => this.goTo('CommunitySuggested')}>
@@ -121,8 +124,10 @@ export default class Drawer extends React.Component<
             <SignOutText>Sign Out</SignOutText>
           </SignOut>
         </Bottom>
-        <ProfileImage source={ProfileSrc} />
+        <ProfileImage source={{ url: user.profile_image }} />
       </Container>
     )
   }
 }
+
+export default connect(mapState)(Drawer)
