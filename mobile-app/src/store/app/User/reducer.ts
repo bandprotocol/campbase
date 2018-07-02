@@ -32,8 +32,7 @@ export default (
 ): StateRecordType => {
   switch (type) {
     case actionTypes.SET_CURRENT_USER:
-      return
-      state
+      return state
         .set('id', payload.id)
         .set('country_code', payload.country_code)
         .set('phone_number', payload.phone_number)

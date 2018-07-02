@@ -5,11 +5,11 @@ import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import { connect, bindActions } from '~/store'
 import { requestPin } from '~/store/app/Auth/action'
+import PhoneInput from 'react-native-phone-input'
 
 type Props = PropTypes.withNavigation
 type State = {
-  countryCode: string
-  phoneNumber: string
+  fullPhoneNumber: string
   validNumber: boolean
 }
 
@@ -23,23 +23,14 @@ class RequestPinScreen extends React.Component<
   private phoneNumberPicker
 
   state = {
-    countryCode: '',
-    phoneNumber: '',
+    fullPhoneNumber: '',
     validNumber: false,
-  }
-
-  @autobind
-  onSelectCountry(countryCode: string) {
-    this.setState({
-      countryCode,
-      validNumber: this.phoneNumberPicker.isValidNumber(),
-    })
   }
 
   @autobind
   onChangePhoneNumber(phoneNumber: string) {
     this.setState({
-      phoneNumber,
+      fullPhoneNumber: phoneNumber,
       validNumber: this.phoneNumberPicker.isValidNumber(),
     })
   }
@@ -53,12 +44,12 @@ class RequestPinScreen extends React.Component<
       )
     }
 
-    if (
-      await this.props.requestPin(
-        this.state.countryCode,
-        this.state.phoneNumber
-      )
-    ) {
+    const countryCode = this.phoneNumberPicker.getCountryCode()
+    const phoneNumber = this.phoneNumberPicker
+      .getValue()
+      .slice(1 + countryCode.length)
+
+    if (await this.props.requestPin(countryCode, phoneNumber)) {
       this.props.navigation.navigate('ValidatePin')
     }
   }
@@ -68,7 +59,6 @@ class RequestPinScreen extends React.Component<
       <RequestPin
         isValidNumber={this.state.validNumber}
         onRequestPin={this.onRequestPin}
-        onSelectCountry={this.onSelectCountry}
         onChangePhoneNumber={this.onChangePhoneNumber}
         refPhoneNumberPicker={ref => (this.phoneNumberPicker = ref)}
       />

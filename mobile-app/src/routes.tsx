@@ -12,7 +12,7 @@ import { Color, Size } from '~/utils'
 import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 
-import Drawer from '~/screens/Drawer'
+import DrawerContainer from '~/screens/DrawerContainer'
 import WelcomeContainer from '~/screens/Welcome/WelcomeContainer'
 import RequestPinContainer from '~/screens/Auth/RequestPinContainer'
 import ValidatePinContainer from '~/screens/Auth/ValidatePinContainer'
@@ -232,7 +232,7 @@ const DrawerNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'AuthStack',
-    contentComponent: Drawer,
+    contentComponent: DrawerContainer,
   }
 )
 

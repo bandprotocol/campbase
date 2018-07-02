@@ -28,8 +28,6 @@ class ValidatePinScreen extends React.Component<
 
     const result = await this.props.validatePin(this.state.code.join(''))
 
-    console.log(result)
-
     if (result) {
       if (result.account_created) {
         // Just login

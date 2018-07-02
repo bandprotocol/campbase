@@ -16,7 +16,7 @@ export const getCurrentUser: AsyncActionCreator<boolean> = () => async (
   getState
 ) => {
   try {
-    const user = await dispatch(UserMe.GET.action)
+    const user = await dispatch(UserMe.GET.action())
 
     dispatch({
       type: actionTypes.SET_CURRENT_USER,

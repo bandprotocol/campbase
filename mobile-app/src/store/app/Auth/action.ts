@@ -67,9 +67,9 @@ export const validatePin: AsyncActionCreator<
     )
 
     if (result.account_created) {
-      dispatch(signup(result.jwt))
+      await dispatch(login(result.jwt))
     } else {
-      dispatch(login(result.jwt))
+      await dispatch(signup(result.jwt))
     }
 
     return result
@@ -93,7 +93,7 @@ export const userSignUp: AsyncActionCreator<boolean> = (
       })
     )
 
-    dispatch(login(result.jwt))
+    await dispatch(login(result.jwt))
 
     return true
   } catch (e) {
@@ -148,14 +148,14 @@ export const login: AsyncActionCreator<void> = jwt => async (
   try {
     await setPersistentJWT(jwt)
 
-    await getCurrentUser()
-
     dispatch({
       type: actionTypes.LOGIN,
       payload: {
         jwt,
       },
     })
+
+    await dispatch(getCurrentUser())
   } catch (e) {
     // Nothing here :)
   }

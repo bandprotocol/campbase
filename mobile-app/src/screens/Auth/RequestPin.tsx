@@ -57,7 +57,6 @@ const Instruction = Styled.Text`
 
 export default ({
   isValidNumber,
-  onSelectCountry,
   onChangePhoneNumber,
   onRequestPin,
   refPhoneNumberPicker,
@@ -69,7 +68,6 @@ export default ({
       <Header>Phone Verification</Header>
       <PhoneInputContainer>
         <PhoneInput
-          onSelectCountry={onSelectCountry}
           onChangePhoneNumber={onChangePhoneNumber}
           textStyle={{
             fontSize: 20,
