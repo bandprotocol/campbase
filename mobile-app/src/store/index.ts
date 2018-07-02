@@ -5,3 +5,4 @@
 export * from './helpers'
 export * from './interfaces'
 export { bindActionCreators as bindActions } from 'redux'
+export { Dispatch } from 'react-redux'
