@@ -1,8 +1,6 @@
 import * as React from 'react'
-import Styled from '~/styled-components'
 import { autobind } from '~/utils'
 import { DrawerActions } from 'react-navigation'
-import { Size, Color } from '~/utils'
 import { connect, StateType, Dispatch, bindActions } from '~/store'
 import { PropTypes } from 'declare'
 import { Drawer, DrawerNotLogin } from './Drawer'

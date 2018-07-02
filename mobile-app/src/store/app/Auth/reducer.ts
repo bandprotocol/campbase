@@ -26,8 +26,7 @@ export default (
 ): StateRecordType => {
   switch (type) {
     case actionTypes.SIGNUP:
-      return
-      state.set('jwt', payload.jwt).set('account_created', false)
+      return state.set('jwt', payload.jwt).set('account_created', false)
 
     case actionTypes.LOGIN:
       return state.set('jwt', payload.jwt).set('account_created', true)
