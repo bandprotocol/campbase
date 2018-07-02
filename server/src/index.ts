@@ -8,7 +8,10 @@ import { PORT } from './config'
 
 const app = new Koa()
 
-app.use(KoaLogger())
+if (process.env.NODE_ENV === 'development') {
+  app.use(KoaLogger())
+}
+
 useSuccessFailMethods(app)
 useAuthentication(app)
 useValidateMethods(app)

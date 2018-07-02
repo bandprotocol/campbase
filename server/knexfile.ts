@@ -3,7 +3,7 @@ const path = require('path')
 const BASE_PATH = path.join(__dirname, 'src', 'db')
 
 module.exports = {
-  dev: {
+  development: {
     client: 'mysql',
     connection: {
       database: 'campbase_api_dev',

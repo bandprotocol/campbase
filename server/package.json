@@ -6,12 +6,12 @@
   "author": "Band Protocol Developers <dev@bandprotocol.com>",
   "license": "PRIVATE",
   "scripts": {
-    "start": "nodemon --watch src --exec ts-node -r tsconfig-paths/register ./src/index.ts",
+    "start": "cross-env NODE_ENV=development nodemon --watch src --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "test": "cross-env NODE_ENV=test nyc mocha",
     "test-coverage": "istanbul test",
-    "rollback-dev": "knex migrate:rollback --env dev",
-    "migrate-dev": "knex migrate:latest --env dev",
-    "seed-dev": "knex seed:run --env dev"
+    "rollback-dev": "knex migrate:rollback --env development",
+    "migrate-dev": "knex migrate:latest --env development",
+    "seed-dev": "knex seed:run --env development"
   },
   "nyc": {
     "include": [
