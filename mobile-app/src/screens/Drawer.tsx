@@ -23,11 +23,11 @@ const Name = Styled.Text`
   font-weight: bold;
   font-size: 22;
   color: ${Color.primary};
-  line-height: 26;
+  line-height: 30;
 `
 const Status = Styled.Text`
   font-size: 16;
-  color: #777777;
+  color: #999999;
 `
 
 const ProfileImage = Styled.Image`
@@ -74,19 +74,19 @@ const LinkText = Styled.Text`
   opacity: ${p => (p.active ? '1' : '0.6')};
 `
 
-export const Drawer = ({ user, activeItemKey, onSignOut }) => (
+export const Drawer = ({ user, activeItemKey, onSignOut, goTo }) => (
   <Container>
     <Top />
     <Bottom>
       <Name>{user.display_name}</Name>
       <Status>Loyal Member</Status>
       <Links>
-        <Link onPress={() => this.goTo('CommunitySuggested')}>
+        <Link onPress={() => goTo('CommunitySuggested')}>
           <LinkText active={activeItemKey === 'RootStack'}>
             Communities
           </LinkText>
         </Link>
-        <Link onPress={() => this.goTo('Wallet')}>
+        <Link onPress={() => goTo('Wallet')}>
           <LinkText active={activeItemKey === 'WalletStack'}>Wallet</LinkText>
         </Link>
       </Links>

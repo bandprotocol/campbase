@@ -35,6 +35,7 @@ class DrawerContainer extends React.Component<
         activeItemKey={activeItemKey}
         user={user}
         onSignOut={this.onSignOut}
+        goTo={this.goTo}
       />
     )
   }
