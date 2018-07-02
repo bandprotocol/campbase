@@ -6,7 +6,7 @@ export namespace AuthRequestPin {
       country_code: string
       phone_number: string
     }
-    export type response = undefined
+    export type response = {}
   }
 }
 
@@ -34,6 +34,6 @@ export namespace AuthActivateEmail {
       email: string
       secret: string
     }
-    export type response = undefined
+    export type response = {}
   }
 }
