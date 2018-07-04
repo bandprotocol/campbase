@@ -112,28 +112,28 @@ export class API<Params = any, Response = any> {
   ): StateRecordType<Response> {
     switch (type) {
       case this.actionTypes.FETCH:
-        return <StateRecordType<Response>>new StateRecord({
+        return new StateRecord({
           fetching: true,
           success: null,
           error: null,
           data: null,
         })
       case this.actionTypes.SUCCESS:
-        return <StateRecordType<Response>>new StateRecord({
+        return new StateRecord({
           fetching: false,
           success: true,
           error: null,
           data: payload.data,
         })
       case this.actionTypes.FAIL:
-        return <StateRecordType<Response>>new StateRecord({
+        return new StateRecord({
           fetching: false,
           success: false,
           error: payload.error,
           data: null,
         })
       default:
-        return <StateRecordType<Response>>state
+        return state
     }
   }
 }

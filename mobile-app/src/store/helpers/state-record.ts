@@ -7,14 +7,12 @@ import { Record } from 'immutable'
 // Overload Record to support getter via key
 declare module 'immutable' {
   export namespace Record {
-    export interface ClassWithType<T, K extends keyof T> extends Map<K, T[K]> {
+    export interface TypedClass<T> extends Map<keyof T, T[keyof T]> {
       new (state?: T): any
     }
   }
 
-  export function Record<T, K extends keyof T>(
-    defaultValues: T
-  ): Record.ClassWithType<T, K>
+  export function Record<T>(defaultValues: T): Record.TypedClass<T>
 }
 
 type StateRecord<R, S> = {
@@ -29,7 +27,4 @@ export const createStateRecord = <S>(DefaultState: S) => {
   return TypeInjector(Record(DefaultState))
 }
 
-export type StateRecordType<S> = StateRecord<
-  Record.ClassWithType<S, keyof S>,
-  S
->
+export type StateRecordType<S> = StateRecord<Record.TypedClass<S>, S>
