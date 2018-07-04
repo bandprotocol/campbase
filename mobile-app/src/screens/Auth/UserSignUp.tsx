@@ -2,7 +2,6 @@ import * as React from 'react'
 import Styled from '~/styled-components'
 import ColorButton from '~/components/ColorButton'
 import { Color, Fonts } from '~/utils'
-import PhoneInput from 'react-native-phone-input'
 
 const SignupDoneSrc = require('~/assets/images/signup-done.png')
 
