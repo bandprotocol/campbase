@@ -1,26 +1,21 @@
 import * as React from 'react'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
-import List from './List'
+import Mnnemonic from './Mnnemonic'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
-import {
-  generateNewWallet,
-  setPassword,
-  setEncryptedKey,
-} from '~/store/app/CreateWallet/action'
+import { setPassword, setEncryptedKey } from '~/store/app/CreateWallet/action'
 import { Dispatch } from 'react-redux'
 
 type Props = PropTypes.withNavigation
 type State = {
-  passcode: string[]
+  passcode: string
 }
 
 const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
-      generateNewWallet,
       setPassword,
       setEncryptedKey,
     },
@@ -32,8 +27,7 @@ class WalletListScreen extends React.Component<
   State
 > {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Your Wallet',
-    headerLeft: <DrawerButton navigation={navigation} />,
+    title: 'Create New Wallet',
     // headerRight: (
     //   <HeaderButton
     //     name="ios-archive"
@@ -43,18 +37,28 @@ class WalletListScreen extends React.Component<
   })
 
   state = {
-    passcode: [],
+    passcode: '',
   }
 
   @autobind
-  async onCreateWallet() {
-    await this.props.generateNewWallet()
-    this.props.navigation.push('NewWalletMnemonic')
+  onSetPasscode() {
+    const passcode = '10'
+    this.setState({ passcode })
+  }
+
+  @autobind
+  onConfirmasscode(confirmPasscode) {
+    const { passcode } = this.state
   }
 
   render() {
     const { passcode } = this.state
-    return <List onCreateWallet={this.onCreateWallet} />
+    return (
+      <Mnnemonic
+        onSetPasscode={this.onSetPasscode}
+        mnemonic={this.props.newWallet.mnemonic}
+      />
+    )
   }
 }
 

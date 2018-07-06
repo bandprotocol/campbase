@@ -39,6 +39,7 @@ import AttentionTokens from '~/screens/Community/Inventory/AttentionTokens'
 import Subscription from '~/screens/Community/Subscription'
 
 import WalletListContainer from '~/screens/Wallet/ListContainer'
+import NewWalletMnemonicContainer from '~/screens/Wallet/New/MnemonicContainer'
 
 const AuthStack = createStackNavigator(
   {
@@ -197,6 +198,7 @@ RootStack.navigationOptions = {
 const WalletStack = createStackNavigator(
   {
     WalletList: WalletListContainer,
+    NewWalletMnemonic: NewWalletMnemonicContainer,
   },
   {
     initialRouteName: 'WalletList',

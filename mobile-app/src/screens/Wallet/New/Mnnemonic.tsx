@@ -2,8 +2,7 @@ import * as React from 'react'
 import Styled from '~/styled-components'
 import ColorButton from '~/components/ColorButton'
 import { Color, Fonts, Size } from '~/utils'
-
-const WalletSrc = require('~/assets/images/wallet.png')
+import MnemonicPanel from '~/components/MnemonicPanel'
 
 const Container = Styled.View`
   flex: 1;
@@ -20,17 +19,10 @@ const Spacer = Styled.View`
 const Form = Styled.View`
   align-items: center;
 `
-const Image = Styled.Image.attrs({
-  resizeMode: 'contain',
-})`
-  width: 180;
-  height: 160;
-  margin-bottom: 30;
-`
 const Header = Styled.Text`
   font-family: ${Fonts.header};
   color: ${Color.white};
-  font-size: 28;
+  font-size: 32;
 `
 const SubHeader = Styled.Text`
   font-family: ${Fonts.subheader};
@@ -40,6 +32,7 @@ const SubHeader = Styled.Text`
   margin-top: 20;
   margin-horizontal: 30;
   text-align: center;
+  margin-bottom: 30;
 `
 
 const ButtonContainer = Styled.View`
@@ -47,42 +40,23 @@ const ButtonContainer = Styled.View`
   margin-bottom: 50;
   align-items: center;
 `
-const PhoneInputContainer = Styled.View`
-  background: ${Color.white};
-  border-radius: 6;
-  width: 280;
-  padding-horizontal: 20;
-  padding-vertical: 15;
-  margin-top: 20;
-`
-const Instruction = Styled.Text`
-  font-family: ${Fonts.subheader};
-  color: ${Color.white};
-  font-size: 18;
-  margin-bottom: 30;
-  line-height: 32;
-  text-align: center;
-`
 
-export default ({ onCreateWallet }) => (
+export default ({ mnemonic, onSetPasscode }) => (
   <Container>
     <Spacer />
     <Form>
-      <Image source={WalletSrc} />
-      <Header>Keep Your Tokens Safe</Header>
-      <SubHeader>
-        Campbase wallet offers maximum security. Yet it's so easy your mom can
-        use.
-      </SubHeader>
+      <Header>Recovery Words</Header>
+      <SubHeader>Write down these words and don't lose them.</SubHeader>
+      <MnemonicPanel mnemonic={mnemonic} />
     </Form>
     <Spacer />
     <ButtonContainer>
       <ColorButton
         color={Color.green}
         style={{ width: 250 }}
-        onClick={onCreateWallet}
+        onClick={onSetPasscode}
       >
-        CREATE WALLET
+        SET PASSCODE
       </ColorButton>
     </ButtonContainer>
   </Container>

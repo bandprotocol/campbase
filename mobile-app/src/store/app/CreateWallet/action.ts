@@ -14,13 +14,16 @@ enum actions {
 }
 export const actionTypes = createScopedActionTypes('app.CreateWallet', actions)
 
-export const generateNewWallet: SyncActionCreator<any> = () => {
+export const generateNewWallet: AsyncActionCreator<any> = () => async (
+  dispatch,
+  getState
+) => {
   const { mnemonic, address } = BandProtocolClient.generateRandomKey()
-  console.log('MNEEMONIC', mnemonic, address)
-  return {
+
+  dispatch({
     type: actionTypes.SET_WALLET,
     payload: { mnemonic, address },
-  }
+  })
 }
 
 export const setPassword: SyncActionCreator<any> = (password: string) => ({
