@@ -25,10 +25,10 @@ export default (
   { type, payload }
 ): StateRecordType => {
   switch (type) {
-    case actionTypes.SET_MNEMONIC:
-      return state.set('mnemonic', payload.value)
-    case actionTypes.SET_ADDRESS:
-      return state.set('address', payload.value)
+    case actionTypes.SET_WALLET:
+      return state
+        .set('mnemonic', payload.mnemonic)
+        .set('address', payload.address)
     case actionTypes.SET_PASSWORD:
       return state.set('password', payload.value)
     case actionTypes.SET_ENCRYPTED_KEY:

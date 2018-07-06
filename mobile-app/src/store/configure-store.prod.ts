@@ -4,11 +4,11 @@
  */
 
 import { applyMiddleware, compose, createStore } from 'redux'
-// import { revive } from '~/store/app/Auth/action'
+import { revive } from '~/store/app/Auth/action'
 import thunk from 'redux-thunk'
 import rootReducer from './root-reducer'
 
-export default function configureStoreProd(initialState = {}) {
+export default async function configureStoreProd(initialState = {}) {
   /* Stack of middlewares to apply */
   const middlewares = [thunk]
 
@@ -19,7 +19,7 @@ export default function configureStoreProd(initialState = {}) {
   )
 
   // Revive session
-  // store.dispatch(revive())
+  await store.dispatch(revive())
 
   return store
 }

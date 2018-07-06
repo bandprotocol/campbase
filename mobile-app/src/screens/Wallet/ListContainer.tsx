@@ -3,10 +3,9 @@ import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import List from './List'
 import { connect, bindActions, StateType } from '~/store'
-import BandProtocolClient from 'bandprotocol'
+import DrawerButton from '~/components/DrawerButton'
 import {
-  setAddress,
-  setMnemonic,
+  generateNewWallet,
   setPassword,
   setEncryptedKey,
 } from '~/store/app/CreateWallet/action'
@@ -14,15 +13,14 @@ import { Dispatch } from 'react-redux'
 
 type Props = PropTypes.withNavigation
 type State = {
-  code: string[]
+  passcode: string[]
 }
 
 const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
-      setAddress,
-      setMnemonic,
+      generateNewWallet,
       setPassword,
       setEncryptedKey,
     },
@@ -33,13 +31,28 @@ class WalletListScreen extends React.Component<
   Props & ReturnType<typeof mapState> & ReturnType<typeof mapAction>,
   State
 > {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Your Wallet',
+    headerLeft: <DrawerButton navigation={navigation} />,
+    // headerRight: (
+    //   <HeaderButton
+    //     name="ios-archive"
+    //     onClick={() => navigation.navigate('Inventory')}
+    //   />
+    // ),
+  })
+
+  state = {
+    passcode: [],
+  }
+
   @autobind
   onCreateWallet() {
-    const {} = BandProtocolClient.generateRandomKey()
+    this.props.generateNewWallet()
   }
 
   render() {
-    const { code } = this.state
+    const { passcode } = this.state
     return <List onCreateWallet={this.onCreateWallet} />
   }
 }

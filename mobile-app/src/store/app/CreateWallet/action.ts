@@ -5,24 +5,23 @@ import {
   createScopedActionTypes,
 } from '~/store'
 import { UserMe } from '~/store/api'
+import BandProtocolClient from 'bandprotocol'
 
 enum actions {
-  SET_MNEMONIC = 'SET_MNEMONIC',
-  SET_ADDRESS = 'SET_ADDRESS',
+  SET_WALLET = 'SET_WALLET',
   SET_PASSWORD = 'SET_PASSWORD',
   SET_ENCRYPTED_KEY = 'SET_ENCRYPTED_KEY',
 }
 export const actionTypes = createScopedActionTypes('app.CreateWallet', actions)
 
-export const setMnemonic: SyncActionCreator<any> = (mnemonic: string[]) => ({
-  type: actionTypes.SET_MNEMONIC,
-  payload: { value: mnemonic },
-})
-
-export const setAddress: SyncActionCreator<any> = (address: string) => ({
-  type: actionTypes.SET_ADDRESS,
-  payload: { value: address },
-})
+export const generateNewWallet: SyncActionCreator<any> = () => {
+  const { mnemonic, address } = BandProtocolClient.generateRandomKey()
+  console.log('MNEEMONIC', mnemonic, address)
+  return {
+    type: actionTypes.SET_WALLET,
+    payload: { mnemonic, address },
+  }
+}
 
 export const setPassword: SyncActionCreator<any> = (password: string) => ({
   type: actionTypes.SET_PASSWORD,

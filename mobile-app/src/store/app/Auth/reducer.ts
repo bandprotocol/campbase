@@ -10,11 +10,13 @@ const DefaultState = {
   country_code: null,
   phone_number: null,
   account_created: false,
+  is_login: false,
 } as {
   jwt: string
   country_code: string
   phone_number: string
   account_created: boolean
+  is_login: boolean
 }
 
 const StateRecord = createStateRecord(DefaultState)
@@ -26,16 +28,19 @@ export default (
 ): StateRecordType => {
   switch (type) {
     case actionTypes.SIGNUP:
-      return state.set('jwt', payload.jwt).set('account_created', false)
+      return state
+        .set('jwt', payload.jwt)
+        .set('account_created', false)
+        .set('is_login', false)
 
     case actionTypes.LOGIN:
-      return state.set('jwt', payload.jwt).set('account_created', true)
-
-    case actionTypes.LOGIN:
-      return state.set('jwt', payload.jwt).set('account_created', true)
+      return state
+        .set('jwt', payload.jwt)
+        .set('account_created', true)
+        .set('is_login', true)
 
     case actionTypes.LOGOUT:
-      return state.remove('jwt')
+      return state.remove('jwt').set('login', false)
 
     case actionTypes.PHONE_AUTH:
       return state

@@ -38,7 +38,7 @@ import Inventory from '~/screens/Community/Inventory'
 import AttentionTokens from '~/screens/Community/Inventory/AttentionTokens'
 import Subscription from '~/screens/Community/Subscription'
 
-import Wallet from '~/screens/Wallet'
+import WalletListContainer from '~/screens/Wallet/ListContainer'
 
 const AuthStack = createStackNavigator(
   {
@@ -196,10 +196,10 @@ RootStack.navigationOptions = {
 
 const WalletStack = createStackNavigator(
   {
-    Wallet,
+    WalletList: WalletListContainer,
   },
   {
-    initialRouteName: 'Wallet',
+    initialRouteName: 'WalletList',
     navigationOptions: {
       headerTintColor: Color.primary,
       headerTransparent: true,

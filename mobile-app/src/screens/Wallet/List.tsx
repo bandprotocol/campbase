@@ -1,216 +1,88 @@
 import * as React from 'react'
-import { PropTypes } from '~/declare'
 import Styled from '~/styled-components'
-import { Ionicons } from '@expo/vector-icons'
-import { Button, Modal, Toast } from 'antd-mobile-rn'
-import { Color } from '~/utils'
-import ScreenContainer from '~/components/ScreenContainer'
+import ColorButton from '~/components/ColorButton'
+import { Color, Fonts } from '~/utils'
 
-import IconList from '~/components/IconList'
-import DrawerButton from '~/components/DrawerButton'
-import CommunityList from '~/components/CommunityList'
+const WalletSrc = require('~/assets/images/wallet.png')
 
-const ProfileBodyslamSrc = require('~/assets/band-bodyslam.jpg')
-const ProfilePotatoSrc = require('~/assets/band-potato.jpg')
-const ProfileZealSrc = require('~/assets/band-zeal.jpg')
-const ProfileTattooSrc = require('~/assets/band-tattoo.jpg')
-const ProfilPlaygroundSrc = require('~/assets/band-playground.jpg')
-const QRSrc = require('~/assets/product-qrcode.jpg')
-
-const WalletPanel = Styled.View`
-  padding: 20px 30px;
-  background-color: ${Color.primary};
-`
-const BalanceContainer = Styled.View`
+const Container = Styled.View`
   flex: 1;
-`
-const WalletNameText = Styled.Text`
-  font-size: 18px;
-  line-height: 28;
-  margin-bottom: 50;
-  color: #ffffff;
-`
-const BalanceButtonContainer = Styled.View`
-  flex-direction: row;
-`
-const BalanceText = Styled.Text`
-  font-size: 24px;
-  margin-top: 5px;
-  color: #ffffff;
-`
-const UnitText = Styled.Text`
-  font-size: 18px;
-`
-const BuySellButton = Styled.TouchableOpacity`
-  height: 40;
-  width: 40;
-  background: rgba(0,0,0,0.5);
-  border-radius: 6;
+  background-color: ${Color.primary};
   align-items: center;
   justify-content: center;
-  margin-left: 10;
-`
-const QRImage = Styled.Image`
-  aspect-ratio: 1;
-  resize-mode: contain;
-  margin-top: 10;
-  width: 100%;
-  height: null;
 `
 
-const mockCommunityTokens = [
-  {
-    id: 0,
-    name: 'Bodyslam',
-    profileImageSrc: ProfileBodyslamSrc,
-    detail: '528.32 BST',
-  },
-  {
-    id: 1,
-    name: 'Potato',
-    profileImageSrc: ProfilePotatoSrc,
-    detail: '763.23 PTT',
-  },
-  {
-    id: 2,
-    name: 'Zeal',
-    profileImageSrc: ProfileZealSrc,
-    detail: '183.33 ZLZ',
-  },
-]
+const Spacer = Styled.View`
+  flex: 1;
+`
 
-const mockTxns = [
-  {
-    id: 0,
-    name: 'Bodyslam',
-    profileImageSrc: ProfileBodyslamSrc,
-    detail: 'Buy 30.00 BST @0.134',
-  },
-  {
-    id: 1,
-    name: 'Bodyslam',
-    profileImageSrc: ProfileBodyslamSrc,
-    detail: 'Buy 74.00 BST @0.118',
-  },
-  {
-    id: 2,
-    name: 'Bodyslam',
-    profileImageSrc: ProfileBodyslamSrc,
-    detail: 'Sell 0.50 BST @0.156',
-  },
-]
+const Form = Styled.View`
+  align-items: center;
+`
+const Image = Styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  width: 180;
+  height: 160;
+  margin-bottom: 30;
+`
+const Header = Styled.Text`
+  font-family: ${Fonts.header};
+  color: ${Color.white};
+  font-size: 28;
+`
+const SubHeader = Styled.Text`
+  font-family: ${Fonts.subheader};
+  color: ${Color.white};
+  font-size: 20;
+  line-height: 30;
+  margin-top: 20;
+  margin-horizontal: 30;
+  text-align: center;
+`
 
-interface WalletScreenState {
-  showAddressModal: boolean
-}
+const ButtonContainer = Styled.View`
+  padding-horizontal: 40;
+  margin-bottom: 50;
+  align-items: center;
+`
+const PhoneInputContainer = Styled.View`
+  background: ${Color.white};
+  border-radius: 6;
+  width: 280;
+  padding-horizontal: 20;
+  padding-vertical: 15;
+  margin-top: 20;
+`
+const Instruction = Styled.Text`
+  font-family: ${Fonts.subheader};
+  color: ${Color.white};
+  font-size: 18;
+  margin-bottom: 30;
+  line-height: 32;
+  text-align: center;
+`
 
-export default class WalletScreen extends React.Component<
-  PropTypes.withNavigation,
-  WalletScreenState
-> {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'Your Wallet',
-    headerLeft: <DrawerButton navigation={navigation} />,
-    // headerRight: (
-    //   <HeaderButton
-    //     name="ios-archive"
-    //     onClick={() => navigation.navigate('Inventory')}
-    //   />
-    // ),
-  })
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      showAddressModal: false,
-    }
-  }
-
-  onSend() {
-    const promptAmount = () =>
-      Modal.prompt(
-        'Send BAND Tokens',
-        'Please input the amount',
-        [
-          { text: 'Cancel' },
-          {
-            text: 'Send',
-            onPress: async val =>
-              setTimeout(
-                () => Toast.success(`Successfully sent ${val} BAND`),
-                500
-              ),
-          },
-        ],
-        'Default',
-        null,
-        ['Amount of BAND you want to send']
-      )
-
-    Modal.prompt(
-      'Send BAND Tokens',
-      'Please input transaction information',
-      [
-        { text: 'Cancel' },
-        {
-          text: 'Next',
-          onPress: async () => setTimeout(promptAmount, 1000),
-        },
-      ],
-      'login-password',
-      null,
-      ['Recipient Address', 'Wallet Passcode']
-    )
-  }
-
-  onReceive() {
-    this.setState({ showAddressModal: true })
-  }
-
-  render() {
-    const { navigation } = this.props
-
-    return (
-      <ScreenContainer scrollable>
-        <WalletPanel>
-          <BalanceButtonContainer>
-            <BalanceContainer>
-              <BalanceText>
-                3,982.23 <UnitText>BAND</UnitText>
-              </BalanceText>
-            </BalanceContainer>
-
-            <BuySellButton onPress={this.onSend.bind(this)}>
-              <Ionicons name="md-arrow-round-up" size={24} color="#ffffff" />
-            </BuySellButton>
-            <BuySellButton onPress={this.onReceive.bind(this)}>
-              <Ionicons name="md-arrow-round-down" size={24} color="#ffffff" />
-            </BuySellButton>
-          </BalanceButtonContainer>
-        </WalletPanel>
-        <CommunityList
-          title="Community Tokens"
-          list={mockCommunityTokens}
-          onItemClick={id => navigation.navigate('Inventory')}
-        />
-        <CommunityList
-          title="Recent Transactions"
-          list={mockTxns}
-          onItemClick={id => navigation.navigate('Inventory')}
-        />
-
-        {/* QR Code Modal */}
-
-        <Modal
-          visible={this.state.showAddressModal}
-          maskClosable={true}
-          onClose={() => this.setState({ showAddressModal: false })}
-          title="Address: 0x13a8bf9450"
-          transparent
-        >
-          <QRImage source={QRSrc} />
-        </Modal>
-      </ScreenContainer>
-    )
-  }
-}
+export default ({ onCreateWallet }) => (
+  <Container>
+    <Spacer />
+    <Form>
+      <Image source={WalletSrc} />
+      <Header>Secure Your Tokens</Header>
+      <SubHeader>
+        Campbase wallet offers maximum security. Yet it's so easy your mom can
+        use.
+      </SubHeader>
+    </Form>
+    <Spacer />
+    <ButtonContainer>
+      <ColorButton
+        color={Color.green}
+        style={{ width: 250 }}
+        onClick={onCreateWallet}
+      >
+        CREATE WALLET
+      </ColorButton>
+    </ButtonContainer>
+  </Container>
+)

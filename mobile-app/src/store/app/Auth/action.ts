@@ -119,6 +119,8 @@ export const revive: AsyncActionCreator<void> = () => async (
           jwt,
         },
       })
+
+      await dispatch(getCurrentUser())
     }
   } catch (e) {
     // Nothing here :)

@@ -86,7 +86,7 @@ export const Drawer = ({ user, activeItemKey, onSignOut, goTo }) => (
             Communities
           </LinkText>
         </Link>
-        <Link onPress={() => goTo('Wallet')}>
+        <Link onPress={() => goTo('WalletList')}>
           <LinkText active={activeItemKey === 'WalletStack'}>Wallet</LinkText>
         </Link>
       </Links>
