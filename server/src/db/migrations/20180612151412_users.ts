@@ -1,4 +1,6 @@
-exports.up = function(knex, Promise) {
+import * as Knex from 'knex'
+
+exports.up = async function(knex: Knex): Promise<any> {
   return knex.schema.createTable('users', table => {
     table.increments('id').primary()
     table.unique(['country_code', 'phone_number'])
@@ -11,6 +13,6 @@ exports.up = function(knex, Promise) {
   })
 }
 
-exports.down = function(knex, Promise) {
+exports.down = async function(knex: Knex): Promise<any> {
   return knex.schema.dropTable('users')
 }

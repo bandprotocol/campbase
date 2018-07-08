@@ -1,9 +1,10 @@
 import ResourceRouter from '~/common/resource-router'
 import { APIResponseStatus as Status } from 'spec/api/base'
+import { DBWallets } from 'spec/db'
 import Knex from '~/db/connection'
 
 import { Context } from '~/route/interfaces'
-import { UserSignUp, UserMe } from 'spec/api/user'
+import { UserSignUp, UserMe, UserWallets } from 'spec/api/user'
 import { JWTUser } from 'common/jwt-user'
 import { signJWT } from 'common/jwt'
 
@@ -93,6 +94,27 @@ router.get(
       email_activated: !!email_activated,
       display_name,
       profile_image,
+    })
+  }
+)
+
+/**
+ * /api/v1/user/wallets
+ *
+ * Returns user's wallets
+ */
+router.get(
+  UserWallets.path,
+  async (ctx: Context<UserWallets.GET.params, UserWallets.GET.response>) => {
+    const wallets: Array<DBWallets> = await Knex('wallets').where({
+      user_id: ctx.user.id,
+    })
+
+    ctx.success(Status.OK, {
+      wallets: wallets.map(({ address, encrypted_key }) => ({
+        address,
+        encrypted_key,
+      })),
     })
   }
 )
