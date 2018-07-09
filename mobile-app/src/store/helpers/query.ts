@@ -65,6 +65,7 @@ export async function query<Params = any, Response = any>(
   } catch (e) {
     if (e.response) {
       const axiosData = <APIResponse<Response>>e.response.data
+      console.log('Query error', e.response)
       throw new QueryException(axiosData.status, axiosData.error)
     } else throw e
   }

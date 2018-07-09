@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { API } from '~/store/helpers/api'
 import { APIMethod } from 'spec/api/base'
-import { UserSignUp } from 'spec/api/user'
+import { Wallets } from 'spec/api/resources/wallets'
 
-export const POST = new API<UserSignUp.POST.params, UserSignUp.POST.response>(
-  'UserSignUp',
+export const POST = new API<Wallets.POST.params, Wallets.POST.response>(
+  'Wallets',
   APIMethod.POST,
-  UserSignUp.path
+  Wallets.path
 )
 
 export default combineReducers({

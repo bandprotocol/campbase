@@ -11,11 +11,12 @@ export namespace UserSignUp {
     }
   }
 }
+
 export namespace UserMe {
   export const path = '/api/v1/user/me'
 
   export namespace GET {
-    export type params = undefined
+    export type params = {}
     export type response = {
       id: number
       country_code: string
@@ -24,6 +25,20 @@ export namespace UserMe {
       email_activated: boolean
       display_name: string
       profile_image: string
+    }
+  }
+}
+
+export namespace UserWallets {
+  export const path = '/api/v1/user/wallets'
+
+  export namespace GET {
+    export type params = {}
+    export type response = {
+      wallets: Array<{
+        address: string
+        encrypted_key: string
+      }>
     }
   }
 }

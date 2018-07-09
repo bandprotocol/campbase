@@ -73,7 +73,7 @@ export const connect = <
       const apiState: Partial<WithAliasKey> = {}
       Object.keys(apis || {}).forEach(alias => {
         const api = apis[alias]
-        apiState[alias] = state.api[api.path][api.method]
+        apiState[alias] = state.api[api.name][api.method]
       })
 
       return Object.assign({ API_STATE: apiState }, stateToProps(

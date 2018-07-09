@@ -37,6 +37,7 @@ export class API<Params = any, Response = any> {
   private actionTypes: any
 
   constructor(
+    public name: string,
     public method: APIMethod,
     public path: string,
     private onSuccess?: (
