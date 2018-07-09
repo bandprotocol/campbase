@@ -35,7 +35,7 @@
     "antd-mobile-rn": "^2.2.0",
     "autobind-decorator": "^2.1.0",
     "axios": "^0.18.0",
-    "bandprotocol": "^0.3.2",
+    "bandprotocol": "^0.3.23",
     "expo": "^27.0.1",
     "immutable": "^3.8.2",
     "isomorphic-webcrypto": "^1.5.0",
@@ -45,12 +45,14 @@
     "react-native": "~0.55.2",
     "react-native-elevated-view": "^0.0.6",
     "react-native-phone-input": "^0.2.1",
+    "react-native-qrcode": "^0.2.6",
     "react-native-status-bar-height": "^2.0.0",
     "react-navigation": "^2.0.4",
     "react-navigation-material-bottom-tabs": "^0.3.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
+    "rn-prompt": "^1.0.3",
     "styled-components": "^3.3.3"
   },
   "prettier": {

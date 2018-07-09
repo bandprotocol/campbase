@@ -1773,9 +1773,9 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bandprotocol@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/bandprotocol/-/bandprotocol-0.3.2.tgz#90c89ef79c8b2e0d022601b997fbc8c87a8269f3"
+bandprotocol@^0.3.23:
+  version "0.3.23"
+  resolved "https://registry.yarnpkg.com/bandprotocol/-/bandprotocol-0.3.23.tgz#b96f51d659cda2ef07f156aa5a8acc35db4ae5dc"
 
 base-64@^0.1.0:
   version "0.1.0"
@@ -5752,6 +5752,10 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
 
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+
 qrcode-terminal@^0.11.0:
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.11.0.tgz#ffc6c28a2fc0bfb47052b47e23f4f446a5fbdb9e"
@@ -5972,6 +5976,14 @@ react-native-phone-input@^0.2.1:
     google-libphonenumber "^2.0.9"
     lodash "^4.17.4"
     prop-types "^15.5.10"
+
+react-native-qrcode@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-qrcode/-/react-native-qrcode-0.2.6.tgz#dd92f151c118860092af9fa5bc0995f2f9dddb16"
+  dependencies:
+    create-react-class "^15.6.0"
+    prop-types "^15.5.10"
+    qr.js "0.0.0"
 
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
@@ -6634,6 +6646,10 @@ rmc-tabs@~1.2.0:
   dependencies:
     babel-runtime "6.x"
     rc-gesture "~0.0.18"
+
+rn-prompt@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/rn-prompt/-/rn-prompt-1.0.3.tgz#038b7d30e1c508b0e215aa6c031d710b75fb15a4"
 
 rn-topview@^0.1.6:
   version "0.1.6"

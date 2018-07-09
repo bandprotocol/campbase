@@ -13,7 +13,6 @@
     "traceResolution": true,
     "paths": {
       "~/*": ["./*"],
-      "@/*": ["../"],
       "test/*": ["../test/*"]
     },
     "plugins": [

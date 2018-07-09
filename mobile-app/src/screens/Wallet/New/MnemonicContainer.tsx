@@ -2,7 +2,10 @@ import * as React from 'react'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import Mnnemonic from './Mnemonic'
-import { generateNewWallet } from '~/store/app/CreateWallet/action'
+import {
+  generateNewWallet,
+  resetNewWallet,
+} from '~/store/app/CreateWallet/action'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
 import { Dispatch } from 'react-redux'
@@ -17,6 +20,7 @@ const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
       generateNewWallet,
+      resetNewWallet,
     },
     dispatch
   )
@@ -36,6 +40,10 @@ class WalletListScreen extends React.Component<
 
   state = {
     passcode: '',
+  }
+
+  componentWillMount() {
+    this.props.resetNewWallet()
   }
 
   componentDidMount() {

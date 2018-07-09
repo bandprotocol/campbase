@@ -13,6 +13,11 @@ enum actions {
 }
 export const actionTypes = createScopedActionTypes('app.CreateWallet', actions)
 
+export const resetNewWallet: SyncActionCreator<any> = () => ({
+  type: actionTypes.RESET,
+  payload: {},
+})
+
 export const generateNewWallet: AsyncActionCreator<any> = () => async (
   dispatch,
   getState
@@ -23,10 +28,7 @@ export const generateNewWallet: AsyncActionCreator<any> = () => async (
     address,
   } = BandProtocolClient.generateRandomKey()
 
-  dispatch({
-    type: actionTypes.RESET,
-    payload: {},
-  })
+  dispatch(resetNewWallet())
 
   dispatch({
     type: actionTypes.SET_WALLET,
@@ -49,7 +51,7 @@ export const saveWallet: AsyncActionCreator<any> = () => async (
 
   const encrypted_key = client.key.encrypt(passcode)
 
-  console.log('encrypted_key', encrypted_key)
+  console.log('encrypted_key', encrypted_key, passcode)
 
   await dispatch(
     Wallets.POST.action({

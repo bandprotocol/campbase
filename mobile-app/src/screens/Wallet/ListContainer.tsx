@@ -16,7 +16,6 @@ type Props = PropTypes.withNavigation & {
   UserWallets: Function
 }
 type State = {
-  passcode: string[]
   wallets: any[]
 }
 
@@ -46,7 +45,6 @@ class WalletListScreen extends React.Component<
   })
 
   state = {
-    passcode: [],
     wallets: [],
   }
 
@@ -58,16 +56,17 @@ class WalletListScreen extends React.Component<
       httpEndpoint: BLOCKCHAIN_ENDPOINT,
     })
 
-    wallets.map(async w => {
-      const balance = await client.blockchain.balance({
-        address: w.address,
-        token: '0000000000000000000000000000000000000000',
-      })
+    const walletWithBalance = await Promise.all(
+      wallets.map(async wallet => ({
+        ...wallet,
+        balance: await client.blockchain.balance(
+          wallet.address,
+          '0000000000000000000000000000000000000000'
+        ),
+      }))
+    )
 
-      console.log('Balance', await balance())
-    })
-
-    this.setState({ wallets })
+    this.setState({ wallets: walletWithBalance })
   }
 
   @autobind
@@ -77,11 +76,12 @@ class WalletListScreen extends React.Component<
 
   @autobind
   onWalletClick(wallet) {
-    console.log('Wallet select', wallet)
+    console.log('Wallet select', { wallet })
+    this.props.navigation.navigate('WalletDetailMain', { wallet })
   }
 
   render() {
-    const { passcode, wallets } = this.state
+    const { wallets } = this.state
 
     if (wallets.length) {
       return <List onWalletClick={this.onWalletClick} wallets={wallets} />
