@@ -6,7 +6,7 @@ import { AuthValidatePin } from 'spec/api/auth'
 export const POST = new API<
   AuthValidatePin.POST.params,
   AuthValidatePin.POST.response
->(APIMethod.POST, AuthValidatePin.path)
+>('AuthValidatePin', APIMethod.POST, AuthValidatePin.path)
 
 export default combineReducers({
   POST: POST.reducer,

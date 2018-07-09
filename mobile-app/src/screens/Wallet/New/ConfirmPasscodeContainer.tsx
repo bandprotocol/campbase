@@ -1,10 +1,11 @@
 import * as React from 'react'
+import { StackActions, NavigationActions } from 'react-navigation'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
-import Mnnemonic from './Mnemonic'
-import { generateNewWallet } from '~/store/app/CreateWallet/action'
+import ConfirmPasscode from './ConfirmPasscode'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
+import { saveWallet } from '~/store/app/CreateWallet/action'
 import { Dispatch } from 'react-redux'
 
 type Props = PropTypes.withNavigation
@@ -16,10 +17,11 @@ const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
-      generateNewWallet,
+      saveWallet,
     },
     dispatch
   )
+
 class WalletListScreen extends React.Component<
   Props & ReturnType<typeof mapState> & ReturnType<typeof mapAction>,
   State
@@ -38,21 +40,34 @@ class WalletListScreen extends React.Component<
     passcode: '',
   }
 
-  componentDidMount() {
-    setTimeout(this.props.generateNewWallet, 100)
+  @autobind
+  onPasscodeChange(passcode) {
+    this.setState({ passcode })
   }
 
   @autobind
-  onSetPasscode() {
-    this.props.navigation.push('NewWalletSetPasscode')
+  async onPasscodeConfirm() {
+    if (this.props.newWallet.passcode !== this.state.passcode) {
+      console.log('Incorrect passcode confirmation')
+      return false
+    }
+
+    await this.props.saveWallet()
+
+    const resetAction = StackActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'WalletList' })],
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   render() {
     const { passcode } = this.state
     return (
-      <Mnnemonic
-        onSetPasscode={this.onSetPasscode}
-        mnemonic={this.props.newWallet.mnemonic}
+      <ConfirmPasscode
+        passcode={passcode}
+        onPasscodeChange={this.onPasscodeChange}
+        onPasscodeConfirm={this.onPasscodeConfirm}
       />
     )
   }

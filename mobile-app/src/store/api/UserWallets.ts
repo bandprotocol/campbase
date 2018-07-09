@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import { API } from '~/store/helpers/api'
 import { APIMethod } from 'spec/api/base'
-import { UserMe } from 'spec/api/user'
+import { UserWallets } from 'spec/api/user'
 
-export const GET = new API<UserMe.GET.params, UserMe.GET.response>(
-  'UserMe',
+export const GET = new API<UserWallets.GET.params, UserWallets.GET.response>(
+  'UserWallets',
   APIMethod.GET,
-  UserMe.path
+  UserWallets.path
 )
 
 export default combineReducers({

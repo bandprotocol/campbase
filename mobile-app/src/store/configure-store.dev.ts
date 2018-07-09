@@ -8,6 +8,8 @@ import { revive } from '~/store/app/Auth/action'
 import thunk from 'redux-thunk'
 import rootReducer from './root-reducer'
 
+declare var global: { store }
+
 export default async function configureStoreDev(initialState = {}) {
   /* Stack of middlewares to apply */
   const middlewares = [thunk]

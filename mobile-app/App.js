@@ -27,6 +27,8 @@ export default class App extends React.Component<{}, State> {
       require('~/assets/branding/welcome-moutain.png'),
       require('~/assets/branding/welcome-sun.png'),
       require('~/assets/images/paper-plane.png'),
+      require('~/assets/images/signup-done.png'),
+      require('~/assets/images/wallet.png'),
     ]
 
     await Promise.all([

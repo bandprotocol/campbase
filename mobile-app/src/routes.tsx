@@ -40,6 +40,8 @@ import Subscription from '~/screens/Community/Subscription'
 
 import WalletListContainer from '~/screens/Wallet/ListContainer'
 import NewWalletMnemonicContainer from '~/screens/Wallet/New/MnemonicContainer'
+import NewWalletSetPasscodeContainer from '~/screens/Wallet/New/SetPasscodeContainer'
+import NewWalletConfirmPasscodeContainer from '~/screens/Wallet/New/ConfirmPasscodeContainer'
 
 const AuthStack = createStackNavigator(
   {
@@ -90,7 +92,7 @@ CommunitySelectTab.navigationOptions = ({ navigation }) => ({
   headerRight: (
     <HeaderButton
       content={<Entypo name="wallet" size={26} color={Color.primary} />}
-      onClick={() => navigation.navigate('Wallet')}
+      onClick={() => navigation.navigate('WalletList')}
     />
   ),
 })
@@ -199,6 +201,8 @@ const WalletStack = createStackNavigator(
   {
     WalletList: WalletListContainer,
     NewWalletMnemonic: NewWalletMnemonicContainer,
+    NewWalletSetPasscode: NewWalletSetPasscodeContainer,
+    NewWalletConfirmPasscode: NewWalletConfirmPasscodeContainer,
   },
   {
     initialRouteName: 'WalletList',
