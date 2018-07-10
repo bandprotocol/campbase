@@ -1,8 +1,9 @@
 import * as React from 'react'
+import { View } from 'react-native'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import ListNoWallet from './ListNoWallet'
-import List from './List'
+import List, { Fetching } from './List'
 import { BLOCKCHAIN_ENDPOINT } from '~/config'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
@@ -12,9 +13,7 @@ import * as UserWallets from '~/store/api/UserWallets'
 import { Dispatch } from 'react-redux'
 import BandProtocolClient from 'bandprotocol'
 
-type Props = PropTypes.withNavigation & {
-  UserWallets: Function
-}
+type Props = PropTypes.withNavigation
 type State = {
   wallets: any[]
 }
@@ -37,15 +36,21 @@ class WalletListScreen extends React.Component<
     title: 'Your Wallet',
     headerLeft: <DrawerButton navigation={navigation} />,
     headerRight: (
-      <HeaderButton
-        name="md-add"
-        onClick={() => navigation.push('NewWalletMnemonic')}
-      />
+      <View style={{ flexDirection: 'row' }}>
+        <HeaderButton
+          name="md-unlock"
+          onClick={() => navigation.push('RecoverWallet')}
+        />
+        <HeaderButton
+          name="md-add"
+          onClick={() => navigation.push('NewWalletMnemonic')}
+        />
+      </View>
     ),
   })
 
   state = {
-    wallets: [],
+    wallets: null,
   }
 
   async componentDidMount() {
@@ -55,12 +60,13 @@ class WalletListScreen extends React.Component<
     const client = new BandProtocolClient({
       httpEndpoint: BLOCKCHAIN_ENDPOINT,
     })
-
+    console.log(BandProtocolClient, Object.keys(BandProtocolClient))
     const walletWithBalance = await Promise.all(
       wallets.map(async wallet => ({
         ...wallet,
+        address: BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
         balance: await client.blockchain.balance(
-          wallet.address,
+          BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
           '0000000000000000000000000000000000000000'
         ),
       }))
@@ -82,6 +88,10 @@ class WalletListScreen extends React.Component<
 
   render() {
     const { wallets } = this.state
+
+    if (!Array.isArray(wallets)) {
+      return <Fetching />
+    }
 
     if (wallets.length) {
       return <List onWalletClick={this.onWalletClick} wallets={wallets} />

@@ -12,7 +12,10 @@ const HeaderButton = ({
   onClick: (event: GestureResponderEvent) => void
   content?
 }) => (
-  <TouchableOpacity onPress={onClick} style={{ marginRight: 20 }}>
+  <TouchableOpacity
+    onPress={onClick}
+    style={{ marginRight: 20, marginLeft: 10 }}
+  >
     {name ? <Ionicons name={name} size={28} color={Color.primary} /> : content}
   </TouchableOpacity>
 )

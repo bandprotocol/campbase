@@ -23,7 +23,7 @@ export const generateNewWallet: AsyncActionCreator<any> = () => async (
   getState
 ) => {
   const {
-    privateKey: private_key,
+    secretKey: secret_key,
     mnemonic,
     address,
   } = BandProtocolClient.generateRandomKey()
@@ -32,7 +32,30 @@ export const generateNewWallet: AsyncActionCreator<any> = () => async (
 
   dispatch({
     type: actionTypes.SET_WALLET,
-    payload: { private_key, mnemonic, address },
+    payload: { secret_key, mnemonic, address },
+  })
+}
+
+export const recoverWallet: AsyncActionCreator<any> = (
+  mnemonic: string[]
+) => async (dispatch, getState) => {
+  const client = new BandProtocolClient({
+    keyProvider: { mnemonic },
+  })
+
+  if (!client.key) {
+    throw new Error('Invalid mnemonic')
+  }
+
+  dispatch(resetNewWallet())
+
+  dispatch({
+    type: actionTypes.SET_WALLET,
+    payload: {
+      secret_key: client.key.getSecretKey(),
+      mnemonic,
+      address: client.key.getAddress(),
+    },
   })
 }
 
@@ -45,18 +68,33 @@ export const saveWallet: AsyncActionCreator<any> = () => async (
   dispatch,
   getState
 ) => {
-  const { private_key, passcode } = getState().app.CreateWallet
+  const { secret_key, passcode } = getState().app.CreateWallet
 
-  const client = new BandProtocolClient({ keyProvider: private_key })
+  const client = new BandProtocolClient({ keyProvider: secret_key })
 
-  const encrypted_key = client.key.encrypt(passcode)
+  const encrypted_secret_key = client.key.encrypt(passcode)
 
-  console.log('encrypted_key', encrypted_key, passcode)
+  // console.log('encrypted_secret_key >', encrypted_secret_key)
+  // console.log('passcode      >', passcode)
+  // console.log('secret_key   >', secret_key)
+
+  const recovered = new BandProtocolClient({
+    keyProvider: { secretbox: encrypted_secret_key, passcode },
+  })
+
+  // console.log('recovered     >', recovered)
+
+  // const success = BandProtocolClient.__tools__.SecretBox.decrypt(
+  //   encrypted_secret_key,
+  //   passcode
+  // )
+
+  // console.log('Decrypt Result:', success)
 
   await dispatch(
     Wallets.POST.action({
-      address: client.key.getAddress(),
-      encrypted_key,
+      verify_key: client.key.getVerifyKey(),
+      encrypted_secret_key,
     })
   )
 }

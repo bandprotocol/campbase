@@ -7,10 +7,10 @@ exports.up = async function(knex: Knex): Promise<any> {
       .unsigned()
       .notNullable()
     table
-      .string('address')
+      .string('verify_key')
       .notNullable()
       .primary()
-    table.string('encrypted_key').notNullable()
+    table.string('encrypted_secret_key').notNullable()
 
     table
       .foreign('user_id')

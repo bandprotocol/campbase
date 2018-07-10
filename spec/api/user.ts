@@ -36,8 +36,8 @@ export namespace UserWallets {
     export type params = {}
     export type response = {
       wallets: Array<{
-        address: string
-        encrypted_key: string
+        verify_key: string
+        encrypted_secret_key: string
       }>
     }
   }

@@ -111,9 +111,9 @@ router.get(
     })
 
     ctx.success(Status.OK, {
-      wallets: wallets.map(({ address, encrypted_key }) => ({
-        address,
-        encrypted_key,
+      wallets: wallets.map(({ verify_key, encrypted_secret_key }) => ({
+        verify_key,
+        encrypted_secret_key,
       })),
     })
   }

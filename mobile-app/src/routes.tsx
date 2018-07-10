@@ -43,6 +43,8 @@ import NewWalletMnemonicContainer from '~/screens/Wallet/New/MnemonicContainer'
 import NewWalletSetPasscodeContainer from '~/screens/Wallet/New/SetPasscodeContainer'
 import NewWalletConfirmPasscodeContainer from '~/screens/Wallet/New/ConfirmPasscodeContainer'
 import WalletDetailMainContainer from '~/screens/Wallet/Detail/MainContainer'
+import RecoverWalletContainer from '~/screens/Wallet/Recover/MnemonicContainer'
+import ScanAddressContainer from '~/screens/Wallet/Detail/ScanAddressContainer'
 
 const AuthStack = createStackNavigator(
   {
@@ -205,6 +207,8 @@ const WalletStack = createStackNavigator(
     NewWalletSetPasscode: NewWalletSetPasscodeContainer,
     NewWalletConfirmPasscode: NewWalletConfirmPasscodeContainer,
     WalletDetailMain: WalletDetailMainContainer,
+    RecoverWallet: RecoverWalletContainer,
+    ScanAddress: ScanAddressContainer,
   },
   {
     initialRouteName: 'WalletList',

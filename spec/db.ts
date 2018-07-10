@@ -10,6 +10,6 @@ export interface DBUsers {
 
 export interface DBWallets {
   user_id: string
-  address: string
-  encrypted_key: string
+  verify_key: string
+  encrypted_secret_key: string
 }

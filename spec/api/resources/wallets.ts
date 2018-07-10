@@ -3,8 +3,8 @@ export namespace Wallets {
 
   export namespace POST {
     export interface params {
-      address: string
-      encrypted_key: string
+      verify_key: string
+      encrypted_secret_key: string
     }
     export interface response {}
   }

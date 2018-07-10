@@ -36,6 +36,14 @@ const SubHeader = Styled.Text`
   text-align: center;
   margin-bottom: 30;
 `
+const QRContainer = Styled.View`
+  height: 300;
+  width: 300;
+  align-items: center;
+  justify-content: center;
+  background-color: ${Color.white};
+  border-radius: 8;
+`
 
 const ButtonContainer = Styled.View`
   padding-horizontal: 40;
@@ -59,14 +67,16 @@ export default ({
     <Spacer />
 
     <Form>
-      <QRCode
-        size={250}
-        value={wallet.address}
-        bgColor={Color.white}
-        fgColor={Color.purple}
-      />
+      <QRContainer>
+        <QRCode
+          size={250}
+          value={wallet.address}
+          bgColor={Color.darkPurple}
+          fgColor={Color.white}
+        />
+      </QRContainer>
       <Header>
-        {typeof balance === null ? 'Loading Balance' : `${balance} BAND`}
+        {typeof balance === null ? 'Loading Balance' : `${balance} BUN`}
       </Header>
       <SubHeader>Address: #{wallet.address}</SubHeader>
     </Form>

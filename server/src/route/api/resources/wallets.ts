@@ -15,23 +15,23 @@ const router = new ResourceRouter()
 router.post(
   Wallets.path,
   async (ctx: Context<Wallets.POST.params, Wallets.POST.response>) => {
-    const { address, encrypted_key } = ctx.request.body
+    const { verify_key, encrypted_secret_key } = ctx.request.body
 
     const wallet = await Knex('wallets')
-      .where({ address })
+      .where({ verify_key })
       .first()
 
     if (wallet) {
       ctx.fail(
         Status.FORBIDDEN,
-        `Wallet with address ${address} already exists`
+        `Wallet with verify_key ${verify_key} already exists`
       )
     }
 
     await Knex('wallets').insert({
       user_id: ctx.user.id,
-      address,
-      encrypted_key,
+      verify_key,
+      encrypted_secret_key,
     })
 
     ctx.success(Status.CREATED)

@@ -13,7 +13,7 @@ const Wallets = Styled.View`
 `
 
 export default ({ wallets, onWalletClick }) => (
-  <ScreenContainer scrollable darkBackground>
+  <ScreenContainer scrollable backgroundColor={Color.purple}>
     <Wallets>
       <WalletList
         list={wallets}
@@ -23,4 +23,24 @@ export default ({ wallets, onWalletClick }) => (
       />
     </Wallets>
   </ScreenContainer>
+)
+
+const Container = Styled.View`
+  flex: 1;
+  background-color: ${Color.primary};
+  align-items: center;
+  justify-content: center;
+  padding-top: ${Size.statusAndHeaderHeight};
+`
+
+const FetchingText = Styled.Text`
+  font-family: ${Fonts.header};
+  color: ${Color.white};
+  font-size: 28;
+`
+
+export const Fetching = () => (
+  <Container>
+    <FetchingText>Loading Wallets</FetchingText>
+  </Container>
 )

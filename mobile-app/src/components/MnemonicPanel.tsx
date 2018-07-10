@@ -12,7 +12,7 @@ const Row = Styled.View`
   flex-direction: row;
 `
 
-const Item = Styled.View`
+const Item = Styled.TouchableOpacity`
   flex-direction: row;
   flex: 1;
   background-color: ${Color.darkPurple};
@@ -37,15 +37,21 @@ const ItemWord = Styled.Text`
 `
 
 const toChunkOf3 = (arr: string[]): string[][] => {
-  return [arr.slice(0, 3), arr.slice(3, 6), arr.slice(6, 9), arr.slice(9, 12)]
+  return [...Array(arr.length / 3)].map((_, i) => arr.slice(3 * i, 3 * (i + 1)))
 }
 
-export default ({ mnemonic }: { mnemonic: string[] }) => (
+export default ({
+  mnemonic,
+  onWordClick = () => false,
+}: {
+  mnemonic: string[]
+  onWordClick?: Function
+}) => (
   <Container>
     {toChunkOf3(mnemonic).map((chunk, row) => (
       <Row key={row}>
         {chunk.map((word, column) => (
-          <Item key={word}>
+          <Item key={column} onPress={() => onWordClick(row * 3 + column)}>
             <ItemId>{row * 3 + column + 1}</ItemId>
             <ItemWord>{word}</ItemWord>
           </Item>

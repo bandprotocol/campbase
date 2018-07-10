@@ -6,12 +6,12 @@ import { actionTypes } from './action'
 import { createStateRecord } from '~/store'
 
 const DefaultState = {
-  private_key: null,
+  secret_key: null,
   mnemonic: null,
   address: null,
   passcode: null,
 } as {
-  private_key: string
+  secret_key: string
   mnemonic: string[]
   address: string
   passcode: string
@@ -27,7 +27,7 @@ export default (
   switch (type) {
     case actionTypes.SET_WALLET:
       return state
-        .set('private_key', payload.private_key)
+        .set('secret_key', payload.secret_key)
         .set('mnemonic', payload.mnemonic)
         .set('address', payload.address)
     case actionTypes.SET_PASSCODE:
