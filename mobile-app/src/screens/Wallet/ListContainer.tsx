@@ -60,14 +60,14 @@ class WalletListScreen extends React.Component<
     const client = new BandProtocolClient({
       httpEndpoint: BLOCKCHAIN_ENDPOINT,
     })
-    console.log(BandProtocolClient, Object.keys(BandProtocolClient))
+
     const walletWithBalance = await Promise.all(
       wallets.map(async wallet => ({
         ...wallet,
         address: BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
         balance: await client.blockchain.balance(
           BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
-          '0000000000000000000000000000000000000000'
+          'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
         ),
       }))
     )
@@ -82,7 +82,6 @@ class WalletListScreen extends React.Component<
 
   @autobind
   onWalletClick(wallet) {
-    console.log('Wallet select', { wallet })
     this.props.navigation.navigate('WalletDetailMain', { wallet })
   }
 

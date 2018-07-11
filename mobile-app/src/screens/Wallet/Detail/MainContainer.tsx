@@ -42,7 +42,7 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
   async fetchBalance() {
     const balance = await this.client.blockchain.balance(
       this.wallet.address,
-      '0000000000000000000000000000000000000000'
+      'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
     )
 
     this.setState({ balance })
@@ -91,17 +91,11 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
       const txn = await client.blockchain.txgen({
         msgid: '1',
         vk: client.key.getVerifyKey(),
-        token: '0000000000000000000000000000000000000000',
+        token: 'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA',
         value: '100',
       })
-
-      const signedTxn = client.key.sign(txn)
-      console.log('Signed', signedTxn)
-
-      const broadcastResult = await client.blockchain.broadcastTxn(signedTxn)
-      console.log('Boardcasted!', broadcastResult)
     } catch (e) {
-      console.log('Err', e)
+      console.log('TxGen Error:', e)
     }
   }
 
@@ -137,17 +131,11 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
           msgid: '2',
           vk: client.key.getVerifyKey(),
           dest: address,
-          token: '0000000000000000000000000000000000000000',
+          token: 'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA',
           value: '100',
         })
-
-        const signedTxn = client.key.sign(txn)
-        console.log('Signed', signedTxn)
-
-        const broadcastResult = await client.blockchain.broadcastTxn(signedTxn)
-        console.log('Boardcasted!', broadcastResult)
       } catch (e) {
-        console.log('Err', e)
+        console.log('TxGen Error:', e)
       }
     }
 

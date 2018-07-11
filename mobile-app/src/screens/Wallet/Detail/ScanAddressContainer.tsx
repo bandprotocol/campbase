@@ -18,7 +18,6 @@ export default class ScanAddressContainer extends React.Component<Props> {
 
   @autobind
   onQRCodeRead({ type, data }) {
-    console.log('QR READ!', data)
     const callback = this.props.navigation.getParam('callback', () => false)
     callback(data)
     this.props.navigation.pop()

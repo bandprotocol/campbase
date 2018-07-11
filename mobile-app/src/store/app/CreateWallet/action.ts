@@ -71,30 +71,16 @@ export const saveWallet: AsyncActionCreator<any> = () => async (
   const { secret_key, passcode } = getState().app.CreateWallet
 
   const client = new BandProtocolClient({ keyProvider: secret_key })
-
   const encrypted_secret_key = client.key.encrypt(passcode)
 
-  // console.log('encrypted_secret_key >', encrypted_secret_key)
-  // console.log('passcode      >', passcode)
-  // console.log('secret_key   >', secret_key)
-
-  const recovered = new BandProtocolClient({
-    keyProvider: { secretbox: encrypted_secret_key, passcode },
-  })
-
-  // console.log('recovered     >', recovered)
-
-  // const success = BandProtocolClient.__tools__.SecretBox.decrypt(
-  //   encrypted_secret_key,
-  //   passcode
-  // )
-
-  // console.log('Decrypt Result:', success)
+  const userId = getState().app.User.id
+  const signature = client.key.generateSignature(userId.toString(16))
 
   await dispatch(
     Wallets.POST.action({
       verify_key: client.key.getVerifyKey(),
       encrypted_secret_key,
+      signature,
     })
   )
 }

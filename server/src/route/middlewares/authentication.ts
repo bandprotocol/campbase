@@ -7,7 +7,6 @@ import Knex from '~/db/connection'
 export function useAuthentication(app: Koa) {
   // Populate error message for unauthorized access
   app.use(async (ctx, next) => {
-    // console.log(ctx.request.headers)
     return next().catch(err => {
       if (err.status === 401) {
         ctx.fail(401, 'Please send JWT via Authorization header to get access')
