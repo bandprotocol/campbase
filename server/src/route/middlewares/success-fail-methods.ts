@@ -32,7 +32,7 @@ export function useSuccessFailMethods(app: Koa) {
         throw new RouteException(status, message)
       }
 
-      return await next()
+      await next()
     } catch (err) {
       if (err instanceof RouteException) {
         ctx.body = err.responseBody

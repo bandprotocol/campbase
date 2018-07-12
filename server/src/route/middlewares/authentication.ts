@@ -7,7 +7,9 @@ import Knex from '~/db/connection'
 export function useAuthentication(app: Koa) {
   // Populate error message for unauthorized access
   app.use(async (ctx, next) => {
+    console.log('A')
     return next().catch(err => {
+      console.log('B')
       if (err.status === 401) {
         ctx.fail(401, 'Please send JWT via Authorization header to get access')
       } else throw err
@@ -21,7 +23,9 @@ export function useAuthentication(app: Koa) {
 
   // Populate user object
   app.use(async (ctx, next) => {
+    console.log('C')
     if (ctx.state.jwtUser) {
+      console.log('D')
       const id: number = ctx.state.jwtUser.data.id
 
       if (id) {
@@ -45,6 +49,7 @@ export function useAuthentication(app: Koa) {
       }
     }
 
+    console.log('E')
     return next()
   })
 }
