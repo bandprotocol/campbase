@@ -40,7 +40,7 @@ export default (
         .set('is_login', true)
 
     case actionTypes.LOGOUT:
-      return state.remove('jwt').set('login', false)
+      return state.remove('jwt').set('is_login', false)
 
     case actionTypes.PHONE_AUTH:
       return state

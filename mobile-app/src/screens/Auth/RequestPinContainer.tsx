@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { Keyboard } from 'react-native'
 import RequestPin from './RequestPin'
 import { Alert } from 'react-native'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import { connect, bindActions } from '~/store'
 import { requestPin } from '~/store/app/Auth/action'
-import PhoneInput from 'react-native-phone-input'
 
 type Props = PropTypes.withNavigation
 type State = {
@@ -33,6 +33,11 @@ class RequestPinScreen extends React.Component<
       fullPhoneNumber: phoneNumber,
       validNumber: this.phoneNumberPicker.isValidNumber(),
     })
+
+    if (this.phoneNumberPicker.isValidNumber()) {
+      // this.phoneNumberPicker.close()
+      Keyboard.dismiss()
+    }
   }
 
   @autobind

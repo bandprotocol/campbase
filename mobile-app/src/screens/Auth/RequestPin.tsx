@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Keyboard, TouchableWithoutFeedback } from 'react-native'
 import Styled from '~/styled-components'
 import ColorButton from '~/components/ColorButton'
 import { Color, Fonts } from '~/utils'
@@ -61,35 +62,37 @@ export default ({
   onRequestPin,
   refPhoneNumberPicker,
 }) => (
-  <Container>
-    <Spacer />
-    <Form>
-      <Image source={PaperPlaneSrc} />
-      <Header>Phone Verification</Header>
-      <PhoneInputContainer>
-        <PhoneInput
-          onChangePhoneNumber={onChangePhoneNumber}
-          textStyle={{
-            fontSize: 20,
-            color: Color.darkPurple,
-          }}
-          offset={20}
-          ref={refPhoneNumberPicker}
-        />
-      </PhoneInputContainer>
-    </Form>
-    <Spacer />
-    <ButtonContainer>
-      <Instruction>
-        We are sending you a 6-digits secret code. Don't lose it!
-      </Instruction>
-      <ColorButton
-        color={isValidNumber ? Color.green : Color.darkPurple}
-        style={{ width: 250 }}
-        onClick={onRequestPin}
-      >
-        REQUEST PIN
-      </ColorButton>
-    </ButtonContainer>
-  </Container>
+  <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <Container>
+      <Spacer />
+      <Form>
+        <Image source={PaperPlaneSrc} />
+        <Header>Phone Verification</Header>
+        <PhoneInputContainer>
+          <PhoneInput
+            onChangePhoneNumber={onChangePhoneNumber}
+            textStyle={{
+              fontSize: 20,
+              color: Color.darkPurple,
+            }}
+            offset={20}
+            ref={refPhoneNumberPicker}
+          />
+        </PhoneInputContainer>
+      </Form>
+      <Spacer />
+      <ButtonContainer>
+        <Instruction>
+          We are sending you a 6-digits secret code. Don't lose it!
+        </Instruction>
+        <ColorButton
+          color={isValidNumber ? Color.green : Color.darkPurple}
+          style={{ width: 250 }}
+          onClick={onRequestPin}
+        >
+          REQUEST PIN
+        </ColorButton>
+      </ButtonContainer>
+    </Container>
+  </TouchableWithoutFeedback>
 )
