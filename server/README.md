@@ -79,7 +79,7 @@ In this backend repo, we're testing extensively to make sure things work the way
 You can start the tests by running:
 
 ```
-yart test
+yarn test
 ```
 
 The test generates coverage summary in HTML format, which can be found in `<PROJECT_DIR>/coverage/index.html`. You can explore what's been included in the tests, and what's not.
