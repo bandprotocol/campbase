@@ -57,11 +57,14 @@ const ButtonSpacer = Styled.View`
 export default ({
   wallet,
   balance,
-  promptPasscodeVisible,
   onSendBand,
   onMintBand,
+  promptPasscodeVisible,
   onCancelPromptPasscode,
   onSubmitPromptPasscode,
+  promptAmountVisible,
+  onCancelPromptAmount,
+  onSubmitPromptAmount,
 }) => (
   <Container>
     <Spacer />
@@ -75,7 +78,7 @@ export default ({
           fgColor={Color.white}
         />
       </QRContainer>
-      <Header>{typeof balance === null ? ' ' : `${balance} BUN`}</Header>
+      <Header>{typeof balance === null ? ' ' : `${balance} BAND`}</Header>
       <SubHeader>Address: #{wallet.address}</SubHeader>
     </Form>
     <Spacer />
@@ -105,6 +108,15 @@ export default ({
       visible={promptPasscodeVisible}
       onCancel={onCancelPromptPasscode}
       onSubmit={onSubmitPromptPasscode}
+    />
+
+    <Prompt
+      title="Amount"
+      placeholder="How many BAND?"
+      defaultValue=""
+      visible={promptAmountVisible}
+      onCancel={onCancelPromptAmount}
+      onSubmit={onSubmitPromptAmount}
     />
   </Container>
 )

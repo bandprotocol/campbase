@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { View } from 'react-native'
+import { Dispatch } from 'react-redux'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import ListNoWallet from './ListNoWallet'
@@ -10,8 +11,8 @@ import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
 import { generateNewWallet } from '~/store/app/CreateWallet/action'
 import * as UserWallets from '~/store/api/UserWallets'
-import { Dispatch } from 'react-redux'
 import BandProtocolClient from 'bandprotocol'
+import BandBalance from '~/utils/BandBalance'
 
 type Props = PropTypes.withNavigation
 type State = {
@@ -64,21 +65,24 @@ class WalletListScreen extends React.Component<
   async fetchBalance() {
     const { wallets } = await this.props.UserWallets()
 
-    console.log('fetchBalance')
     // Fetch balances
     const client = new BandProtocolClient({
       httpEndpoint: BLOCKCHAIN_ENDPOINT,
     })
 
     const walletWithBalance = await Promise.all(
-      wallets.map(async wallet => ({
-        ...wallet,
-        address: BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
-        balance: await client.blockchain.balance(
+      wallets.map(async wallet => {
+        const balance = await client.blockchain.balance(
           BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
           'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
-        ),
-      }))
+        )
+
+        return {
+          ...wallet,
+          address: BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
+          balance: BandBalance.fromBunString(balance),
+        }
+      })
     )
 
     this.setState({ wallets: walletWithBalance })

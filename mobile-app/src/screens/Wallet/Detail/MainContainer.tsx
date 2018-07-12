@@ -5,6 +5,7 @@ import Main from './Main'
 import BandProtocolClient from 'bandprotocol'
 import { Alert } from 'react-native'
 import { BLOCKCHAIN_ENDPOINT } from '~/config'
+import BandBalance from '~/utils/BandBalance'
 
 type Props = PropTypes.withNavigation
 type State = {
@@ -48,8 +49,6 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
       this.wallet.address,
       'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
     )
-
-    console.log('Fetching balance', balance)
 
     return new Promise(resolve => {
       const balanceChanged = this.state.balance !== balance
@@ -112,11 +111,13 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
     }
 
     try {
+      const amountInput = await this.getAmount()
+      const amountBun = new BandBalance(amountInput).toBunString()
       const txn = await client.blockchain.txgen({
         msgid: '1',
         vk: client.key.getVerifyKey(),
         token: 'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA',
-        value: '100',
+        value: amountBun,
       })
       const signedTxn = client.key.sign(txn)
       const broadcastResult = await client.blockchain.broadcastTxn(signedTxn)
@@ -153,13 +154,16 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
     }
 
     const onAddressRead = async address => {
+      const amountInput = await this.getAmount()
+      const amountBun = new BandBalance(amountInput).toBunString()
+
       try {
         const txn = await client.blockchain.txgen({
           msgid: '2',
           vk: client.key.getVerifyKey(),
           dest: address,
           token: 'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA',
-          value: '100',
+          value: amountBun,
         })
         const signedTxn = client.key.sign(txn)
         const broadcastResult = await client.blockchain.broadcastTxn(signedTxn)
@@ -197,16 +201,49 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
     }
   }
 
+  @autobind
+  async getAmount() {
+    return new Promise((resolve, reject) => {
+      this.getAmountCallback = amount => {
+        this.getAmountCallback = null
+        resolve(amount)
+      }
+
+      this.setState({ promptAmountVisible: true })
+    })
+  }
+
+  @autobind
+  onCancelPromptAmount() {
+    this.setState({ promptAmountVisible: false })
+  }
+
+  @autobind
+  onSubmitPromptAmount(amount: string) {
+    this.setState({ promptAmountVisible: false })
+    if (this.getAmountCallback) {
+      this.getAmountCallback(amount)
+    }
+  }
+
   render() {
+    const balance =
+      this.state.balance === null
+        ? ''
+        : BandBalance.fromBunString(this.state.balance).toBandString()
+
     return (
       <Main
         wallet={this.wallet}
-        balance={this.state.balance}
-        promptPasscodeVisible={this.state.promptPasscodeVisible}
+        balance={balance}
         onSendBand={this.onSendBand}
         onMintBand={this.onMintBand}
+        promptPasscodeVisible={this.state.promptPasscodeVisible}
         onCancelPromptPasscode={this.onCancelPromptPasscode}
         onSubmitPromptPasscode={this.onSubmitPromptPasscode}
+        promptAmountVisible={this.state.promptAmountVisible}
+        onCancelPromptAmount={this.onCancelPromptAmount}
+        onSubmitPromptAmount={this.onSubmitPromptAmount}
       />
     )
   }

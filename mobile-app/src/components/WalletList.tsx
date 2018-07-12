@@ -24,7 +24,9 @@ export default class WalletList extends React.Component<WalletListProps> {
             multipleLine
           >
             {wallet.address}
-            <List.Item.Brief>Balance: {wallet.balance} BUN</List.Item.Brief>
+            <List.Item.Brief>
+              Balance: {wallet.balance.toBandString()} BAND
+            </List.Item.Brief>
           </List.Item>
         ))}
       </List>
