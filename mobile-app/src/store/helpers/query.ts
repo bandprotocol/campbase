@@ -26,7 +26,7 @@ export class QueryException extends Error {
 export async function query<Params = any, Response = any>(
   path: string,
   method: APIMethod,
-  params: Params,
+  params: Params = <Params>{},
   jwt: string
 ): Promise<Response> {
   if (!axiosInstance) initializeQuery()
@@ -39,26 +39,28 @@ export async function query<Params = any, Response = any>(
   const realParams: Partial<Params> = Object.assign(params, {})
   pathParams.forEach(p => delete realParams[p])
 
+  // Format request
+  const requestOpt = <any>{
+    method,
+    url,
+    // User
+    headers: jwt
+      ? {
+          Authorization: `Bearer ${jwt}`,
+        }
+      : {},
+  }
+
+  // Populate parameters
+  if (method === APIMethod.GET) {
+    requestOpt.params = realParams
+  } else {
+    requestOpt.data = realParams
+  }
+
   try {
     // Make a call
-    const axiosResponse = await axiosInstance.request({
-      method,
-      url,
-
-      // Use url params in GET
-      params: method === APIMethod.GET ? realParams : {},
-
-      // Use json data in POST | PUT | DELETE
-      data: method === APIMethod.GET ? {} : realParams,
-
-      // User
-      headers: jwt
-        ? {
-            Authorization: `Bearer ${jwt}`,
-          }
-        : {},
-    })
-
+    const axiosResponse = await axiosInstance.request(requestOpt)
     const axiosData = <APIResponse<Response>>axiosResponse.data
 
     return axiosData.data

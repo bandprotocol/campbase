@@ -76,7 +76,6 @@ router.post(
 router.get(
   UserMe.path,
   async (ctx: Context<UserMe.GET.params, UserMe.GET.response>) => {
-    console.log('I CAN FLYYYYYYY')
     const {
       id,
       country_code,
