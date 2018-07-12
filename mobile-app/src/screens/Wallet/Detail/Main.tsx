@@ -75,9 +75,7 @@ export default ({
           fgColor={Color.white}
         />
       </QRContainer>
-      <Header>
-        {typeof balance === null ? 'Loading Balance' : `${balance} BUN`}
-      </Header>
+      <Header>{typeof balance === null ? ' ' : `${balance} BUN`}</Header>
       <SubHeader>Address: #{wallet.address}</SubHeader>
     </Form>
     <Spacer />

@@ -33,11 +33,15 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
   private client: BandProtocolClient
   private getPasscodeCallback: Function
   private fetchBalanceInterval
+  private watchingBalance = 0
 
   get wallet() {
     return this.props.navigation.getParam('wallet', null)
   }
 
+  /**
+   * Return whether the balance has changed
+   */
   @autobind
   async fetchBalance() {
     const balance = await this.client.blockchain.balance(
@@ -45,7 +49,27 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
       'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
     )
 
-    this.setState({ balance })
+    console.log('Fetching balance', balance)
+
+    return new Promise(resolve => {
+      const balanceChanged = this.state.balance !== balance
+      this.setState({ balance }, () => resolve(balanceChanged))
+    })
+  }
+
+  /**
+   * Fetch to balance has been changed
+   */
+  async watchBalanceChange() {
+    this.watchingBalance++
+    while (this.watchingBalance && !(await this.fetchBalance())) {
+      await new Promise(r => setTimeout(r, 1000))
+    }
+    this.watchingBalance--
+  }
+
+  componentWillUnmount() {
+    this.watchingBalance = 0
   }
 
   async componentDidMount() {
@@ -94,6 +118,9 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
         token: 'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA',
         value: '100',
       })
+      const signedTxn = client.key.sign(txn)
+      const broadcastResult = await client.blockchain.broadcastTxn(signedTxn)
+      this.watchBalanceChange()
     } catch (e) {
       console.log('TxGen Error:', e)
     }
@@ -134,6 +161,9 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
           token: 'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA',
           value: '100',
         })
+        const signedTxn = client.key.sign(txn)
+        const broadcastResult = await client.blockchain.broadcastTxn(signedTxn)
+        this.watchBalanceChange()
       } catch (e) {
         console.log('TxGen Error:', e)
       }

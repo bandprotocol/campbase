@@ -35,7 +35,7 @@
     "antd-mobile-rn": "^2.2.0",
     "autobind-decorator": "^2.1.0",
     "axios": "^0.18.0",
-    "bandprotocol": "0.4.8",
+    "bandprotocol": "0.4.11",
     "expo": "^27.0.1",
     "immutable": "^3.8.2",
     "isomorphic-webcrypto": "^1.5.0",

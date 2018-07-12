@@ -1773,10 +1773,11 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bandprotocol@0.4.8:
-  version "0.4.8"
-  resolved "https://registry.yarnpkg.com/bandprotocol/-/bandprotocol-0.4.8.tgz#168b0d993b425d1c7844a6615d7ff5d025e5ad7c"
+bandprotocol@0.4.11:
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/bandprotocol/-/bandprotocol-0.4.11.tgz#f491f20222d4f980bd4da961ca0d4ad38dd3074a"
   dependencies:
+    buffer "^5.1.0"
     isomorphic-fetch "^2.2.1"
 
 base-64@^0.1.0:
@@ -1962,7 +1963,7 @@ buffer-from@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.0.tgz#87fcaa3a298358e0ade6e442cfce840740d1ad04"
 
-buffer@^5.0.3:
+buffer@^5.0.3, buffer@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.1.0.tgz#c913e43678c7cb7c8bd16afbcddb6c5505e8f9fe"
   dependencies:

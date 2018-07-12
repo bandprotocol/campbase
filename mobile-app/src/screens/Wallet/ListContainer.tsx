@@ -54,8 +54,17 @@ class WalletListScreen extends React.Component<
   }
 
   async componentDidMount() {
+    await this.fetchBalance()
+
+    // Watch for screen to be focused
+    this.props.navigation.addListener('didFocus', this.fetchBalance)
+  }
+
+  @autobind
+  async fetchBalance() {
     const { wallets } = await this.props.UserWallets()
 
+    console.log('fetchBalance')
     // Fetch balances
     const client = new BandProtocolClient({
       httpEndpoint: BLOCKCHAIN_ENDPOINT,

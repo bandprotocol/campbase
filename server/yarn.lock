@@ -398,9 +398,9 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
 
-bandprotocol@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/bandprotocol/-/bandprotocol-0.4.2.tgz#bfcb5a8b1e736424eaa8d1d79a6ca7feb3127d83"
+bandprotocol@0.4.9:
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/bandprotocol/-/bandprotocol-0.4.9.tgz#03310ac94b176fa2e194ad59b1c88aef0433d822"
   dependencies:
     isomorphic-fetch "^2.2.1"
 
