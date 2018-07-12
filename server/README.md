@@ -57,8 +57,8 @@ yarn start
 Knex provides great utilities for us:
 
 ```
-knex migrate:latest --env dev
-knex seed:run --env dev
+knex migrate:latest --env development
+knex seed:run --env development
 
 or
 
