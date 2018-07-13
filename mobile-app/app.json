@@ -1,6 +1,7 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
+    "slug": "campbase",
     "packagerOpts": {
       "sourceExts": ["ts", "tsx"],
       "transformer":
@@ -8,6 +9,9 @@
     },
     "orientation": "portrait",
     "primaryColor": "#916bff",
-    "icon": "./src/assets/branding/icon.png"
+    "icon": "./src/assets/branding/icon.png",
+    "android": {
+      "package": "com.bandprotocol.campbase"
+    }
   }
 }
