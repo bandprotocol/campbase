@@ -47,22 +47,6 @@ const ButtonContainer = Styled.View`
   margin-bottom: 50;
   align-items: center;
 `
-const PhoneInputContainer = Styled.View`
-  background: ${Color.white};
-  border-radius: 6;
-  width: 280;
-  padding-horizontal: 20;
-  padding-vertical: 15;
-  margin-top: 20;
-`
-const Instruction = Styled.Text`
-  font-family: ${Fonts.subheader};
-  color: ${Color.white};
-  font-size: 18;
-  margin-bottom: 30;
-  line-height: 32;
-  text-align: center;
-`
 
 export default ({ onCreateWallet }) => (
   <Container>
