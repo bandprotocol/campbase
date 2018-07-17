@@ -2,7 +2,7 @@ import * as sinon from 'sinon'
 import * as chai from 'chai'
 import chaiHttp = require('chai-http')
 import Knex from '~/db/connection'
-import { createAuthorizationHeader } from 'test/utils'
+import { createUserAuthorizationHeader } from 'test/utils'
 
 import server from '~/index'
 
@@ -30,7 +30,7 @@ describe('route:api:client:user', () => {
         .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
-          createAuthorizationHeader({
+          createUserAuthorizationHeader({
             country_code: '1',
             phone_number: '111111111',
           })
@@ -65,7 +65,7 @@ describe('route:api:client:user', () => {
         .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
-          createAuthorizationHeader({
+          createUserAuthorizationHeader({
             id: 1,
             country_code: '1',
             phone_number: '111111111',
@@ -84,7 +84,7 @@ describe('route:api:client:user', () => {
         .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
-          createAuthorizationHeader({
+          createUserAuthorizationHeader({
             country_code: '1',
             phone_number: '8888888888',
           })
@@ -102,7 +102,7 @@ describe('route:api:client:user', () => {
         .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
-          createAuthorizationHeader({
+          createUserAuthorizationHeader({
             country_code: '1',
             phone_number: '111111111',
           })
@@ -122,7 +122,7 @@ describe('route:api:client:user', () => {
         .get(`/api/client/v1/user/me`)
         .set(
           'Authorization',
-          createAuthorizationHeader({
+          createUserAuthorizationHeader({
             id: 1,
             country_code: '1',
             phone_number: '8888888888',

@@ -1,9 +1,10 @@
 import * as Koa from 'koa'
-import { JWTUserInterface } from '~/common/jwt-user'
+import { DBUsers, DBCommunityManagers } from 'spec/db'
 
 declare module 'koa' {
   interface Context {
-    user?: JWTUserInterface
+    user?: DBUsers
+    cm?: DBCommunityManagers
     success: (status?: number, data?: any) => void
     fail: (status?: number, message?: string) => void
     validate: {

@@ -98,6 +98,7 @@ describe('route:api:client:auth', () => {
       jwtDecoded.data.should.deep.equal({
         country_code: '1',
         phone_number: '111111111',
+        type: 'user',
       })
     })
 

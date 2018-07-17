@@ -18,19 +18,22 @@ export class JWTUser implements JWTUserInterface {
     return new JWTUser(dbUser.id, dbUser.country_code, dbUser.phone_number)
   }
 
+  static readonly type = 'user'
+
   constructor(
     readonly id: number,
     readonly country_code: string,
     readonly phone_number: string
   ) {}
 
-  get serialized(): JWTUserInterface {
+  get serialized(): JWTUserInterface & { type } {
     const { id, country_code, phone_number } = this
 
     return {
       id,
       country_code,
       phone_number,
+      type: JWTUser.type,
     }
   }
 }

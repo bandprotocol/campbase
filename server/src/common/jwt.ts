@@ -1,6 +1,7 @@
 import { JWT_SECRET } from '~/config'
 import * as JsonWebToken from 'jsonwebtoken'
 import { JWTUser } from '~/common/jwt-user'
+import { JWTCommunityManager } from '~/common/jwt-cm'
 
 const EXPIRE_IN_SECONDS = 60 * 60 * 24 * 365 // 60s * 60m * 24h * 365d
 
@@ -9,9 +10,9 @@ export interface JWTPayloadInterface {
   exp: number
 }
 
-export function signJWT(user: JWTUser) {
+export function signJWT(jwt: JWTUser | JWTCommunityManager) {
   const payload: JWTPayloadInterface = {
-    data: user.serialized,
+    data: jwt.serialized,
     exp: Math.floor(Date.now() / 1000) + EXPIRE_IN_SECONDS,
   }
 

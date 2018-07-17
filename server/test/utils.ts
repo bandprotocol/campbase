@@ -32,7 +32,7 @@ export function mockApplyMiddleware(
   middleware(app)
 }
 
-export function createAuthorizationHeader(user: JWTUserInterface) {
+export function createUserAuthorizationHeader(user: JWTUserInterface) {
   const jwtUser = new JWTUser(user.id, user.country_code, user.phone_number)
   return `Bearer ${signJWT(jwtUser)}`
 }
