@@ -18,8 +18,8 @@ export interface DBCommunityManagers {
   id: number
   username: string
   password_hash: string
-  password_salt: string
   email: string
+  email_activated: number
 }
 
 export interface DBCommunities {

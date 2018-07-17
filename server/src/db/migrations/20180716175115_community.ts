@@ -3,10 +3,16 @@ import * as Knex from 'knex'
 exports.up = async function(knex: Knex): Promise<any> {
   return knex.schema.createTable('community_managers', table => {
     table.increments('id').primary()
-    table.string('email').notNullable()
-    table.string('username').notNullable()
+    table
+      .string('username')
+      .notNullable()
+      .unique()
+    table
+      .string('email')
+      .notNullable()
+      .unique()
     table.string('password_hash').notNullable()
-    table.string('password_salt').notNullable()
+    table.boolean('email_activated').defaultTo(false)
   })
 }
 

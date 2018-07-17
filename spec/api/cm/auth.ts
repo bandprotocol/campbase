@@ -4,8 +4,7 @@ export namespace AuthSignUp {
   export namespace POST {
     export interface params {
       username: string
-      password_hash: string
-      password_salt: string
+      password: string
       email: string
       secret_code: string // For registration
     }

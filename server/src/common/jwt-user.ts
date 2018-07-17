@@ -14,7 +14,7 @@ export class JWTUser implements JWTUserInterface {
    * A factory to initiate instance
    * @param dbUser
    */
-  static createFromDBUser(dbUser: DBUsers) {
+  static createFromDBUser(dbUser: Partial<DBUsers>) {
     return new JWTUser(dbUser.id, dbUser.country_code, dbUser.phone_number)
   }
 

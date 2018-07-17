@@ -6,11 +6,7 @@ import * as SMS from '~/external/sms'
 
 import { Context } from '~/route/interfaces'
 import { APIResponseStatus as Status } from 'spec/api/base'
-import {
-  AuthRequestPin,
-  AuthValidatePin,
-  AuthActivateEmail,
-} from 'spec/api/client/auth'
+import { AuthRequestPin, AuthValidatePin } from 'spec/api/client/auth'
 
 const router = new ResourceRouter()
 

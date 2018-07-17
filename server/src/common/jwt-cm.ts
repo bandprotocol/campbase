@@ -14,7 +14,9 @@ export class JWTCommunityManager implements JWTCommunityManagerInterface {
    * A factory to initiate instance
    * @param dbCommunityManager
    */
-  static createFromDBCommunityManager(dbCommunityManager: DBCommunityManagers) {
+  static createFromDBCommunityManager(
+    dbCommunityManager: Partial<DBCommunityManagers>
+  ) {
     return new JWTCommunityManager(
       dbCommunityManager.id,
       dbCommunityManager.username,
