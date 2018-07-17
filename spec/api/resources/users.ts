@@ -1,5 +1,5 @@
 export namespace Users {
-  export const path = '/api/v1/users'
+  export const path = '/api/client/v1/users'
 
   export namespace GET {
     export interface params {}
@@ -8,7 +8,7 @@ export namespace Users {
 }
 
 export namespace UsersId {
-  export const path = '/api/v1/users/:id' // /:id includes /me
+  export const path = '/api/client/v1/users/:id' // /:id includes /me
 
   export namespace GET {
     export interface params {

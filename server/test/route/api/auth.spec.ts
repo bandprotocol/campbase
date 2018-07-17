@@ -29,12 +29,12 @@ describe('route:api:auth', () => {
     sandbox.restore()
   })
 
-  describe(`POST /auth/v1/pin/request`, () => {
+  describe(`POST /auth/client/v1/pin/request`, () => {
     it('should get 200 if all parameters are supplied', async () => {
       mockSendSMSSuccess(sandbox)
       const res = await chai
         .request(server)
-        .post(`/auth/v1/pin/request`)
+        .post(`/auth/client/v1/pin/request`)
         .send({ country_code: '66', phone_number: '830088333' })
 
       res.should.have.status(200)
@@ -44,7 +44,7 @@ describe('route:api:auth', () => {
       mockSendSMSSuccess(sandbox)
       const res = await chai
         .request(server)
-        .post(`/auth/v1/pin/request`)
+        .post(`/auth/client/v1/pin/request`)
         .send({ country_code: '66' })
 
       res.should.have.status(400)
@@ -54,19 +54,19 @@ describe('route:api:auth', () => {
       mockSendSMSFail(sandbox)
       const res = await chai
         .request(server)
-        .post(`/auth/v1/pin/request`)
+        .post(`/auth/client/v1/pin/request`)
         .send({ country_code: '66', phone_number: '830088333' })
 
       res.should.have.status(503)
     })
   })
 
-  describe(`POST /auth/v1/pin/validate`, () => {
+  describe(`POST /auth/client/v1/pin/validate`, () => {
     it('should get 403 if incorrect PIN', async () => {
       mockCheckSMSFail(sandbox)
       const res = await chai
         .request(server)
-        .post(`/auth/v1/pin/validate`)
+        .post(`/auth/client/v1/pin/validate`)
         .send({
           country_code: '1',
           phone_number: '111111111',
@@ -80,7 +80,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       const res = await chai
         .request(server)
-        .post(`/auth/v1/pin/validate`)
+        .post(`/auth/client/v1/pin/validate`)
         .send({
           country_code: '1',
           phone_number: '111111111',
@@ -105,7 +105,7 @@ describe('route:api:auth', () => {
       mockCheckSMSSuccess(sandbox)
       const res = await chai
         .request(server)
-        .post(`/auth/v1/pin/validate`)
+        .post(`/auth/client/v1/pin/validate`)
         .send({
           country_code: '1',
           phone_number: '8888888888',

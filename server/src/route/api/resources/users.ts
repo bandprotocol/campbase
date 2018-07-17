@@ -8,7 +8,7 @@ import { UsersId } from 'spec/api/resources/users'
 const router = new ResourceRouter()
 
 /**
- * /api/v1/users/:id
+ * /api/client/v1/users/:id
  *
  *
  */

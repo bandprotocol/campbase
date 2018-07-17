@@ -1,5 +1,5 @@
 export namespace UserSignUp {
-  export const path = '/api/v1/user/signup'
+  export const path = '/api/client/v1/user/signup'
 
   export namespace POST {
     export type params = {
@@ -13,7 +13,7 @@ export namespace UserSignUp {
 }
 
 export namespace UserMe {
-  export const path = '/api/v1/user/me'
+  export const path = '/api/client/v1/user/me'
 
   export namespace GET {
     export type params = {}
@@ -30,7 +30,7 @@ export namespace UserMe {
 }
 
 export namespace UserWallets {
-  export const path = '/api/v1/user/wallets'
+  export const path = '/api/client/v1/user/wallets'
 
   export namespace GET {
     export type params = {}

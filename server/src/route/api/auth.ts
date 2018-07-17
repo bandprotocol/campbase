@@ -15,7 +15,7 @@ import {
 const router = new ResourceRouter()
 
 /**
- * POST /auth/v1/pin/request
+ * POST /auth/client/v1/pin/request
  *
  * Request PIN for Login & Register via Phone Number
  * Needs country_code, phone_number
@@ -42,7 +42,7 @@ router.post(
 )
 
 /**
- * POST /auth/v1/pin/validate
+ * POST /auth/client/v1/pin/validate
  *
  * Validate PIN - For both existing accounts and new accounts
  * the jwt returned will contain user's id only if account exists

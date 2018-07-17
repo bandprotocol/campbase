@@ -23,11 +23,11 @@ describe('route:api:user', () => {
     sandbox.restore()
   })
 
-  describe(`POST /api/v1/user/signup`, () => {
+  describe(`POST /api/client/v1/user/signup`, () => {
     it('should get 201 and { jwt } if success w/ email_activated = false', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/user/signup`)
+        .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
           createAuthorizationHeader({
@@ -51,7 +51,7 @@ describe('route:api:user', () => {
     it('should get 401 if JWT not in header', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/user/signup`)
+        .post(`/api/client/v1/user/signup`)
         .send({
           email: 'new_user@example.com',
           display_name: 'Example New User',
@@ -62,7 +62,7 @@ describe('route:api:user', () => {
     it('should get 403 if user if already set in jwt', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/user/signup`)
+        .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
           createAuthorizationHeader({
@@ -81,7 +81,7 @@ describe('route:api:user', () => {
     it('should get 403 if phone number already exist', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/user/signup`)
+        .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
           createAuthorizationHeader({
@@ -99,7 +99,7 @@ describe('route:api:user', () => {
     it('should get 403 if email already exist', async () => {
       const res = await chai
         .request(server)
-        .post(`/api/v1/user/signup`)
+        .post(`/api/client/v1/user/signup`)
         .set(
           'Authorization',
           createAuthorizationHeader({
@@ -115,11 +115,11 @@ describe('route:api:user', () => {
     })
   })
 
-  describe(`GET /api/v1/user/me`, () => {
+  describe(`GET /api/client/v1/user/me`, () => {
     it('should get 200 and return user info', async () => {
       const res = await chai
         .request(server)
-        .get(`/api/v1/user/me`)
+        .get(`/api/client/v1/user/me`)
         .set(
           'Authorization',
           createAuthorizationHeader({

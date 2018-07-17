@@ -11,7 +11,7 @@ import { signJWT } from 'common/jwt'
 const router = new ResourceRouter()
 
 /**
- * POST /api/v1/signup
+ * POST /api/client/v1/signup
  *
  * Register only via Phone Number
  * Needs country_code, phone_number, phone_pin, email, password, display_name
@@ -69,7 +69,7 @@ router.post(
 )
 
 /**
- * /api/v1/user/me
+ * /api/client/v1/user/me
  *
  * Returns user info
  */
@@ -99,7 +99,7 @@ router.get(
 )
 
 /**
- * /api/v1/user/wallets
+ * /api/client/v1/user/wallets
  *
  * Returns user's wallets
  */

@@ -1,5 +1,5 @@
 export namespace AuthRequestPin {
-  export const path = '/auth/v1/pin/request'
+  export const path = '/auth/client/v1/pin/request'
 
   export namespace POST {
     export interface params {
@@ -11,7 +11,7 @@ export namespace AuthRequestPin {
 }
 
 export namespace AuthValidatePin {
-  export const path = '/auth/v1/pin/validate'
+  export const path = '/auth/client/v1/pin/validate'
 
   export namespace POST {
     export interface params {
@@ -27,7 +27,7 @@ export namespace AuthValidatePin {
 }
 
 export namespace AuthActivateEmail {
-  export const path = '/auth/v1/email/activate'
+  export const path = '/auth/client/v1/email/activate'
 
   export namespace POST {
     export interface params {

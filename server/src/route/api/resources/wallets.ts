@@ -9,7 +9,7 @@ import { Wallets } from 'spec/api/resources/wallets'
 const router = new ResourceRouter()
 
 /**
- * /api/v1/wallets
+ * /api/client/v1/wallets
  *
  * Save wallet address for current user. The user has to send
  * `signature` by signing the user_id string with his/her
