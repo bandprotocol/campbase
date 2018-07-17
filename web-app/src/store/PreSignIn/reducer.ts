@@ -12,7 +12,10 @@ const SigninReducer = (
   { type, payload }
 ) => {
   switch (type) {
-    case 'LOGIN':
+    case 'LOGIN_ATTEMPT':
+      return state
+        .set('error', '')
+    case 'LOGIN_FAILED':
       return state
         .set('error', 'TEST ERROR MESSAGE')
     default:
