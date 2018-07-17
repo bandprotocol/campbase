@@ -9,7 +9,7 @@ import server from '~/index'
 chai.use(chaiHttp)
 const should = chai.should()
 
-describe('route:api:user', () => {
+describe('route:api:client:user', () => {
   let sandbox: sinon.SinonSandbox
 
   beforeEach(async () => {

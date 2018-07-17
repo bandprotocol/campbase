@@ -2,19 +2,19 @@ import * as Koa from 'koa'
 import * as KoaBodyparser from 'koa-bodyparser'
 
 /** Auth & User */
-import AuthRouter from './auth'
-import UserRouter from './user'
+import ClientAuthRouter from './client/auth'
+import ClientUserRouter from './client/user'
 
 /** Resources */
-import UsersRouter from './resources/users'
-import WalletsRouter from './resources/wallets'
+import ClientUsersRouter from './client/resources/users'
+import ClientWalletsRouter from './client/resources/wallets'
 
 export function useRoutes(app: Koa) {
   app.use(KoaBodyparser())
 
-  app.use(AuthRouter.routes())
-  app.use(UserRouter.routes())
-  app.use(WalletsRouter.routes())
+  app.use(ClientAuthRouter.routes())
+  app.use(ClientUserRouter.routes())
+  app.use(ClientWalletsRouter.routes())
 
-  app.use(UsersRouter.routes())
+  app.use(ClientUsersRouter.routes())
 }

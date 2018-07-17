@@ -15,7 +15,7 @@ import { decodeJWT } from 'common/jwt'
 chai.use(chaiHttp)
 const should = chai.should()
 
-describe('route:api:auth', () => {
+describe('route:api:client:auth', () => {
   let sandbox: sinon.SinonSandbox
 
   beforeEach(async () => {

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { API } from '~/store/helpers/api'
 import { APIMethod } from 'spec/api/base'
-import { AuthValidatePin } from 'spec/api/auth'
+import { AuthValidatePin } from 'spec/api/client/auth'
 
 export const POST = new API<
   AuthValidatePin.POST.params,

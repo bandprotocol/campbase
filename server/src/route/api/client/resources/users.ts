@@ -3,7 +3,7 @@ import { APIResponseStatus as Status } from 'spec/api/base'
 import Knex from '~/db/connection'
 
 import { Context } from '~/route/interfaces'
-import { UsersId } from 'spec/api/resources/users'
+import { UsersId } from 'spec/api/client/resources/users'
 
 const router = new ResourceRouter()
 

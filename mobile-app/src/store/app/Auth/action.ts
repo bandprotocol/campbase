@@ -15,7 +15,7 @@ import {
 } from '~/store'
 import { AuthRequestPin, AuthValidatePin, UserSignUp } from '~/store/api'
 import { getCurrentUser } from '~/store/app/User/action'
-import { AuthValidatePin as AuthValidatePinSpec } from 'spec/api/auth'
+import { AuthValidatePin as AuthValidatePinSpec } from 'spec/api/client/auth'
 
 enum actions {
   SIGNUP = 'SIGNUP',

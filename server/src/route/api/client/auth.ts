@@ -10,7 +10,7 @@ import {
   AuthRequestPin,
   AuthValidatePin,
   AuthActivateEmail,
-} from 'spec/api/auth'
+} from 'spec/api/client/auth'
 
 const router = new ResourceRouter()
 

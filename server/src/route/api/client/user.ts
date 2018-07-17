@@ -4,7 +4,7 @@ import { DBWallets } from 'spec/db'
 import Knex from '~/db/connection'
 
 import { Context } from '~/route/interfaces'
-import { UserSignUp, UserMe, UserWallets } from 'spec/api/user'
+import { UserSignUp, UserMe, UserWallets } from 'spec/api/client/user'
 import { JWTUser } from 'common/jwt-user'
 import { signJWT } from 'common/jwt'
 

@@ -4,7 +4,7 @@ import Knex from '~/db/connection'
 
 import BandProtocolClient from 'bandprotocol'
 import { Context } from '~/route/interfaces'
-import { Wallets } from 'spec/api/resources/wallets'
+import { Wallets } from 'spec/api/client/resources/wallets'
 
 const router = new ResourceRouter()
 
