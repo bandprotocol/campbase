@@ -23,6 +23,7 @@ export interface DBCommunityManagers {
 }
 
 export interface DBCommunities {
+  id: number
   name: string
   symbol: string
   profile_image: string
@@ -32,4 +33,5 @@ export interface DBCommunities {
   business_country: string
   business_zipcode: string
   business_phone_number: string
+  community_manager_id: number
 }
