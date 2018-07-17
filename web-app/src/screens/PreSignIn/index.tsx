@@ -1,11 +1,11 @@
+import { Alert, Tabs } from 'antd'
 import { push } from 'connected-react-router'
 import * as React from 'react'
-import Styled from 'styled-components'
-import SignInTabPane from './SignInTabPane'
-import { Tabs, Alert } from 'antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { login } from 'store/PreSignIn/action'
+import Styled from 'styled-components'
+import SignInTabPane from './SignInTabPane'
 
 const TabPane = Tabs.TabPane
 
@@ -63,8 +63,8 @@ class SignIn extends React.Component<PropTypes> {
   }
 }
 
-const mapStateToProps = ({ SignIn }) => ({
-  error: SignIn.error
+const mapStateToProps = ({ PreSignIn }) => ({
+  error: PreSignIn.error
 })
 
 const mapDispatchToProps = (dispatch) =>

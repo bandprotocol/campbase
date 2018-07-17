@@ -4,7 +4,8 @@
     "interface-name": false,
     "member-ordering": false,
     "no-angle-bracket-type-assertion": false,
-    "member-access": false
+    "member-access": false,
+    "jsx-no-lambda": false
   },
   "linterOptions": {
     "exclude": [

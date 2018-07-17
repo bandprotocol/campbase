@@ -1,6 +1,5 @@
+import { Button, Checkbox, Icon, Input } from 'antd'
 import * as React from 'react'
-import { Button, Input, Icon, Checkbox } from 'antd'
-import PropTypes from 'prop-types'
 import Styled from 'styled-components'
 
 const RememberMeSection = Styled.div`
@@ -17,9 +16,9 @@ class SignInTabPane extends React.Component<any, any> {
   constructor(props: any) {
     super(props)
     this.state = {
-      userName: '',
       password: '',
       rememberMe: false,
+      userName: '',
     }
   }
 
