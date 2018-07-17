@@ -1,22 +1,31 @@
 import * as Knex from 'knex'
 
 exports.up = async function(knex: Knex): Promise<any> {
-  return knex.schema.createTable('community_managers', table => {
+  return knex.schema.createTable('communities', table => {
     table.increments('id').primary()
-    table.string('email').notNullable()
-    table.string('username').notNullable()
-    table.string('password_hash').notNullable()
-    table.string('password_salt').notNullable()
+    table.string('name').notNullable()
+    table.string('symbol').notNullable()
+    table.string('profile_image').notNullable()
 
-    table.integer('community_id').unsigned()
+    table.string('contract_address').notNullable()
+    table.string('business_name').notNullable()
+    table.string('business_address').notNullable()
+    table.string('business_country').notNullable()
+    table.string('business_zipcode').notNullable()
+    table.string('business_phone_number').notNullable()
 
     table
-      .foreign('community_id')
+      .integer('community_manager_id')
+      .unsigned()
+      .notNullable()
+
+    table
+      .foreign('community_manager_id')
       .references('id')
-      .inTable('communities')
+      .inTable('community_managers')
   })
 }
 
 exports.down = async function(knex: Knex): Promise<any> {
-  return knex.schema.dropTable('community_managers')
+  return knex.schema.dropTable('communities')
 }
