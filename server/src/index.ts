@@ -1,4 +1,5 @@
 import * as Koa from 'koa'
+import * as cors from '@koa/cors'
 import * as KoaLogger from 'koa-logger'
 import { useRoutes } from './route/api'
 import { useValidateMethods } from '~/route/middlewares/validate-methods'
@@ -9,6 +10,7 @@ import { PORT } from './config'
 const app = new Koa()
 
 if (process.env.NODE_ENV === 'development') {
+  app.use(cors())
   app.use(KoaLogger())
 }
 

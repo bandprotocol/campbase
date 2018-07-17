@@ -1,8 +1,10 @@
 import { combineReducers, Reducer } from 'redux'
+import api from './api'
 import PreSignIn from './PreSignIn/reducer'
 
 const RootReducer = combineReducers({
-  PreSignIn
+  PreSignIn,
+  api,
 })
 
 type StateTypeExtract<R> = R extends Reducer<infer S> ? S : null

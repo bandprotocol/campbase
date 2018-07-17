@@ -4,8 +4,9 @@ import { History } from 'history'
 import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { login } from 'store/PreSignIn/action'
+import { login, register } from '~/store/PreSignIn/action'
 import Styled from 'styled-components'
+import RegisterTabPane from './RegisterTabPane'
 import SignInTabPane from './SignInTabPane'
 
 const TabPane = Tabs.TabPane
@@ -25,7 +26,10 @@ const TabPaneDiv = Styled.div`
 
 interface PropTypes {
   login: any
+  register: any
   error: string
+  registerError: string
+  registerSuccess: string
   history: History
 }
 
@@ -39,6 +43,10 @@ class PreSignIn extends React.Component<PropTypes> {
     this.props.login(userName, password, rememberMe)
   }
 
+  registerSubmit = ({ userName, password, email, secretCode }) => {
+    this.props.register(userName, password, email, secretCode)
+  }
+
   navigateToRegister = () => {
     this.props.history.push('/register') // TODO fix to use redux store
   }
@@ -49,8 +57,16 @@ class PreSignIn extends React.Component<PropTypes> {
         <h1>Band Network</h1>
         <h2>Connecting your fanbase through Blockchain technology</h2>
         <SignInTab>
-          {this.props.error ? (
-            <Alert message={this.props.error} type="error" />
+          {this.props.error || this.props.registerError ? (
+            <Alert
+              message={this.props.error || this.props.registerError}
+              type="error"
+            />
+          ) : (
+            ''
+          )}
+          {this.props.registerSuccess ? (
+            <Alert message={this.props.registerSuccess} type="success" />
           ) : (
             ''
           )}
@@ -61,13 +77,9 @@ class PreSignIn extends React.Component<PropTypes> {
               </TabPaneDiv>
             </TabPane>
             <TabPane tab="Register" key="2">
-              <Button
-                type="primary"
-                onClick={this.navigateToRegister}
-                style={{ width: '100%' }}
-              >
-                Register
-              </Button>
+              <TabPaneDiv>
+                <RegisterTabPane registerSubmit={this.registerSubmit} />
+              </TabPaneDiv>
             </TabPane>
           </Tabs>
         </SignInTab>
@@ -78,13 +90,15 @@ class PreSignIn extends React.Component<PropTypes> {
 
 const mapStateToProps = ({ PreSignIn }) => ({
   error: PreSignIn.error,
-  PreSignIn,
+  registerError: PreSignIn.registerError,
+  registerSuccess: PreSignIn.registerSuccess,
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       login,
+      register,
     },
     dispatch
   )
