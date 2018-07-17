@@ -27,7 +27,7 @@ interface PropTypes {
   error: string,
 }
 
-class SignIn extends React.Component<PropTypes> {
+class PreSignIn extends React.Component<PropTypes> {
   constructor(props) {
     super(props)
     this.loginSubmit = this.loginSubmit.bind(this)
@@ -78,4 +78,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignIn)
+)(PreSignIn)

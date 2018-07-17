@@ -5,7 +5,9 @@
     "member-ordering": false,
     "no-angle-bracket-type-assertion": false,
     "member-access": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false
   },
   "linterOptions": {
     "exclude": [

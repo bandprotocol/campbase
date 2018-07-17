@@ -2,11 +2,11 @@ export const login = (userName, password, rememberMe) => {
   return (dispatch) => {
     // TODO some login async logic
     
-    return { 
+    dispatch({ 
       type: 'LOGIN',
       userName,
       password,
       rememberMe
-    }
+    })
   }
 }
