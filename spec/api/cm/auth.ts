@@ -27,3 +27,16 @@ export namespace AuthLogin {
     }
   }
 }
+
+export namespace AuthEmailActivate {
+  export const path = '/auth/cm/v1/email_activate'
+
+  export namespace GET {
+    export interface params {
+      jwt
+    }
+    export type response = {
+      jwt: string
+    }
+  }
+}

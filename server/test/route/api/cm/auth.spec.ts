@@ -5,7 +5,7 @@ import Knex from '~/db/connection'
 import { CM_SIGNUP_SECRET } from '~/config'
 
 import server from '~/index'
-import { decodeJWT } from 'common/jwt'
+import { signJWTGeneric } from 'common/jwt'
 
 chai.use(chaiHttp)
 const should = chai.should()
@@ -93,6 +93,56 @@ describe('route:api:client:auth', () => {
           password: 'SOME_RANDOM_PASSWORD@#$%^&*(',
         })
       res.should.have.status(400)
+    })
+  })
+
+  describe(`POST /auth/cm/v1/email_activate`, () => {
+    it('should get 200 if provide correct jwt', async () => {
+      // Find CM that's not activated
+      const cm = await Knex('community_managers')
+        .where({ email_activated: 0 })
+        .first()
+
+      if (!cm) {
+        throw new Error(
+          'Seed database needs to have community_manager with email_activated = false'
+        )
+      }
+
+      const res = await chai
+        .request(server)
+        .get(`/auth/cm/v1/email_activate`)
+        .send({
+          jwt: signJWTGeneric({ id: cm.id }),
+        })
+      res.should.have.status(200)
+
+      const cm_again = await Knex('community_managers')
+        .where({ id: cm.id })
+        .first()
+
+      should.equal(cm_again.email_activated, 1)
+    })
+
+    it('should get 401 if provide malformed jwt', async () => {
+      // Find CM that's not activated
+      const cm = await Knex('community_managers')
+        .where({ email_activated: 0 })
+        .first()
+
+      if (!cm) {
+        throw new Error(
+          'Seed database needs to have community_manager with email_activated = false'
+        )
+      }
+
+      const res = await chai
+        .request(server)
+        .get(`/auth/cm/v1/email_activate`)
+        .send({
+          jwt: 'SOME_RANDOM_JWT',
+        })
+      res.should.have.status(401)
     })
   })
 

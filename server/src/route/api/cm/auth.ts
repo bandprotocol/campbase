@@ -1,13 +1,14 @@
 import ResourceRouter from '~/common/resource-router'
 import { JWTCommunityManager } from '~/common/jwt-cm'
 import { CM_SIGNUP_SECRET } from '~/config'
-import { signJWT } from '~/common/jwt'
+import { signJWT, signJWTGeneric, decodeJWT } from '~/common/jwt'
 import Knex from '~/db/connection'
 import { verifyHash, generateHash } from '~/common/password'
+import { sendEmail } from '~/external/email'
 
 import { Context } from '~/route/interfaces'
 import { APIResponseStatus as Status } from 'spec/api/base'
-import { AuthSignUp, AuthLogin } from 'spec/api/cm/auth'
+import { AuthSignUp, AuthLogin, AuthEmailActivate } from 'spec/api/cm/auth'
 import { DBCommunityManagers } from 'spec/db'
 
 const router = new ResourceRouter()
@@ -70,6 +71,14 @@ router.post(
       })
       .returning('id')
 
+    // Shoot email out for activation
+    const signedActivateEmailJwt = signJWTGeneric({ id: id[0] })
+    sendEmail(
+      email,
+      'Activate your Campbase Community Manager account',
+      `Please visit the link https://campbase.co/auth/cm/v1/email_activate?jwt=${signedActivateEmailJwt}`
+    )
+
     // Create JWT
     const jwtCM = JWTCommunityManager.createFromDBCommunityManager({
       id: id[0],
@@ -78,6 +87,38 @@ router.post(
     })
     const signedJwt = signJWT(jwtCM)
     ctx.success(Status.CREATED, { jwt: signedJwt })
+  }
+)
+
+/**
+ * GET /auth/cm/v1/email_activate
+ *
+ * Activate email address
+ */
+router.get(
+  AuthEmailActivate.path,
+  async (
+    ctx: Context<AuthEmailActivate.GET.params, AuthEmailActivate.GET.response>
+  ) => {
+    ctx.validate.body.includeParams(['jwt'])
+
+    const { jwt } = ctx.request.body
+
+    try {
+      const decodedJwt = <{ data }>decodeJWT(jwt)
+
+      if (decodedJwt) {
+        const { id } = decodedJwt.data
+        await Knex('community_managers')
+          .where({ id })
+          .update({ email_activated: 1 })
+        ctx.success(Status.OK)
+      } else {
+        ctx.fail(Status.FORBIDDEN, 'Incorrect email activation secret')
+      }
+    } catch (e) {
+      ctx.fail(Status.UNAUTHORIZED, 'Invalid email activation secret')
+    }
   }
 )
 
