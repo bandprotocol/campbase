@@ -86,7 +86,7 @@ router.post(
       email,
     })
     const signedJwt = signJWT(jwtCM)
-    ctx.success(Status.CREATED, { jwt: signedJwt })
+    ctx.success(Status.CREATED)
   }
 )
 
@@ -100,9 +100,11 @@ router.get(
   async (
     ctx: Context<AuthEmailActivate.GET.params, AuthEmailActivate.GET.response>
   ) => {
-    ctx.validate.body.includeParams(['jwt'])
+    const { jwt } = ctx.request.query
 
-    const { jwt } = ctx.request.body
+    if (!jwt) {
+      ctx.fail(400, `Expect jwt query string`)
+    }
 
     try {
       const decodedJwt = <{ data }>decodeJWT(jwt)

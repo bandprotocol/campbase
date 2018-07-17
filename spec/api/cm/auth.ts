@@ -8,9 +8,7 @@ export namespace AuthSignUp {
       email: string
       secret_code: string // For registration
     }
-    export type response = {
-      jwt: string
-    }
+    export type response = {}
   }
 }
 
@@ -35,8 +33,6 @@ export namespace AuthEmailActivate {
     export interface params {
       jwt
     }
-    export type response = {
-      jwt: string
-    }
+    export type response = {}
   }
 }

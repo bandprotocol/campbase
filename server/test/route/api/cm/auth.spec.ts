@@ -25,7 +25,7 @@ describe('route:api:client:auth', () => {
   })
 
   describe(`POST /auth/cm/v1/signup`, () => {
-    it('should get 201 and { jwt } if success w/ email_activated = false', async () => {
+    it('should get 201 if success w/ email_activated = false', async () => {
       const res = await chai
         .request(server)
         .post(`/auth/cm/v1/signup`)
@@ -36,7 +36,6 @@ describe('route:api:client:auth', () => {
           secret_code: CM_SIGNUP_SECRET,
         })
       res.should.have.status(201)
-      res.body.data.should.include.key('jwt')
 
       const newUser = await Knex('community_managers')
         .where({ email: 'new_cm@example.com' })
@@ -112,7 +111,7 @@ describe('route:api:client:auth', () => {
       const res = await chai
         .request(server)
         .get(`/auth/cm/v1/email_activate`)
-        .send({
+        .query({
           jwt: signJWTGeneric({ id: cm.id }),
         })
       res.should.have.status(200)
@@ -139,10 +138,29 @@ describe('route:api:client:auth', () => {
       const res = await chai
         .request(server)
         .get(`/auth/cm/v1/email_activate`)
-        .send({
+        .query({
           jwt: 'SOME_RANDOM_JWT',
         })
       res.should.have.status(401)
+    })
+
+    it('should get 400 if no jwt is passed', async () => {
+      // Find CM that's not activated
+      const cm = await Knex('community_managers')
+        .where({ email_activated: 0 })
+        .first()
+
+      if (!cm) {
+        throw new Error(
+          'Seed database needs to have community_manager with email_activated = false'
+        )
+      }
+
+      const res = await chai
+        .request(server)
+        .get(`/auth/cm/v1/email_activate`)
+        .query({})
+      res.should.have.status(400)
     })
   })
 
