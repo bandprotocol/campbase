@@ -1,3 +1,5 @@
+import { DBUsers } from 'spec/db'
+
 /**
  * User object to encapsulate as JWT
  */
@@ -7,16 +9,12 @@ export interface JWTUserInterface {
   readonly phone_number: string
 }
 
-export interface DBUserInterface extends JWTUserInterface {
-  [propName: string]: any
-}
-
 export class JWTUser implements JWTUserInterface {
   /**
    * A factory to initiate instance
    * @param dbUser
    */
-  static createFromDBUser(dbUser: DBUserInterface) {
+  static createFromDBUser(dbUser: DBUsers) {
     return new JWTUser(dbUser.id, dbUser.country_code, dbUser.phone_number)
   }
 

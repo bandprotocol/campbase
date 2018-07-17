@@ -1,7 +1,7 @@
 import * as Koa from 'koa'
 import * as KoaJWT from 'koa-jwt'
 import { JWT_SECRET } from '~/config'
-import { DBUserInterface } from '~/common/jwt-user'
+import { DBUsers } from 'spec/db'
 import Knex from '~/db/connection'
 
 export function useAuthentication(app: Koa) {
@@ -35,7 +35,7 @@ export function useAuthentication(app: Koa) {
             ctx.fail(400, `No user with id ${ctx.state.jwtUser.data.id} found`)
           }
 
-          ctx.user = <DBUserInterface>user
+          ctx.user = <DBUsers>user
         } catch (e) {
           ctx.fail()
         }
