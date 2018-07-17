@@ -14,14 +14,15 @@ export interface DBWallets {
   encrypted_secret_key: string
 }
 
-export interface DBCommunityManager {
+export interface DBCommunityManagers {
+  id: number
   username: string
   password_hash: string
   password_salt: string
   email: string
 }
 
-export interface DBCommunity {
+export interface DBCommunities {
   name: string
   symbol: string
   profile_image: string
