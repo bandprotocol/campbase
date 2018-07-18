@@ -5,7 +5,7 @@
 import * as React from 'react'
 import { bindActionCreators as bindActions, Dispatch } from 'redux'
 import { connect as reduxConnect } from 'react-redux'
-import { API } from './api'
+import { API } from '~/store/helpers/api'
 
 /**
  * @param apis An object mapping from alias to { fetch, ...apiState }

@@ -3,8 +3,8 @@
  */
 
 import { combineReducers } from 'redux'
-import PreSignIn from './PreSignIn/reducer'
-import Register from './Register/reducer'
+import PreSignIn from '~/store/app/PreSignIn/reducer'
+import Register from '~/store/app/Register/reducer'
 
 export default combineReducers({
   PreSignIn,

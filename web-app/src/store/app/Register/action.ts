@@ -1,6 +1,6 @@
-export const changeStep = (toStep: string) => {
+export const changeStep = (toStep: number) => {
   return {
     type: 'CHANGE_STEP',
-    toStep,
+    payload: { toStep },
   }
 }

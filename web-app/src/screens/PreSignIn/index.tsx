@@ -2,27 +2,20 @@ import { Alert, Button, Tabs } from 'antd'
 import { push } from 'connected-react-router'
 import { History } from 'history'
 import * as React from 'react'
-import { connect, MapStateToPropsParam } from 'react-redux'
+import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { login, register, changeTab } from '~/store/app/PreSignIn/action'
 import Styled from 'styled-components'
-import RegisterTabPane from './RegisterTabPane'
-import SignInTabPane from './SignInTabPane'
+import RegisterTabPane from '~/screens/PreSignIn/RegisterTabPane'
+import SignInTabPane from '~/screens/PreSignIn/SignInTabPane'
 import { StateType } from '~/store'
+import FormListInput from '~/components/FormListInput'
 
 const TabPane = Tabs.TabPane
 
 const SignInTab = Styled.div`
   margin: auto;
   width: 500px;
-`
-
-const TabPaneDiv = Styled.div`
-  display: flex;
-  flex-direction: column;
-  > div > *:not(:first-child) {
-    margin-top: 20px;
-  }
 `
 
 interface PropTypes {
@@ -73,14 +66,14 @@ class PreSignIn extends React.Component<PropTypes> {
             onTabClick={this.changeTab}
           >
             <TabPane tab="Sign In" key="0">
-              <TabPaneDiv>
+              <FormListInput>
                 <SignInTabPane loginSubmit={this.loginSubmit} />
-              </TabPaneDiv>
+              </FormListInput>
             </TabPane>
             <TabPane tab="Register" key="1">
-              <TabPaneDiv>
+              <FormListInput>
                 <RegisterTabPane registerSubmit={this.registerSubmit} />
-              </TabPaneDiv>
+              </FormListInput>
             </TabPane>
           </Tabs>
         </SignInTab>

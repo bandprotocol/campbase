@@ -4,8 +4,8 @@
 
 import { Record } from 'immutable'
 import { APIMethod } from 'spec/api/base'
-import { query } from './query'
-import { createScopedActionTypes } from './create-scoped-action-types'
+import { query } from '~/store/helpers/query'
+import { createScopedActionTypes } from '~/store/helpers/create-scoped-action-types'
 import { createStateRecord, StateRecordType, AsyncActionCreator } from '~/store'
 
 export type APIParamsType<T> = T | ((state) => T)
@@ -55,9 +55,7 @@ export class API<Params = any, Response = any> {
     this.reducer = this.reducer.bind(this)
   }
 
-  action = (
-    params: APIParamsType<Params> = <Params>{}
-  ) => {
+  action = (params: APIParamsType<Params> = <Params>{}) => {
     return async (dispatch, getState) => {
       // Calculate query params
       var queryParams

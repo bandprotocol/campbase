@@ -1,6 +1,6 @@
 import { combineReducers, Reducer } from 'redux'
-import api from './api'
-import app from './app'
+import api from '~/store/api'
+import app from '~/store/app'
 
 const RootReducer = combineReducers({
   app,

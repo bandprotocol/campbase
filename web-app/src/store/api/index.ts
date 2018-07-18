@@ -3,13 +3,13 @@
  */
 
 import { combineReducers } from 'redux'
-import { API } from '../helpers/api'
-import * as AuthSignUp from './AuthSignUp'
-import * as AuthLogin from './AuthLogin'
+import { API } from '~/store/helpers/api'
+import * as AuthSignUp from '~/store/api/AuthSignUp'
+import * as AuthLogin from '~/store/api/AuthLogin'
 
 export default combineReducers({
   AuthRequestPin: AuthSignUp.default,
-  AuthLogin: AuthLogin.default
+  AuthLogin: AuthLogin.default,
 })
 
 export { AuthSignUp, AuthLogin }
