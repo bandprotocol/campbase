@@ -27,11 +27,20 @@ export interface DBCommunities {
   name: string
   symbol: string
   profile_image: string
-  contract_address: string
   business_name: string
   business_address: string
   business_country: string
   business_zipcode: string
   business_phone_number: string
+
   community_manager_id: number
+  wallet_address: string
+  contract_address: string
+}
+
+export interface DBCommunityWallets {
+  id: number
+  sk: string
+  vk: string
+  address: string
 }

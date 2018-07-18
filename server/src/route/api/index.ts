@@ -12,6 +12,9 @@ import ClientWalletsRouter from './client/resources/wallets'
 /** CM Auth & User */
 import CMAuthRouter from './cm/auth'
 
+/** CM Resources */
+import CMCommunitiesRouter from './cm/resources/communities'
+
 export function useRoutes(app: Koa) {
   app.use(KoaBodyparser())
 
@@ -21,4 +24,5 @@ export function useRoutes(app: Koa) {
   app.use(ClientUsersRouter.routes())
 
   app.use(CMAuthRouter.routes())
+  app.use(CMCommunitiesRouter.routes())
 }

@@ -1,7 +1,11 @@
 import * as Koa from 'koa'
 import * as sinon from 'sinon'
-import { JWTUser, JWTUserInterface } from 'common/jwt-user'
-import { signJWT } from 'common/jwt'
+import { JWTUser, JWTUserInterface } from '~/common/jwt-user'
+import {
+  JWTCommunityManager,
+  JWTCommunityManagerInterface,
+} from '~/common/jwt-cm'
+import { signJWT } from '~/common/jwt'
 
 export function mockModule<T>(
   moduleToMock: T,
@@ -35,4 +39,9 @@ export function mockApplyMiddleware(
 export function createUserAuthorizationHeader(user: JWTUserInterface) {
   const jwtUser = new JWTUser(user.id, user.country_code, user.phone_number)
   return `Bearer ${signJWT(jwtUser)}`
+}
+
+export function createCMAuthorizationHeader(cm: JWTCommunityManagerInterface) {
+  const jwtCM = new JWTCommunityManager(cm.id, cm.username, cm.email)
+  return `Bearer ${signJWT(jwtCM)}`
 }
