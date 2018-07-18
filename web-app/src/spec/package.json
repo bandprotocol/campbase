@@ -1,9 +1,0 @@
-{
-  "name": "spec",
-  "version": "1.0.0",
-  "prettier": {
-    "trailingComma": "es5",
-    "semi": false,
-    "singleQuote": true
-  }
-}

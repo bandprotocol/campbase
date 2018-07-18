@@ -3,7 +3,7 @@
  */
 
 import Axios, { AxiosError, AxiosInstance } from 'axios'
-import { APIMethod, APIResponse } from '~/spec/api/base'
+import { APIMethod, APIResponse } from 'spec/api/base'
 import { SERVER_ENDPOINT } from '~/config'
 import { getPathParams, populatePath } from './path'
 

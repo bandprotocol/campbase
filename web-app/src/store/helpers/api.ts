@@ -3,7 +3,7 @@
  */
 
 import { Record } from 'immutable'
-import { APIMethod } from '~/spec/api/base'
+import { APIMethod } from 'spec/api/base'
 import { query } from './query'
 import { createScopedActionTypes } from './create-scoped-action-types'
 import { createStateRecord, StateRecordType, AsyncActionCreator } from '~/store'
