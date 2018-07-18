@@ -6329,9 +6329,9 @@ react-router@^4.2.0, react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-react-scripts-bandprotocol-ts@^2.16.2:
-  version "2.16.2"
-  resolved "https://registry.yarnpkg.com/react-scripts-bandprotocol-ts/-/react-scripts-bandprotocol-ts-2.16.2.tgz#28ac6810db44bcb70ddf6d7bcb1e16c878b5bb08"
+react-scripts-bandprotocol-ts@^2.16.3:
+  version "2.16.3"
+  resolved "https://registry.yarnpkg.com/react-scripts-bandprotocol-ts/-/react-scripts-bandprotocol-ts-2.16.3.tgz#def9e70fae4a474c572e3d30a555cceb3fdcde3d"
   dependencies:
     autoprefixer "7.1.6"
     babel-jest "^22.1.0"
