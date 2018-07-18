@@ -8,7 +8,7 @@ export namespace AuthSignUp {
       email: string
       secret_code: string // For registration
     }
-    export type response = {}
+    export type response = { test: string } // TODO TEST , Please remove test: string
   }
 }
 

@@ -2,12 +2,13 @@ import { Alert, Button, Tabs } from 'antd'
 import { push } from 'connected-react-router'
 import { History } from 'history'
 import * as React from 'react'
-import { connect } from 'react-redux'
+import { connect, MapStateToPropsParam } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { login, register } from '~/store/PreSignIn/action'
 import Styled from 'styled-components'
 import RegisterTabPane from './RegisterTabPane'
 import SignInTabPane from './SignInTabPane'
+import { StateType } from '~/store'
 
 const TabPane = Tabs.TabPane
 
@@ -70,13 +71,13 @@ class PreSignIn extends React.Component<PropTypes> {
           ) : (
             ''
           )}
-          <Tabs defaultActiveKey="1">
-            <TabPane tab="Sign In" key="1">
+          <Tabs defaultActiveKey="0">
+            <TabPane tab="Sign In" key="0">
               <TabPaneDiv>
                 <SignInTabPane loginSubmit={this.loginSubmit} />
               </TabPaneDiv>
             </TabPane>
-            <TabPane tab="Register" key="2">
+            <TabPane tab="Register" key="1">
               <TabPaneDiv>
                 <RegisterTabPane registerSubmit={this.registerSubmit} />
               </TabPaneDiv>
@@ -88,7 +89,7 @@ class PreSignIn extends React.Component<PropTypes> {
   }
 }
 
-const mapStateToProps = ({ PreSignIn }) => ({
+const mapStateToProps = ({ PreSignIn }: StateType) => ({
   error: PreSignIn.error,
   registerError: PreSignIn.registerError,
   registerSuccess: PreSignIn.registerSuccess,

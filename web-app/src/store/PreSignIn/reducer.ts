@@ -4,6 +4,10 @@ const DefaultState = {
   error: '',
   registerSuccess: '',
   registerError: '',
+} as {
+  error: string
+  registerSuccess: string
+  registerError: string
 }
 
 const StateRecord = createStateRecord(DefaultState)
@@ -12,7 +16,7 @@ type StateRecordType = typeof StateRecord
 const PreSigninReducer = (
   state: StateRecordType = <StateRecordType>new StateRecord(),
   { type, payload }
-) => {
+): StateRecordType => {
   switch (type) {
     case 'LOGIN_ATTEMPT':
     case 'REGISTER_ATTEMPT':

@@ -1,7 +1,12 @@
 import { AuthSignUp } from '~/store/api'
+import { AsyncActionCreator } from '~/store/interfaces'
 
-export const login = (userName, password, rememberMe) => {
-  return dispatch => {
+export const login: AsyncActionCreator<boolean> = (
+  userName: string,
+  password: string,
+  rememberMe: string
+) => {
+  return async dispatch => {
     // TODO some login async logic
     dispatch({
       type: 'LOGIN_ATTEMPT',
@@ -16,17 +21,24 @@ export const login = (userName, password, rememberMe) => {
         type: 'LOGIN_FAILED',
       })
     }
+
+    return true
   }
 }
 
-export const register = (userName, password, email, secretCode) => {
+export const register: AsyncActionCreator<boolean> = (
+  userName: string,
+  password: string,
+  email: string,
+  secretCode: string
+) => {
   return async dispatch => {
     try {
       dispatch({
         type: 'REGISTER_ATTEMPT',
       })
 
-      const output = await dispatch(
+      await dispatch(
         AuthSignUp.POST.action({
           username: userName,
           password,
@@ -43,6 +55,9 @@ export const register = (userName, password, email, secretCode) => {
       dispatch({
         type: 'REGISTER_FAILED',
       })
+      return false
     }
+
+    return true
   }
 }
