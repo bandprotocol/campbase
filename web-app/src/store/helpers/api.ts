@@ -55,7 +55,7 @@ export class API<Params = any, Response = any> {
     this.reducer = this.reducer.bind(this)
   }
 
-  action: AsyncActionCreator<Response> = (
+  action = (
     params: APIParamsType<Params> = <Params>{}
   ) => {
     return async (dispatch, getState) => {

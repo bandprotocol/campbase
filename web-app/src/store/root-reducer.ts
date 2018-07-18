@@ -1,9 +1,9 @@
 import { combineReducers, Reducer } from 'redux'
 import api from './api'
-import PreSignIn from './PreSignIn/reducer'
+import app from './app'
 
 const RootReducer = combineReducers({
-  PreSignIn,
+  app,
   api,
 })
 

@@ -1,10 +1,11 @@
-import { Button, Steps, Tabs } from 'antd'
+import { Button, Steps } from 'antd'
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
+import { StateType } from '~/store'
+import { changeStep } from '~/store/app/Register/action'
 
 const Step = Steps.Step
-const TabPane = Tabs.TabPane
 
 interface PropTypes {
   currentStep: number
@@ -27,35 +28,22 @@ class Register extends React.Component<PropTypes, {}> {
             <Step title="Token Issuance" />
             <Step title="Review" />
           </Steps>
-        </div>
-        <Tabs defaultActiveKey="0" tabBarStyle={{ display: 'none' }}>
-          <TabPane tab="Step1" key="0">
-            Step 1
+          <div className="steps-content">
+            Content
             <Button type="primary" onClick={this.nextStep}>
               Next
             </Button>
-          </TabPane>
-          <TabPane tab="Step2" key="1">
-            Step 2
-            <Button type="primary">Next</Button>
-          </TabPane>
-          <TabPane tab="Step3" key="2">
-            Step 3
-            <Button type="primary">Next</Button>
-          </TabPane>
-          <TabPane tab="Step4" key="3">
-            Step 4
-            <Button type="primary">Submit</Button>
-          </TabPane>
-        </Tabs>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ Register }) => ({})
+const mapStateToProps = ({ app: { Register } }: StateType) => ({})
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ changeStep }, dispatch)
 
 export default connect(
   mapStateToProps,

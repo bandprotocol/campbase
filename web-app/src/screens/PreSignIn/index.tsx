@@ -3,8 +3,8 @@ import { push } from 'connected-react-router'
 import { History } from 'history'
 import * as React from 'react'
 import { connect, MapStateToPropsParam } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { login, register } from '~/store/PreSignIn/action'
+import { bindActionCreators, Dispatch } from 'redux'
+import { login, register, changeTab } from '~/store/app/PreSignIn/action'
 import Styled from 'styled-components'
 import RegisterTabPane from './RegisterTabPane'
 import SignInTabPane from './SignInTabPane'
@@ -28,9 +28,10 @@ const TabPaneDiv = Styled.div`
 interface PropTypes {
   login: any
   register: any
+  changeTab: any
   error: string
-  registerError: string
-  registerSuccess: string
+  alertMessage: any
+  currentTabKey: string
   history: History
 }
 
@@ -52,26 +53,25 @@ class PreSignIn extends React.Component<PropTypes> {
     this.props.history.push('/register') // TODO fix to use redux store
   }
 
+  changeTab = e => {
+    this.props.changeTab(e)
+  }
+
   render() {
     return (
       <div>
         <h1>Band Network</h1>
         <h2>Connecting your fanbase through Blockchain technology</h2>
         <SignInTab>
-          {this.props.error || this.props.registerError ? (
-            <Alert
-              message={this.props.error || this.props.registerError}
-              type="error"
-            />
+          {this.props.alertMessage.message ? (
+            <Alert {...this.props.alertMessage} />
           ) : (
             ''
           )}
-          {this.props.registerSuccess ? (
-            <Alert message={this.props.registerSuccess} type="success" />
-          ) : (
-            ''
-          )}
-          <Tabs defaultActiveKey="0">
+          <Tabs
+            activeKey={this.props.currentTabKey}
+            onTabClick={this.changeTab}
+          >
             <TabPane tab="Sign In" key="0">
               <TabPaneDiv>
                 <SignInTabPane loginSubmit={this.loginSubmit} />
@@ -89,17 +89,17 @@ class PreSignIn extends React.Component<PropTypes> {
   }
 }
 
-const mapStateToProps = ({ PreSignIn }: StateType) => ({
-  error: PreSignIn.error,
-  registerError: PreSignIn.registerError,
-  registerSuccess: PreSignIn.registerSuccess,
+const mapStateToProps = ({ app: { PreSignIn } }: StateType) => ({
+  alertMessage: PreSignIn.alertMessage,
+  currentTabKey: PreSignIn.currentTabKey,
 })
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators(
     {
       login,
       register,
+      changeTab,
     },
     dispatch
   )

@@ -1,5 +1,6 @@
-import { AuthSignUp } from '~/store/api'
+import { AuthSignUp, AuthLogin } from '~/store/api'
 import { AsyncActionCreator } from '~/store/interfaces'
+import { push } from 'connected-react-router'
 
 export const login: AsyncActionCreator<boolean> = (
   userName: string,
@@ -7,22 +8,48 @@ export const login: AsyncActionCreator<boolean> = (
   rememberMe: string
 ) => {
   return async dispatch => {
-    // TODO some login async logic
     dispatch({
       type: 'LOGIN_ATTEMPT',
     })
 
-    if (userName === password) {
-      dispatch({
-        type: 'LOGIN_SUCCESS',
-      })
-    } else {
+    try {
+      const output = await dispatch(
+        AuthLogin.POST.action({
+          username: userName,
+          password,
+        })
+      )
+
+      if (output.jwt) {
+        localStorage.setItem('jwt', output.jwt)
+
+        dispatch({
+          type: 'LOGIN_SUCCESS',
+        })
+
+        dispatch(push('/register')) // TODO only when user have no community setup
+
+        return true
+      }
+    } catch (e) {
+      console.error(e)
+
       dispatch({
         type: 'LOGIN_FAILED',
+        payload: {
+          message: e.message,
+        },
       })
+
+      return false
     }
 
-    return true
+    dispatch({
+      type: 'LOGIN_FAILED',
+      payload: {},
+    })
+
+    return false
   }
 }
 
@@ -59,5 +86,12 @@ export const register: AsyncActionCreator<boolean> = (
     }
 
     return true
+  }
+}
+
+export const changeTab = (changeToTab: string) => {
+  return {
+    type: 'CHANGE_TAB',
+    payload: { changeToTab },
   }
 }
