@@ -8,9 +8,7 @@ import { UsersId } from 'spec/api/client/resources/users'
 const router = new ResourceRouter()
 
 /**
- * /api/client/v1/users/:id
- *
- *
+ * GET /api/client/v1/users/:id
  */
 router.get(
   UsersId.path,

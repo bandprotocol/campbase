@@ -12,7 +12,11 @@ export function useAuthentication(app: Koa) {
   app.use(async (ctx, next) => {
     return next().catch(err => {
       if (err.status === 401) {
-        ctx.fail(401, 'Please send JWT via Authorization header to get access')
+        ctx.fail(
+          401,
+          err.message ||
+            'Please send JWT via Authorization header to get access'
+        )
       } else throw err
     })
   })

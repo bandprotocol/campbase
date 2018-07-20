@@ -11,6 +11,8 @@ declare module 'koa' {
       body: {
         includeParams: (params: string[]) => void
       }
+      isUser: Function
+      isCM: Function
     }
   }
 }
