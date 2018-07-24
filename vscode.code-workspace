@@ -1,18 +1,5 @@
 {
-  "folders": [
-    {
-      "path": "server"
-    },
-    {
-      "path": "mobile-app"
-    },
-    {
-      "path": "web-app"
-    },
-    {
-      "path": "spec"
-    }
-  ],
+  "folders": [],
   "settings": {
     "javascript.validate.enable": false,
     "emmet.includeLanguages": {
