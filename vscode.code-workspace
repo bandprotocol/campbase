@@ -1,5 +1,9 @@
 {
-  "folders": [],
+  "folders": [
+    {
+      "path": "app"
+    }
+  ],
   "settings": {
     "javascript.validate.enable": false,
     "emmet.includeLanguages": {
