@@ -1,12 +1,7 @@
 {
-  "name": "app",
+  "name": "campbase-tcr",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-native-scripts": "1.14.0",
-    "jest-expo": "~27.0.0",
-    "react-test-renderer": "16.3.1"
-  },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
     "start": "react-native-scripts start",
@@ -18,9 +13,51 @@
   "jest": {
     "preset": "jest-expo"
   },
+  "devDependencies": {
+    "@types/expo": "^27.0.2",
+    "@types/react": "^16.3.18",
+    "@types/react-native": "^0.55.21",
+    "@types/react-navigation": "^2.0.5",
+    "@types/react-redux": "^6.0.2",
+    "@types/react-test-renderer": "^16.0.1",
+    "babel-plugin-import": "^1.7.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "jest-expo": "~27.0.0",
+    "react-native-scripts": "^1.14.0",
+    "react-native-typescript-transformer": "^1.2.10",
+    "react-test-renderer": "16.3.1",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2",
+    "typescript-styled-plugin": "^0.7.0"
+  },
   "dependencies": {
+    "antd-mobile-rn": "^2.2.0",
+    "autobind-decorator": "^2.1.0",
+    "axios": "^0.18.0",
+    "bandprotocol": "0.4.11",
+    "bignumber.js": "^7.2.1",
     "expo": "^27.0.1",
+    "immutable": "^3.8.2",
+    "isomorphic-webcrypto": "^1.5.0",
+    "path-to-regexp": "^2.2.1",
+    "prop-types": "^15.6.1",
     "react": "16.3.1",
-    "react-native": "~0.55.2"
+    "react-native": "~0.55.2",
+    "react-native-elevated-view": "^0.0.6",
+    "react-native-phone-input": "^0.2.1",
+    "react-native-qrcode": "^0.2.6",
+    "react-native-status-bar-height": "^2.0.0",
+    "react-navigation": "^2.0.4",
+    "react-navigation-material-bottom-tabs": "^0.3.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "rn-prompt": "^1.0.3",
+    "styled-components": "^3.3.3"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true
   }
 }

@@ -1,5 +1,17 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "slug": "campbase-tcr",
+    "packagerOpts": {
+      "sourceExts": ["ts", "tsx"],
+      "transformer":
+        "./node_modules/react-native-typescript-transformer/index.js"
+    },
+    "orientation": "portrait",
+    "primaryColor": "#916bff",
+    "icon": "./src/assets/branding/icon.png",
+    "android": {
+      "package": "app.campbase.tcr"
+    }
   }
 }
