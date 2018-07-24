@@ -5,21 +5,11 @@ global.crypto = require('isomorphic-webcrypto')
 import * as React from 'react'
 import { AppLoading, Asset, Font } from 'expo'
 import { Provider } from 'react-redux'
-// import Routes from '~/routes'
+import Routes from '~/routes'
 import { Fonts, autobind } from '~/utils'
 
-// import configureStore from '~/store/configure-store.dev'
-// let store
-
-import { StyleSheet, Text, View } from 'react-native'
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+import configureStore from '~/store/configure-store.dev'
+let store
 
 interface State {
   fontLoaded: boolean;
@@ -50,7 +40,7 @@ export default class App extends React.Component<{}, State> {
         [Fonts.subheader]: require('~/assets/fonts/JosefinSans-LightItalic.ttf'),
       }),
       // Configure store
-      // (async () => (store = await configureStore()))(),
+      configureStore().then(s => (store = s)),
     ])
   }
 
@@ -65,17 +55,9 @@ export default class App extends React.Component<{}, State> {
       )
 
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
     )
-
-    // return (
-    //   <Provider store={store}>
-    //     <Routes />
-    //   </Provider>
-    // )
   }
 }
