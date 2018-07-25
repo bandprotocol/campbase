@@ -5,15 +5,17 @@ import { autobind } from '~/utils'
 import SetPasscode from './SetPasscode'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
-import { setPasscode } from '~/store/app/CreateWallet/action'
-import { Dispatch } from 'react-redux'
+import { setPasscode } from '~/store/app/Wallets/action'
+import { Dispatch } from 'redux'
 
 type Props = PropTypes.withNavigation
 type State = {
   passcode: string
 }
 
-const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
+const mapState = (state: StateType) => ({
+  newWallet: state.app.Wallets.newWallet,
+})
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {

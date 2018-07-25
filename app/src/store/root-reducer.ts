@@ -5,13 +5,14 @@
 import { combineReducers, Reducer } from 'redux'
 import app from './app'
 
-const RootReducer = combineReducers({
+type StateTypeExtract<R> = R extends Reducer<infer S> ? S : null
+type StateType = { app: StateTypeExtract<typeof app> }
+
+const RootReducer = combineReducers<StateType>({
   app,
 
   // ^^^ Add more reducers here
 })
 
-type StateTypeExtract<R> = R extends Reducer<infer S> ? S : null
-export type StateType = StateTypeExtract<typeof RootReducer>
-
+export { StateType }
 export default RootReducer

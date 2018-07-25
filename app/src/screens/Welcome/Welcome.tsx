@@ -32,7 +32,7 @@ const Header = Styled.Text`
 `
 const Subheader = Styled.Text`
   font-family: ${Fonts.subheader};
-  font-size: 30;
+  font-size: 24;
   color: #ffffff;
 `
 const ButtonContainer = Styled.View`
@@ -67,21 +67,21 @@ export default ({ onStartPhoneAuth }) => (
   <Container>
     <TopContainer>
       <Header>CAMPBASE</Header>
-      <Subheader>curate you communities</Subheader>
+      <Subheader>Decentralized Data Curation</Subheader>
       <ButtonContainer>
         <ColorButton
           color={Color.darkPurple}
           style={{ width: 220 }}
           onClick={onStartPhoneAuth}
         >
-          SIGN UP
+          SETUP WALLET
         </ColorButton>
         <ColorButton
           color="transparent"
           style={{ borderColor: '#ffffff', marginTop: 15, width: 220 }}
           onClick={onStartPhoneAuth}
         >
-          LOG IN
+          EXPLORE
         </ColorButton>
       </ButtonContainer>
     </TopContainer>

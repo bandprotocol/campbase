@@ -4,7 +4,7 @@
  */
 
 import { applyMiddleware, compose, createStore } from 'redux'
-import { revive } from '~/store/app/Auth/action'
+import { reviveWallets } from '~/store/app/Wallets/action'
 import thunk from 'redux-thunk'
 import rootReducer from './root-reducer'
 
@@ -19,7 +19,7 @@ export default async function configureStoreProd(initialState = {}) {
   )
 
   // Revive session
-  await store.dispatch(revive())
+  await store.dispatch(reviveWallets() as any)
 
   return store
 }

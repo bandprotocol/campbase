@@ -3,14 +3,10 @@
  */
 
 import { combineReducers } from 'redux'
-import Auth from './Auth/reducer'
-import User from './User/reducer'
-import CreateWallet from './CreateWallet/reducer'
+import Wallets from './Wallets/reducer'
 
 export default combineReducers({
-  Auth,
-  User,
-  CreateWallet,
+  Wallets,
 
   // ^^^ Add more reducers here
 })

@@ -4,12 +4,11 @@ import { DrawerActions } from 'react-navigation'
 import { connect, StateType, Dispatch, bindActions } from '~/store'
 import { PropTypes } from 'declare'
 import { Drawer, DrawerNotLogin } from './Drawer'
-import { logout } from '~/store/app/Auth/action'
 
 type Props = PropTypes.withNavigation & PropTypes.withDrawer
 
-const mapState = (state: StateType) => ({ user: state.app.User })
-const mapAction = (dispatch: Dispatch) => bindActions({ logout }, dispatch)
+const mapState = (state: StateType) => ({})
+const mapAction = (dispatch: Dispatch) => bindActions({}, dispatch)
 
 class DrawerContainer extends React.Component<
   Props & ReturnType<typeof mapState> & ReturnType<typeof mapAction>
@@ -20,15 +19,8 @@ class DrawerContainer extends React.Component<
     navigation.navigate(path)
     navigation.dispatch(DrawerActions.closeDrawer())
   }
-
-  @autobind
-  async onSignOut() {
-    await this.props.logout()
-    this.goTo('Welcome')
-  }
-
   render() {
-    const { navigation, activeItemKey, user } = this.props
+    const { navigation, activeItemKey } = this.props
 
     if (activeItemKey === 'AuthStack' || activeItemKey === 'Welcome')
       return <DrawerNotLogin />
@@ -40,7 +32,7 @@ class DrawerContainer extends React.Component<
           display_name: 'John Legend',
           profile_image: 'https://api.adorable.io/avatars/300/0@adorable.png',
         }}
-        onSignOut={this.onSignOut}
+        onSignOut={() => false}
         goTo={this.goTo}
       />
     )

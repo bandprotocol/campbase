@@ -9,21 +9,20 @@ import { BLOCKCHAIN_ENDPOINT } from '~/config'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
 import HeaderButton from '~/components/HeaderButton'
-import { generateNewWallet } from '~/store/app/CreateWallet/action'
+import { generateNewWallet } from '~/store/app/Wallets/action'
 import BandProtocolClient from 'bandprotocol'
 import BandBalance from '~/utils/BandBalance'
 
 type Props = PropTypes.withNavigation
 type State = {
-  wallets: any[]
+  wallets: any
 }
 
-const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
+const mapState = (state: StateType) => ({ wallets: state.app.Wallets.wallets })
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
       generateNewWallet,
-      UserWallets: () => ({}),
     },
     dispatch
   )
@@ -50,19 +49,28 @@ class WalletListScreen extends React.Component<
   })
 
   state = {
-    wallets: null,
+    wallets: {},
   }
+
+  private removeListener
 
   async componentDidMount() {
     await this.fetchBalance()
 
     // Watch for screen to be focused
-    this.props.navigation.addListener('didFocus', this.fetchBalance)
+    this.removeListener = this.props.navigation.addListener(
+      'didFocus',
+      this.fetchBalance
+    )
+  }
+
+  componentWillUnmount() {
+    this.removeListener()
   }
 
   @autobind
   async fetchBalance() {
-    const { wallets } = await this.props.UserWallets()
+    const { wallets } = this.props
 
     // Fetch balances
     const client = new BandProtocolClient({
@@ -70,15 +78,15 @@ class WalletListScreen extends React.Component<
     })
 
     const walletWithBalance = await Promise.all(
-      wallets.map(async wallet => {
+      Object.keys(wallets).map(async address => {
         const balance = await client.blockchain.balance(
-          BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
+          address,
           'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
         )
 
         return {
-          ...wallet,
-          address: BandProtocolClient.verifyKeyToAddress(wallet.verify_key),
+          address,
+          encrypted_secret_key: wallets[address],
           balance: BandBalance.fromBunString(balance),
         }
       })

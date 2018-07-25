@@ -3,24 +3,23 @@ import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import Welcome from './Welcome'
 import { connect, StateType } from '~/store'
-import { requestPin } from '~/store/app/Auth/action'
 
 interface Props extends PropTypes.withNavigation {}
 
-const mapState = (state: StateType) => ({ isLogin: state.app.Auth.is_login })
+const mapState = (state: StateType) => ({ wallets: state.app.Wallets.wallets })
 
 class WelcomeScreen extends React.Component<
   Props & ReturnType<typeof mapState>
 > {
   componentDidMount() {
-    if (this.props.isLogin) {
+    if (this.props.wallets && Object.keys(this.props.wallets).length) {
       this.props.navigation.navigate('RootStack')
     }
   }
 
   @autobind
   async onStartPhoneAuth() {
-    this.props.navigation.navigate('RequestPin')
+    this.props.navigation.navigate('WalletList')
   }
 
   render() {

@@ -50,6 +50,8 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
       'BX63 AAAA AAAA AAAA AAAA AAAA AAAA AAAA AAAA'
     )
 
+    console.log('Balance!', balance)
+
     return new Promise(resolve => {
       const balanceChanged = this.state.balance !== balance
       this.setState({ balance }, () => resolve(balanceChanged))
@@ -67,10 +69,6 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
     this.watchingBalance--
   }
 
-  componentWillUnmount() {
-    this.watchingBalance = 0
-  }
-
   async componentDidMount() {
     this.client = new BandProtocolClient({
       httpEndpoint: BLOCKCHAIN_ENDPOINT,
@@ -81,6 +79,7 @@ class WalletDetailMainScreen extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
+    this.watchingBalance = 0
     clearInterval(this.fetchBalanceInterval)
   }
 

@@ -1,3 +1,4 @@
+import { SecureStore } from 'expo'
 import {
   AsyncActionCreator,
   SyncActionCreator,
@@ -6,14 +7,18 @@ import {
 import BandProtocolClient from 'bandprotocol'
 
 enum actions {
-  SET_WALLET = 'SET_WALLET',
-  SET_PASSCODE = 'SET_PASSCODE',
-  RESET = 'RESET',
+  // New wallet
+  SET_NEW_WALLET = 'SET_NEW_WALLET',
+  SET_NEW_WALLET_PASSCODE = 'SET_NEW_WALLET_PASSCODE',
+  RESET_NEW_WALLET = 'RESET_NEW_WALLET',
+
+  // User wallets
+  SET_WALLETS = 'SET_WALLETS',
 }
-export const actionTypes = createScopedActionTypes('app.CreateWallet', actions)
+export const actionTypes = createScopedActionTypes('app.Wallets', actions)
 
 export const resetNewWallet: SyncActionCreator<any> = () => ({
-  type: actionTypes.RESET,
+  type: actionTypes.RESET_NEW_WALLET,
   payload: {},
 })
 
@@ -30,7 +35,7 @@ export const generateNewWallet: AsyncActionCreator<any> = () => async (
   dispatch(resetNewWallet())
 
   dispatch({
-    type: actionTypes.SET_WALLET,
+    type: actionTypes.SET_NEW_WALLET,
     payload: { secret_key, mnemonic, address },
   })
 }
@@ -49,7 +54,7 @@ export const recoverWallet: AsyncActionCreator<any> = (
   dispatch(resetNewWallet())
 
   dispatch({
-    type: actionTypes.SET_WALLET,
+    type: actionTypes.SET_NEW_WALLET,
     payload: {
       secret_key: client.key.getSecretKey(),
       mnemonic,
@@ -58,26 +63,40 @@ export const recoverWallet: AsyncActionCreator<any> = (
   })
 }
 
-export const setPasscode: SyncActionCreator<any> = (password: string) => ({
-  type: actionTypes.SET_PASSCODE,
-  payload: { value: password },
+export const setPasscode: SyncActionCreator<any> = (passcode: string) => ({
+  type: actionTypes.SET_NEW_WALLET_PASSCODE,
+  payload: { passcode },
 })
 
 export const saveWallet: AsyncActionCreator<any> = () => async (
   dispatch,
   getState
 ) => {
-  const { secret_key, passcode } = getState().app.CreateWallet
+  const { secret_key, passcode } = getState().app.Wallets.newWallet
 
   const client = new BandProtocolClient({ keyProvider: secret_key })
   const encrypted_secret_key = client.key.encrypt(passcode)
 
-  const userId = getState().app.User.id
-  const signature = client.key.generateSignature(userId.toString(16))
+  const wallets = {
+    ...getState().app.Wallets.wallets,
+    [client.key.getAddress()]: encrypted_secret_key,
+  }
 
-  console.log({
-    verify_key: client.key.getVerifyKey(),
-    encrypted_secret_key,
-    signature,
+  await SecureStore.setItemAsync('wallets', JSON.stringify(wallets))
+
+  dispatch({
+    type: actionTypes.SET_WALLETS,
+    payload: { wallets },
+  })
+}
+
+export const reviveWallets: AsyncActionCreator<any> = () => async dispatch => {
+  const wallets = JSON.parse(
+    (await SecureStore.getItemAsync('wallets')) || '{}'
+  )
+
+  dispatch({
+    type: actionTypes.SET_WALLETS,
+    payload: { wallets },
   })
 }

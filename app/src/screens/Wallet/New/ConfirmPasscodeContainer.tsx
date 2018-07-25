@@ -5,15 +5,17 @@ import { autobind } from '~/utils'
 import ConfirmPasscode from './ConfirmPasscode'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
-import { saveWallet } from '~/store/app/CreateWallet/action'
-import { Dispatch } from 'react-redux'
+import { saveWallet } from '~/store/app/Wallets/action'
+import { Dispatch } from 'redux'
 
 type Props = PropTypes.withNavigation
 type State = {
   passcode: string
 }
 
-const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
+const mapState = (state: StateType) => ({
+  newWallet: state.app.Wallets.newWallet,
+})
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
@@ -47,6 +49,12 @@ class WalletListScreen extends React.Component<
 
   @autobind
   async onPasscodeConfirm() {
+    console.log(
+      'passcode',
+      this.props.newWallet,
+      this.props.newWallet.passcode,
+      this.state.passcode
+    )
     if (this.props.newWallet.passcode !== this.state.passcode) {
       console.log('Incorrect passcode confirmation')
       return false

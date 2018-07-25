@@ -2,20 +2,19 @@ import * as React from 'react'
 import { PropTypes } from 'declare'
 import { autobind } from '~/utils'
 import Mnnemonic from './Mnemonic'
-import {
-  generateNewWallet,
-  resetNewWallet,
-} from '~/store/app/CreateWallet/action'
+import { generateNewWallet, resetNewWallet } from '~/store/app/Wallets/action'
 import { connect, bindActions, StateType } from '~/store'
 import DrawerButton from '~/components/DrawerButton'
-import { Dispatch } from 'react-redux'
+import { Dispatch } from 'redux'
 
 type Props = PropTypes.withNavigation
 type State = {
   passcode: string
 }
 
-const mapState = (state: StateType) => ({ newWallet: state.app.CreateWallet })
+const mapState = (state: StateType) => ({
+  newWallet: state.app.Wallets.newWallet,
+})
 const mapAction = (dispatch: Dispatch) =>
   bindActions(
     {
