@@ -32,7 +32,7 @@ class WalletListScreen extends React.Component<
   State
 > {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Your Wallet',
+    title: 'Your Wallets',
     headerLeft: <DrawerButton navigation={navigation} />,
     headerRight: (
       <View style={{ flexDirection: 'row' }}>

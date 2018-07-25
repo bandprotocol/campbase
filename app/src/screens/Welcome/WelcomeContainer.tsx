@@ -18,12 +18,17 @@ class WelcomeScreen extends React.Component<
   }
 
   @autobind
-  async onStartPhoneAuth() {
+  async onWallet() {
     this.props.navigation.navigate('WalletList')
   }
 
+  @autobind
+  async onExplore() {
+    this.props.navigation.navigate('RootStack')
+  }
+
   render() {
-    return <Welcome onStartPhoneAuth={this.onStartPhoneAuth} />
+    return <Welcome onWallet={this.onWallet} onExplore={this.onExplore} />
   }
 }
 

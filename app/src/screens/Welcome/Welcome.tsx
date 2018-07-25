@@ -63,7 +63,7 @@ const MoutainImage = Styled.Image.attrs({
   width: 100%;
 `
 
-export default ({ onStartPhoneAuth }) => (
+export default ({ onWallet, onExplore }) => (
   <Container>
     <TopContainer>
       <Header>CAMPBASE</Header>
@@ -72,14 +72,14 @@ export default ({ onStartPhoneAuth }) => (
         <ColorButton
           color={Color.darkPurple}
           style={{ width: 220 }}
-          onClick={onStartPhoneAuth}
+          onClick={onWallet}
         >
           SETUP WALLET
         </ColorButton>
         <ColorButton
           color="transparent"
           style={{ borderColor: '#ffffff', marginTop: 15, width: 220 }}
-          onClick={onStartPhoneAuth}
+          onClick={onExplore}
         >
           EXPLORE
         </ColorButton>

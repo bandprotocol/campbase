@@ -16,7 +16,7 @@ type State = {
 
 class WalletDetailMainScreen extends React.Component<Props, State> {
   static navigationOptions = ({ navigation }) => ({
-    title: 'Your Wallet',
+    title: 'Your Wallets',
     // headerRight: (
     //   <HeaderButton
     //     name="ios-archive"
