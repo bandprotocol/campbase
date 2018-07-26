@@ -2,7 +2,7 @@
 
 [![style: styled-components](https://img.shields.io/badge/style-%F0%9F%92%85%20styled--components-orange.svg?colorB=daa357&colorA=db748e)](https://github.com/styled-components/styled-components)
 
-See me at https://campbase.app
+~~See me at https://campbase.app~~ 
 
 ## Stack
 
@@ -53,11 +53,6 @@ Make sure you have `exp` installed (via `npm i -g exp`). Login as `innocationtea
 $> cd app
 $> exp publish
 ```
-
-## Documentation
-
-TBD
-
 ## Contribution
 
 Main contributors would be Band Protocol Core development team for now. However, please feel free to fork and send in a pull-request at any time.
@@ -65,3 +60,7 @@ Main contributors would be Band Protocol Core development team for now. However,
 ## Known Issues
 
 - Docker is known to mess up with the network configuration of expo. See [this Github issue](https://github.com/react-community/create-react-native-app/issues/270).
+
+## LICENSE
+
+[Apache 2.0](LICENSE.md)
